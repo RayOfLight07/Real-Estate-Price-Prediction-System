@@ -63,7 +63,7 @@ h1, h2, h3, h4, .brand-name {
   font-family: var(--font-heading);
 }
 
-/* CINEMATIC LUXURY VILLA WALKTHROUGH PRELOADER INTRO */
+/* MULTI-SCENE CINEMATIC LUXURY VILLA PRELOADER INTRO */
 .villa-preloader {
   position: fixed;
   inset: 0;
@@ -77,21 +77,26 @@ h1, h2, h3, h4, .brand-name {
   overflow: hidden;
 }
 
-.preloader-bg {
+.preloader-bg-slide {
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=80');
   background-size: cover;
   background-position: center;
+  opacity: 0;
   transform: scale(1.15);
-  filter: brightness(0.7);
-  transition: transform 4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1.2s ease, transform 4.5s ease-out;
+  filter: brightness(0.65);
+}
+
+.preloader-bg-slide.active {
+  opacity: 1;
+  transform: scale(1.0);
 }
 
 .preloader-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, rgba(6, 8, 14, 0.6) 0%, rgba(6, 8, 14, 0.95) 100%);
+  background: radial-gradient(circle, rgba(6, 8, 14, 0.4) 0%, rgba(6, 8, 14, 0.9) 100%);
 }
 
 .preloader-content {
@@ -126,7 +131,28 @@ h1, h2, h3, h4, .brand-name {
 .preloader-subtitle {
   font-size: 1.15rem;
   color: #94a3b8;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.scene-dots-row {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.scene-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.4s ease;
+}
+
+.scene-dot.active {
+  width: 28px;
+  border-radius: 10px;
+  background: #38bdf8;
 }
 
 .preloader-progress-box {
@@ -302,17 +328,34 @@ h1, h2, h3, h4, .brand-name {
   transform: translateY(-2px);
 }
 
-/* VIEW 1: LANDING PAGE PORTAL */
+/* VIEW 1: HERO SEARCH BANNER WITH LUXURY VILLA BACKGROUND IMAGE */
 .hero-banner-section {
-  background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
-  padding: 3.5rem 0 2rem 0;
+  position: relative;
+  min-height: 620px;
+  background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
   border-bottom: 1px solid var(--border-card);
 }
 
+.hero-bg-villa-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.78) 0%, rgba(248, 250, 252, 0.94) 100%);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
 .hero-content-container {
+  position: relative;
+  z-index: 2;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 2rem;
+  width: 100%;
 }
 
 .hero-badge {
@@ -343,13 +386,14 @@ h1, h2, h3, h4, .brand-name {
   margin-bottom: 2rem;
 }
 
-/* Light Search Portal Card */
+/* Glassmorphic Search Portal Card */
 .search-portal-card {
-  background: #ffffff;
-  border: 1px solid var(--border-card);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
   border-radius: var(--radius-lg);
   padding: 1.8rem;
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   margin-bottom: 2rem;
 }
 
@@ -397,7 +441,7 @@ h1, h2, h3, h4, .brand-name {
 
 .search-select, .select-control, .text-input {
   width: 100%;
-  background: #f8fafc;
+  background: #ffffff;
   border: 1.5px solid var(--border-card);
   border-radius: var(--radius-sm);
   color: var(--text-main);

@@ -156,7 +156,7 @@ const TILE_LAYERS = {
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
-  initLuxuryVillaPreloader();
+  initMultiSceneVillaTour();
   initLeafletMap();
   fetchServerData();
   setupNavigationEvents();
@@ -165,17 +165,25 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFinancialCalculators();
 });
 
-// CINEMATIC LUXURY VILLA PRELOADER INTRO
-function initLuxuryVillaPreloader(): void {
+// MULTI-SCENE CINEMATIC LUXURY VILLA TOUR PRELOADER INTRO
+function initMultiSceneVillaTour(): void {
   const preloader = document.getElementById('villa-intro-preloader');
-  const bgImg = document.getElementById('preloader-bg-img');
+  const badge = document.getElementById('preloader-badge');
+  const title = document.getElementById('preloader-title');
+  const sub = document.getElementById('preloader-sub');
   const fill = document.getElementById('preloader-fill');
   const pct = document.getElementById('preloader-pct');
   const skipBtn = document.getElementById('skip-intro-btn');
 
-  if (!preloader || !fill || !pct) return;
+  const s1 = document.getElementById('preloader-slide-1');
+  const s2 = document.getElementById('preloader-slide-2');
+  const s3 = document.getElementById('preloader-slide-3');
 
-  const progressObj = { count: 0 };
+  const dot1 = document.getElementById('dot-1');
+  const dot2 = document.getElementById('dot-2');
+  const dot3 = document.getElementById('dot-3');
+
+  if (!preloader || !fill || !pct) return;
 
   const closePreloader = () => {
     gsap.to(preloader, {
@@ -192,19 +200,49 @@ function initLuxuryVillaPreloader(): void {
 
   skipBtn?.addEventListener('click', closePreloader);
 
-  // Zoom camera effect on villa background
-  if (bgImg) {
-    gsap.to(bgImg, { scale: 1.0, duration: 3.5, ease: 'none' });
-  }
+  const progressObj = { count: 0 };
 
+  // 3 Scene Timeline Sequence
   gsap.to(progressObj, {
     count: 100,
-    duration: 2.8,
-    ease: 'power2.out',
+    duration: 4.5,
+    ease: 'none',
     onUpdate: () => {
       const val = Math.round(progressObj.count);
       fill.style.width = `${val}%`;
       pct.textContent = `${val}%`;
+
+      // Scene 1: Exterior (0% to 33%)
+      if (val < 33) {
+        if (s1 && !s1.classList.contains('active')) {
+          s1.classList.add('active'); s2?.classList.remove('active'); s3?.classList.remove('active');
+          dot1?.classList.add('active'); dot2?.classList.remove('active'); dot3?.classList.remove('active');
+          if (badge) badge.textContent = '🏛️ LUXURY VILLA TOUR — SCENE 1 OF 3';
+          if (title) title.textContent = 'Welcome to Grand Villa Living';
+          if (title) title.style.color = '#ffffff';
+          if (sub) sub.textContent = 'Touring Premium Estates Across India...';
+        }
+      }
+      // Scene 2: Infinity Pool Lounge (34% to 66%)
+      else if (val >= 33 && val < 67) {
+        if (s2 && !s2.classList.contains('active')) {
+          s2.classList.add('active'); s1?.classList.remove('active'); s3?.classList.remove('active');
+          dot2?.classList.add('active'); dot1?.classList.remove('active'); dot3?.classList.remove('active');
+          if (badge) badge.textContent = '🏊 INFINITY POOL & LOUNGE — SCENE 2 OF 3';
+          if (title) title.textContent = 'Sunset Infinity Pool & Outdoor Oasis';
+          if (sub) sub.textContent = 'Analyzing Rate/Sqft & Property Benchmarks...';
+        }
+      }
+      // Scene 3: Master Penthouse Suite (67% to 100%)
+      else {
+        if (s3 && !s3.classList.contains('active')) {
+          s3.classList.add('active'); s1?.classList.remove('active'); s2?.classList.remove('active');
+          dot3?.classList.add('active'); dot1?.classList.remove('active'); dot2?.classList.remove('active');
+          if (badge) badge.textContent = '✨ SMART HOME PENTHOUSE — SCENE 3 OF 3';
+          if (title) title.textContent = 'Next-Gen Valuation Engine Ready';
+          if (sub) sub.textContent = 'Loading 250,000+ Verified Real Estate Records...';
+        }
+      }
     },
     onComplete: () => {
       setTimeout(closePreloader, 400);
