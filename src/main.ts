@@ -147,6 +147,34 @@ let leafletMap: L.Map | null = null;
 let cityMarkers: Record<string, L.Marker> = {};
 let currentTileLayer: L.TileLayer | null = null;
 
+// Calendar State
+let currentCalYear = 2026;
+let currentCalMonthIndex = 7; // August (0-indexed)
+
+const MONTH_NAMES = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+// Mock Real Estate Market Events Database
+const MOCK_MARKET_EVENTS: Record<number, Array<{ tag: string; title: string; desc: string }>> = {
+  5: [
+    { tag: "🏛️ BANK POLICY", title: "Reserve Bank Repo Rate Announcement", desc: "RBI Monetary Policy Committee meeting regarding home loan benchmark interest rates." }
+  ],
+  9: [
+    { tag: "✨ EXCLUSIVE LAUNCH", title: "Mumbai Luxury Sea-Facing Villa Expo", desc: "Pre-launch booking window for 50 luxury coastal estates in Worli & Bandra." }
+  ],
+  12: [
+    { tag: "📈 MARKET REPORT", title: "Q3 Indian Metro Price Trend Release", desc: "Official publication of price per sqft indices across 42 tier-1 & tier-2 cities." }
+  ],
+  17: [
+    { tag: "🔨 GOVERNMENT AUCTION", title: "Delhi NCR Commercial Land Bidding", desc: "Public auction for prime commercial & highrise residential plots in Noida Sector 150." }
+  ],
+  24: [
+    { tag: "🏡 REAL ESTATE EXPO", title: "Bangalore Tech Hub Home Fest 2026", desc: "3-day developer showcase featuring 100+ RERA-approved gated highrise communities." }
+  ]
+};
+
 // Tile Layer URLs
 const TILE_LAYERS = {
   streets: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -165,7 +193,133 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFormEvents();
   setupFinancialCalculators();
   setupBankApplyButtons();
+  initInteractiveCalendar();
 });
+
+// DYNAMIC INTERACTIVE CALENDAR MANAGER
+function initInteractiveCalendar(): void {
+  const monthTitleEl = document.getElementById('cal-month-title');
+  const daysGridEl = document.getElementById('cal-days-grid');
+  const prevBtn = document.getElementById('cal-prev-btn');
+  const nextBtn = document.getElementById('cal-next-btn');
+
+  const modalEl = document.getElementById('cal-event-modal');
+  const modalCloseBtn = document.getElementById('cal-modal-close');
+
+  const renderCalendar = () => {
+    if (!monthTitleEl || !daysGridEl) return;
+
+    monthTitleEl.textContent = `Market Calendar — ${MONTH_NAMES[currentCalMonthIndex]} ${currentCalYear}`;
+    daysGridEl.innerHTML = '';
+
+    // Day Header Labels
+    const daysOfWeek = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+    daysOfWeek.forEach(d => {
+      const lbl = document.createElement('span');
+      lbl.className = 'day-lbl';
+      lbl.textContent = d;
+      daysGridEl.appendChild(lbl);
+    });
+
+    const firstDay = new Date(currentCalYear, currentCalMonthIndex, 1);
+    const lastDay = new Date(currentCalYear, currentCalMonthIndex + 1, 0);
+
+    let startingDay = firstDay.getDay() - 1; // Mon = 0
+    if (startingDay === -1) startingDay = 6; // Sun = 6
+
+    const totalDays = lastDay.getDate();
+
+    // Previous month inactive padding days
+    const prevMonthLastDay = new Date(currentCalYear, currentCalMonthIndex, 0).getDate();
+    for (let i = startingDay - 1; i >= 0; i--) {
+      const span = document.createElement('span');
+      span.className = 'day-num inactive';
+      span.textContent = (prevMonthLastDay - i).toString();
+      daysGridEl.appendChild(span);
+    }
+
+    // Current month active days
+    for (let day = 1; day <= totalDays; day++) {
+      const span = document.createElement('span');
+      span.className = 'day-num clickable';
+      span.textContent = day.toString();
+
+      if (MOCK_MARKET_EVENTS[day] && currentCalMonthIndex === 7) {
+        span.classList.add('has-event', 'highlight-mint');
+        span.title = `Event: ${MOCK_MARKET_EVENTS[day][0].title}`;
+      } else if (day === 16 || day === 17) {
+        span.classList.add('highlight-black');
+      }
+
+      span.addEventListener('click', () => {
+        openCalendarEventModal(day);
+      });
+
+      daysGridEl.appendChild(span);
+    }
+
+    gsap.fromTo('.day-num.clickable', { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, stagger: 0.01 });
+  };
+
+  prevBtn?.addEventListener('click', () => {
+    currentCalMonthIndex--;
+    if (currentCalMonthIndex < 0) {
+      currentCalMonthIndex = 11;
+      currentCalYear--;
+    }
+    renderCalendar();
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    currentCalMonthIndex++;
+    if (currentCalMonthIndex > 11) {
+      currentCalMonthIndex = 0;
+      currentCalYear++;
+    }
+    renderCalendar();
+  });
+
+  modalCloseBtn?.addEventListener('click', () => {
+    modalEl?.classList.add('hidden');
+  });
+
+  modalEl?.addEventListener('click', (e) => {
+    if (e.target === modalEl) modalEl.classList.add('hidden');
+  });
+
+  renderCalendar();
+}
+
+// Open Calendar Event Modal Function
+function openCalendarEventModal(day: number): void {
+  const modalEl = document.getElementById('cal-event-modal');
+  const modalTitle = document.getElementById('cal-modal-title');
+  const modalBody = document.getElementById('cal-modal-body');
+
+  if (!modalEl || !modalTitle || !modalBody) return;
+
+  const dateStr = `${day} ${MONTH_NAMES[currentCalMonthIndex]} ${currentCalYear}`;
+  modalTitle.textContent = `📅 Market Schedule — ${dateStr}`;
+
+  const events = MOCK_MARKET_EVENTS[day] || [
+    {
+      tag: "📊 REGULAR MARKET DAY",
+      title: "Real-Time Valuation Trading Session",
+      desc: "ML automated model price tracking active for 250,000+ listings across 42 cities."
+    }
+  ];
+
+  modalBody.innerHTML = events.map(ev => `
+    <div class="event-item-card">
+      <span class="event-tag">${ev.tag}</span>
+      <h4 class="event-title">${ev.title}</h4>
+      <p class="event-desc">${ev.desc}</p>
+    </div>
+  `).join('');
+
+  modalEl.classList.remove('hidden');
+  gsap.fromTo('.glass-modal', { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(1.5)' });
+}
 
 // DYNAMIC KINETIC TYPOGRAPHY ANIMATION
 function initKineticTypographyAnimation(): void {

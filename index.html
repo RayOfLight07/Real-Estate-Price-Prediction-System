@@ -18,6 +18,13 @@
 <body class="light-theme">
   <div id="app">
     
+    <!-- AMBIENT FLOATING BACKGROUND GLOW ANIMATIONS -->
+    <div class="ambient-glow-container">
+      <div class="glow-orb glow-cyan"></div>
+      <div class="glow-orb glow-rose"></div>
+      <div class="glow-orb glow-emerald"></div>
+    </div>
+
     <!-- TOP PROFESSIONAL ANNOUNCEMENT UTILITY BAR -->
     <div class="top-utility-bar">
       <div class="utility-container">
@@ -37,7 +44,7 @@
     </div>
 
     <!-- MAIN PROFESSIONAL STICKY NAVIGATION HEADER BAR -->
-    <header class="portal-header">
+    <header class="portal-header glass-header">
       <div class="header-container">
         <div class="brand">
           <svg class="brand-logo-svg" viewBox="0 0 32 32" fill="none">
@@ -61,7 +68,7 @@
           </div>
         </div>
 
-        <nav class="portal-nav">
+        <nav class="portal-nav glass-pill-nav">
           <button id="nav-landing-tab" class="top-view-tab active">
             <span>🏠 Home</span>
           </button>
@@ -104,7 +111,7 @@
 
           <!-- HERO INTERACTIVE ENGAGING FEATURE TILES -->
           <div class="hero-tiles-grid">
-            <div class="hero-tile-card tile-blue" id="hero-tile-calc">
+            <div class="hero-tile-card tile-blue glass-card" id="hero-tile-calc">
               <div class="tile-icon-bg">⚡</div>
               <div class="tile-content">
                 <span class="tile-tag">INSTANT ESTIMATION</span>
@@ -114,7 +121,7 @@
               </div>
             </div>
 
-            <div class="hero-tile-card tile-rose" id="hero-tile-map">
+            <div class="hero-tile-card tile-rose glass-card" id="hero-tile-map">
               <div class="tile-icon-bg">📍</div>
               <div class="tile-content">
                 <span class="tile-tag">GIS SATELLITE MAP</span>
@@ -124,7 +131,7 @@
               </div>
             </div>
 
-            <div class="hero-tile-card tile-emerald" id="hero-tile-bank">
+            <div class="hero-tile-card tile-emerald glass-card" id="hero-tile-bank">
               <div class="tile-icon-bg">🏦</div>
               <div class="tile-content">
                 <span class="tile-tag">BANKING & FINANCING</span>
@@ -137,19 +144,19 @@
 
           <!-- KPI Metrics Ribbon -->
           <div class="kpi-ribbon">
-            <div class="kpi-box">
+            <div class="kpi-box glass-card">
               <span class="kpi-num" id="kpi-listings">250,000</span>
               <span class="kpi-label">Market Listings</span>
             </div>
-            <div class="kpi-box">
+            <div class="kpi-box glass-card">
               <span class="kpi-num">20</span>
               <span class="kpi-label">Indian States</span>
             </div>
-            <div class="kpi-box">
+            <div class="kpi-box glass-card">
               <span class="kpi-num">42</span>
               <span class="kpi-label">Major Cities</span>
             </div>
-            <div class="kpi-box">
+            <div class="kpi-box glass-card">
               <span class="kpi-num">±10%</span>
               <span class="kpi-label">Precision Margin</span>
             </div>
@@ -183,7 +190,7 @@
         </div>
 
         <div class="categories-grid">
-          <div class="cat-card">
+          <div class="cat-card glass-card">
             <div class="cat-img" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80')"></div>
             <div class="cat-content">
               <span class="cat-badge">120,000+ Units</span>
@@ -192,7 +199,7 @@
             </div>
           </div>
 
-          <div class="cat-card">
+          <div class="cat-card glass-card">
             <div class="cat-img" style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=600&q=80')"></div>
             <div class="cat-content">
               <span class="cat-badge">65,000+ Units</span>
@@ -201,7 +208,7 @@
             </div>
           </div>
 
-          <div class="cat-card">
+          <div class="cat-card glass-card">
             <div class="cat-img" style="background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80')"></div>
             <div class="cat-content">
               <span class="cat-badge">65,000+ Units</span>
@@ -214,7 +221,7 @@
 
       <!-- DYNAMIC STATE LANDMARK BANNER SHOWCASE -->
       <section class="section-container banner-section">
-        <div id="state-banner-card" class="state-banner-card">
+        <div id="state-banner-card" class="state-banner-card glass-card">
           <div class="state-banner-overlay">
             <span id="state-landmark-tag" class="landmark-badge">✨ Hawa Mahal & Pink City</span>
             <h3 id="state-banner-title" class="banner-title">Rajasthan Market</h3>
@@ -231,7 +238,7 @@
         </div>
 
         <div class="location-grid">
-          <div class="card location-card">
+          <div class="card location-card glass-card">
             <div class="card-header-with-icon">
               <span class="icon-badge">📍</span>
               <h3 class="column-header">Location Attributes</h3>
@@ -283,8 +290,8 @@
           </div>
 
           <!-- Leaflet Map Card -->
-          <div class="card map-card">
-            <div class="map-layer-toggles map-floating-toggles">
+          <div class="card map-card glass-card">
+            <div class="map-layer-toggles map-floating-toggles glass-card">
               <button id="map-style-sat" class="map-layer-btn active">📡 Satellite View</button>
               <button id="map-style-street" class="map-layer-btn">🗺️ Streets View</button>
               <button id="map-style-dark" class="map-layer-btn">🌙 Dark Mode</button>
@@ -301,7 +308,7 @@
           <p class="section-subtitle">Configure your property layout, built-up sqft, floor height, age, and amenities to generate precise price estimates.</p>
         </div>
 
-        <form id="valuation-form" class="card form-card">
+        <form id="valuation-form" class="card form-card glass-card">
           <div class="form-grid">
             <!-- Col 1: Layout & Size -->
             <div class="form-column">
@@ -437,7 +444,7 @@
 
         <!-- Valuation Results Card -->
         <div id="results-section" class="results-section hidden">
-          <div class="card result-card">
+          <div class="card result-card glass-card">
             <div class="result-header">ESTIMATED PROPERTY MARKET VALUE</div>
             
             <div id="price-main-counter" class="price-counter">₹ 0.00 Cr</div>
@@ -484,7 +491,7 @@
         </div>
 
         <div class="cities-cards-grid">
-          <div class="city-card">
+          <div class="city-card glass-card">
             <div class="city-card-img" style="background-image: url('https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=600&q=80')">
               <span class="city-badge">🔥 #1 Premium Hub</span>
             </div>
@@ -495,7 +502,7 @@
             </div>
           </div>
 
-          <div class="city-card">
+          <div class="city-card glass-card">
             <div class="city-card-img" style="background-image: url('https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=600&q=80')">
               <span class="city-badge">💻 IT Corridor</span>
             </div>
@@ -506,7 +513,7 @@
             </div>
           </div>
 
-          <div class="city-card">
+          <div class="city-card glass-card">
             <div class="city-card-img" style="background-image: url('https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=600&q=80')">
               <span class="city-badge">🚀 NCR Growth</span>
             </div>
@@ -517,7 +524,7 @@
             </div>
           </div>
 
-          <div class="city-card">
+          <div class="city-card glass-card">
             <div class="city-card-img" style="background-image: url('https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=600&q=80')">
               <span class="city-badge">✨ Royal Heritage</span>
             </div>
@@ -531,7 +538,7 @@
       </section>
 
       <!-- PORTAL FOOTER -->
-      <footer class="portal-footer">
+      <footer class="portal-footer glass-footer">
         <div class="footer-container">
           <div class="footer-col brand-col">
             <div class="brand">
@@ -578,7 +585,7 @@
             <p class="welcome-subtitle">Comprehensive valuation metrics, city rate distributions, and state comparison data across India.</p>
           </div>
 
-          <div class="dash-search-bar">
+          <div class="dash-search-bar glass-card">
             <span>🔍</span>
             <input type="text" placeholder="Search city or state metrics..." />
           </div>
@@ -586,7 +593,7 @@
 
         <!-- Featured Pastel Highlight Cards Grid (4 Columns, Full Width) -->
         <div class="pastel-cards-grid">
-          <div class="pastel-card card-mint">
+          <div class="pastel-card card-mint glass-card">
             <div class="p-card-header">
               <span class="p-tag">⭐ 4.9 Premium</span>
               <button class="arrow-circle-btn">↗</button>
@@ -602,7 +609,7 @@
             </div>
           </div>
 
-          <div class="pastel-card card-pink">
+          <div class="pastel-card card-pink glass-card">
             <div class="p-card-header">
               <span class="p-tag">⭐ 4.8 IT Hub</span>
               <button class="arrow-circle-btn">↗</button>
@@ -618,7 +625,7 @@
             </div>
           </div>
 
-          <div class="pastel-card card-lemon">
+          <div class="pastel-card card-lemon glass-card">
             <div class="p-card-header">
               <span class="p-tag">🚀 NCR Corridor</span>
               <button class="arrow-circle-btn">↗</button>
@@ -634,7 +641,7 @@
             </div>
           </div>
 
-          <div class="pastel-card card-lavender">
+          <div class="pastel-card card-lavender glass-card">
             <div class="p-card-header">
               <span class="p-tag">✨ Royal Hub</span>
               <button class="arrow-circle-btn">↗</button>
@@ -651,22 +658,22 @@
           </div>
         </div>
 
-        <!-- Activity Overview & Calendar Grid -->
+        <!-- Activity Overview & Fully Functional Calendar Grid -->
         <div class="overview-widgets-grid">
           <div class="widget-col-left">
             <h3 class="widget-heading">Market Activity Today</h3>
             <div class="mini-metrics-grid">
-              <div class="mini-metric-card card-mint-soft">
+              <div class="mini-metric-card card-mint-soft glass-card">
                 <span class="mini-lbl">Listings</span>
                 <span class="mini-val">250K</span>
                 <button class="mini-arrow">↗</button>
               </div>
-              <div class="mini-metric-card card-lemon-soft">
+              <div class="mini-metric-card card-lemon-soft glass-card">
                 <span class="mini-lbl">States</span>
                 <span class="mini-val">20</span>
                 <button class="mini-arrow">↗</button>
               </div>
-              <div class="mini-metric-card card-lavender-soft">
+              <div class="mini-metric-card card-lavender-soft glass-card">
                 <span class="mini-lbl">Cities</span>
                 <span class="mini-val">42</span>
                 <button class="mini-arrow">↗</button>
@@ -675,45 +682,18 @@
           </div>
 
           <div class="widget-col-right">
-            <div class="calendar-widget-card">
+            <!-- DYNAMIC INTERACTIVE CALENDAR WIDGET -->
+            <div class="calendar-widget-card glass-card">
               <div class="cal-header">
-                <h4 class="cal-month-title">Market Calendar — 2026</h4>
+                <h4 id="cal-month-title" class="cal-month-title">Market Calendar — August 2026</h4>
                 <div class="cal-arrows">
-                  <button class="cal-nav">&lt;</button>
-                  <button class="cal-nav">&gt;</button>
+                  <button id="cal-prev-btn" class="cal-nav" title="Previous Month">&lt;</button>
+                  <button id="cal-next-btn" class="cal-nav" title="Next Month">&gt;</button>
                 </div>
               </div>
 
-              <div class="cal-days-grid">
-                <span class="day-lbl">MON</span>
-                <span class="day-lbl">THU</span>
-                <span class="day-lbl">WED</span>
-                <span class="day-lbl">TUE</span>
-                <span class="day-lbl">FRI</span>
-                <span class="day-lbl">SAT</span>
-                <span class="day-lbl">SUN</span>
-
-                <span class="day-num inactive">30</span>
-                <span class="day-num">1</span>
-                <span class="day-num">2</span>
-                <span class="day-num">3</span>
-                <span class="day-num">4</span>
-                <span class="day-num">5</span>
-                <span class="day-num">6</span>
-                <span class="day-num">7</span>
-                <span class="day-num">8</span>
-                <span class="day-num highlight-mint">9</span>
-                <span class="day-num">10</span>
-                <span class="day-num">11</span>
-                <span class="day-num highlight-mint">12</span>
-                <span class="day-num">13</span>
-                <span class="day-num">14</span>
-                <span class="day-num">15</span>
-                <span class="day-num highlight-black">16</span>
-                <span class="day-num highlight-black">17</span>
-                <span class="day-num">18</span>
-                <span class="day-num">19</span>
-                <span class="day-num">20</span>
+              <div class="cal-days-grid" id="cal-days-grid">
+                <!-- Dynamically rendered days grid -->
               </div>
             </div>
           </div>
@@ -721,28 +701,28 @@
 
         <!-- Market Analytics Dashboard Charts -->
         <div class="dashboard-grid">
-          <div class="card chart-card">
+          <div class="card chart-card glass-card">
             <h3 class="card-title">📈 Average Rate per Sq. Ft. by State (₹/sqft)</h3>
             <div class="chart-container">
               <canvas id="chart-state-rate"></canvas>
             </div>
           </div>
 
-          <div class="card chart-card">
+          <div class="card chart-card glass-card">
             <h3 class="card-title">🏠 Average Price Valuation by BHK Layout (₹ Lakhs)</h3>
             <div class="chart-container">
               <canvas id="chart-bhk-price"></canvas>
             </div>
           </div>
 
-          <div class="card chart-card">
+          <div class="card chart-card glass-card">
             <h3 class="card-title">🏢 Valuation Distribution by Property Type</h3>
             <div class="chart-container">
               <canvas id="chart-prop-type"></canvas>
             </div>
           </div>
 
-          <div class="card compare-card">
+          <div class="card compare-card glass-card">
             <h3 class="card-title">⚔️ Side-by-Side City Market Comparator</h3>
             <p class="helper-text">Select 2 cities to compare valuation metrics:</p>
             <div class="compare-selectors">
@@ -778,7 +758,7 @@
             </div>
           </div>
 
-          <div class="card table-card">
+          <div class="card table-card glass-card">
             <h3 class="card-title">📋 State Market Comparison Table</h3>
             <div class="table-wrapper">
               <table class="data-table">
@@ -815,7 +795,7 @@
       <div class="section-container">
         
         <!-- Interactive EMI & Amortization Calculator -->
-        <div class="bank-calc-wrapper card">
+        <div class="bank-calc-wrapper card glass-card">
           <div class="section-header">
             <h2 class="section-title">🧮 Interactive Home Loan EMI Calculator</h2>
             <p class="section-subtitle">Adjust your loan amount, tenure & interest rate to view real-time monthly repayment breakdowns.</p>
@@ -882,7 +862,7 @@
 
           <div class="banks-grid">
             <!-- Bank 1: SBI -->
-            <div class="bank-card">
+            <div class="bank-card glass-card">
               <div class="bank-card-header">
                 <div class="bank-logo-badge">🏛️ SBI</div>
                 <span class="bank-status-pill pill-rose">🔥 Popular Choice</span>
@@ -907,7 +887,7 @@
             </div>
 
             <!-- Bank 2: HDFC -->
-            <div class="bank-card">
+            <div class="bank-card glass-card">
               <div class="bank-card-header">
                 <div class="bank-logo-badge">🏦 HDFC</div>
                 <span class="bank-status-pill pill-blue">⚡ Fast Approval</span>
@@ -932,7 +912,7 @@
             </div>
 
             <!-- Bank 3: ICICI -->
-            <div class="bank-card">
+            <div class="bank-card glass-card">
               <div class="bank-card-header">
                 <div class="bank-logo-badge">💎 ICICI</div>
                 <span class="bank-status-pill pill-emerald">⭐ Top Digital Bank</span>
@@ -957,7 +937,7 @@
             </div>
 
             <!-- Bank 4: AXIS BANK -->
-            <div class="bank-card">
+            <div class="bank-card glass-card">
               <div class="bank-card-header">
                 <div class="bank-logo-badge">💳 AXIS</div>
                 <span class="bank-status-pill pill-purple">🎁 EMI Waiver</span>
@@ -982,7 +962,7 @@
             </div>
 
             <!-- Bank 5: KOTAK -->
-            <div class="bank-card">
+            <div class="bank-card glass-card">
               <div class="bank-card-header">
                 <div class="bank-logo-badge">🦁 KOTAK</div>
                 <span class="bank-status-pill pill-lemon">💎 Lowest Rate</span>
@@ -1009,26 +989,26 @@
         </div>
 
         <!-- GOVERNMENT HOME LOAN TAX POLICIES & SUBSIDY SCHEMES -->
-        <div class="tax-policies-wrapper card">
+        <div class="tax-policies-wrapper card glass-card">
           <div class="section-header">
             <h2 class="section-title">📜 Government Tax Policies & Subsidy Benefits</h2>
             <p class="section-subtitle">Maximize your tax savings under Income Tax Act & Housing Scheme policies.</p>
           </div>
 
           <div class="policies-grid">
-            <div class="policy-card card-mint-soft">
+            <div class="policy-card card-mint-soft glass-card">
               <div class="policy-icon">📝</div>
               <h3>Section 24(b) Tax Deduction</h3>
               <p>Deduct up to <b>₹ 2,00,000</b> per financial year on home loan interest payments for self-occupied properties.</p>
             </div>
 
-            <div class="policy-card card-lemon-soft">
+            <div class="policy-card card-lemon-soft glass-card">
               <div class="policy-icon">💰</div>
               <h3>Section 80C Principal Benefit</h3>
               <p>Deduct up to <b>₹ 1,50,000</b> per year on the principal repayment portion of home loan installments.</p>
             </div>
 
-            <div class="policy-card card-lavender-soft">
+            <div class="policy-card card-lavender-soft glass-card">
               <div class="policy-icon">🏗️</div>
               <h3>Pradhan Mantri Awas Yojana (PMAY)</h3>
               <p>Interest subsidy up to <b>₹ 2.67 Lakhs</b> under Credit Linked Subsidy Scheme (CLSS) for EWS / LIG home buyers.</p>
@@ -1039,6 +1019,19 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- INTERACTIVE CALENDAR DATE EVENT MODAL -->
+  <div id="cal-event-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-modal">
+      <div class="modal-header">
+        <h3 id="cal-modal-title">📅 Market Event Details</h3>
+        <button id="cal-modal-close" class="modal-close-btn">✕</button>
+      </div>
+      <div id="cal-modal-body" class="modal-body">
+        <!-- Dynamically filled -->
+      </div>
+    </div>
   </div>
 
   <script type="module" src="/src/main.ts"></script>
