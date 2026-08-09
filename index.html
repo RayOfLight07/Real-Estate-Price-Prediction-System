@@ -16,6 +16,11 @@
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
+  <!-- Ambient Floating Neon Background Orbs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
   <div id="app">
     <!-- Navbar -->
     <nav class="navbar">
@@ -40,6 +45,11 @@
         </div>
 
         <div class="nav-actions">
+          <div class="status-pill">
+            <span class="pulse-dot"></span>
+            <span>250,000 Verified Listings</span>
+          </div>
+
           <button id="nav-valuation-btn" class="nav-tab active">🏠 Valuation Tool</button>
           <button id="nav-dashboard-btn" class="nav-tab">📊 Price Analytics Dashboard</button>
           
@@ -56,15 +66,36 @@
       
       <!-- VIEW 1: VALUATION & INTERACTIVE MAP VIEW -->
       <div id="view-valuation" class="view-container">
+        
         <!-- Hero Section -->
         <section class="hero-section gsap-hero">
-          <div class="hero-tag">⚡ Smart Property Price Estimator</div>
+          <div class="hero-tag">⚡ Smart Real Estate Intelligence</div>
           <h1 class="hero-title">Real-Time Property Valuation & Market Insights</h1>
-          <p class="hero-subtitle">Select your property location on the map or dropdowns below to discover average rates, instant price estimates, and market trends.</p>
+          <p class="hero-subtitle">Select your target location on the interactive satellite map or dropdowns below to discover average sqft rates, instant price predictions, and market benchmarks.</p>
+          
+          <!-- Hero KPI Stats Counter Chips -->
+          <div class="hero-stats-grid">
+            <div class="hero-stat-card">
+              <span class="h-stat-num" id="h-stat-listings">250,000</span>
+              <span class="h-stat-label">Market Listings</span>
+            </div>
+            <div class="hero-stat-card">
+              <span class="h-stat-num">20</span>
+              <span class="h-stat-label">Indian States</span>
+            </div>
+            <div class="hero-stat-card">
+              <span class="h-stat-num">42</span>
+              <span class="h-stat-label">Major Cities</span>
+            </div>
+            <div class="hero-stat-card">
+              <span class="h-stat-num">±10%</span>
+              <span class="h-stat-label">Precision Band</span>
+            </div>
+          </div>
         </section>
 
         <!-- Dynamic State Visual Showcase Banner Card -->
-        <div id="state-banner-card" class="card state-banner-card">
+        <div id="state-banner-card" class="card state-banner-card gsap-banner">
           <div class="state-banner-overlay">
             <span id="state-landmark-tag" class="landmark-badge">✨ Hawa Mahal & Pink City</span>
             <h3 id="state-banner-title" class="banner-title">Rajasthan Market</h3>
@@ -80,9 +111,12 @@
 
           <div class="location-grid">
             <!-- Location Selectors Card -->
-            <div class="card location-card">
-              <h3 class="column-header">📍 Location Attributes</h3>
-              <p class="helper-text">Click any city pin on the map or select from dropdowns below:</p>
+            <div class="card location-card gsap-card">
+              <div class="card-header-with-icon">
+                <span class="icon-badge">📍</span>
+                <h3 class="column-header">Location Attributes</h3>
+              </div>
+              <p class="helper-text">Click any city pin on the map or choose location below:</p>
               
               <div class="input-field">
                 <label for="state-select">Select State</label>
@@ -129,7 +163,7 @@
             </div>
 
             <!-- Leaflet Interactive Map Card with Floating Layer Controls -->
-            <div class="card map-card">
+            <div class="card map-card gsap-card">
               <!-- Floating Layer Overlay Control -->
               <div class="map-layer-toggles map-floating-toggles">
                 <button id="map-style-sat" class="map-layer-btn active">📡 Satellite View</button>
@@ -141,11 +175,13 @@
           </div>
         </section>
 
-
         <!-- Property Configuration Form -->
         <section class="config-section gsap-form">
-          <form id="valuation-form" class="card form-card">
-            <h2 class="card-title">📋 Property Specification & Configuration</h2>
+          <form id="valuation-form" class="card form-card gsap-card">
+            <div class="card-header-with-icon">
+              <span class="icon-badge">📋</span>
+              <h2 class="card-title">Property Specification & Configuration</h2>
+            </div>
 
             <div class="form-grid">
               <!-- Col 1: Layout & Size -->
@@ -235,7 +271,7 @@
                 <h3 class="column-header">🏊 Amenities & Connectivity</h3>
 
                 <div class="input-field">
-                  <label>Select Included Amenities</label>
+                  <label>Included Amenities</label>
                   <div class="amenities-grid">
                     <label class="chip-label"><input type="checkbox" id="am-gym" checked /> Gymnasium</label>
                     <label class="chip-label"><input type="checkbox" id="am-pool" checked /> Pool</label>
@@ -274,8 +310,8 @@
             </div>
 
             <div class="button-wrapper">
-              <button type="submit" id="submit-btn" class="primary-btn">
-                <span>💰 Calculate Price Valuation</span>
+              <button type="submit" id="submit-btn" class="primary-btn shimmer-btn">
+                <span>💰 Calculate Property Price Valuation</span>
               </button>
             </div>
           </form>
@@ -283,7 +319,7 @@
 
         <!-- Valuation Results Section -->
         <section id="results-section" class="results-section gsap-result hidden">
-          <div class="card result-card">
+          <div class="card result-card gsap-card">
             <div class="result-header">ESTIMATED PROPERTY MARKET VALUE</div>
             
             <!-- Animated GSAP Price Counter -->
@@ -334,10 +370,9 @@
           <p class="hero-subtitle">Analyze rate per sqft across top Indian states, valuation distribution by BHK layout, and compare 2 property locations side-by-side.</p>
         </section>
 
-
         <section class="dashboard-grid">
           <!-- State Price Rate Comparison Chart -->
-          <div class="card chart-card">
+          <div class="card chart-card gsap-card">
             <h3 class="card-title">📈 Average Rate per Sq. Ft. by State (₹/sqft)</h3>
             <div class="chart-container">
               <canvas id="chart-state-rate"></canvas>
@@ -345,7 +380,7 @@
           </div>
 
           <!-- BHK Price Trend Chart -->
-          <div class="card chart-card">
+          <div class="card chart-card gsap-card">
             <h3 class="card-title">🏠 Average Price Valuation by BHK Layout (₹ Lakhs)</h3>
             <div class="chart-container">
               <canvas id="chart-bhk-price"></canvas>
@@ -353,7 +388,7 @@
           </div>
 
           <!-- Property Type Benchmark Chart -->
-          <div class="card chart-card">
+          <div class="card chart-card gsap-card">
             <h3 class="card-title">🏢 Valuation Distribution by Property Type</h3>
             <div class="chart-container">
               <canvas id="chart-prop-type"></canvas>
@@ -361,7 +396,7 @@
           </div>
 
           <!-- Side-by-Side City Market Comparator Card -->
-          <div class="card compare-card">
+          <div class="card compare-card gsap-card">
             <h3 class="card-title">⚔️ Side-by-Side City Market Comparator</h3>
             <p class="helper-text">Select 2 cities to compare average valuation & sqft rate benchmarks:</p>
             <div class="compare-selectors">
@@ -398,7 +433,7 @@
           </div>
 
           <!-- State Comparison Table -->
-          <div class="card table-card">
+          <div class="card table-card gsap-card">
             <h3 class="card-title">📋 State Market Comparison Table</h3>
             <div class="table-wrapper">
               <table class="data-table">
@@ -418,7 +453,6 @@
           </div>
         </section>
       </div>
-
 
     </main>
 

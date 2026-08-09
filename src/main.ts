@@ -19,7 +19,6 @@ interface PredictionResponse {
   error?: string;
 }
 
-
 interface MetadataResponse {
   states: string[];
   cities_by_state: Record<string, string[]>;
@@ -157,36 +156,68 @@ const TILE_LAYERS = {
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
-  initGSAPAnimations();
+  initGSAPMasterSequence();
   initLeafletMap();
   fetchServerData();
   setupNavigationEvents();
   setupFormEvents();
+  setupCardTiltEffects();
 });
 
-// GSAP Entrance Animations
-function initGSAPAnimations(): void {
-  gsap.from('.gsap-hero', {
-    opacity: 0,
-    y: -30,
-    duration: 1.0,
-    ease: 'power3.out'
-  });
+// GSAP Master Reveal Sequence
+function initGSAPMasterSequence(): void {
+  const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-  gsap.from('.gsap-location', {
-    opacity: 0,
-    y: 35,
-    duration: 0.9,
-    delay: 0.2,
-    ease: 'power3.out'
-  });
+  tl.from('.navbar', { opacity: 0, y: -20, duration: 0.8 })
+    .from('.hero-tag', { opacity: 0, scale: 0.85, duration: 0.5 }, '-=0.4')
+    .from('.hero-title', { opacity: 0, y: 25, duration: 0.9 }, '-=0.3')
+    .from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.7 }, '-=0.5')
+    .from('.hero-stat-card', { opacity: 0, y: 25, stagger: 0.1, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.4')
+    .from('.gsap-banner', { opacity: 0, scale: 0.96, duration: 0.8 }, '-=0.5')
+    .from('.gsap-card', { opacity: 0, y: 35, stagger: 0.12, duration: 0.9 }, '-=0.6');
 
-  gsap.from('.gsap-form', {
-    opacity: 0,
-    y: 40,
-    duration: 0.9,
-    delay: 0.4,
-    ease: 'power3.out'
+  // Hero Stat Counter Animation
+  const statNumObj = { count: 0 };
+  const statEl = document.getElementById('h-stat-listings');
+  if (statEl) {
+    gsap.to(statNumObj, {
+      count: 250000,
+      duration: 2.2,
+      ease: 'power2.out',
+      onUpdate: () => {
+        statEl.textContent = Math.round(statNumObj.count).toLocaleString();
+      }
+    });
+  }
+}
+
+// Interactive GSAP 3D Tilt Effect on Cards
+function setupCardTiltEffects(): void {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e: Event) => {
+      const mouseEvent = e as MouseEvent;
+      const rect = (card as HTMLElement).getBoundingClientRect();
+      const x = mouseEvent.clientX - rect.left - rect.width / 2;
+      const y = mouseEvent.clientY - rect.top - rect.height / 2;
+
+      gsap.to(card, {
+        rotationY: x * 0.02,
+        rotationX: -y * 0.02,
+        transformPerspective: 1000,
+        ease: 'power1.out',
+        duration: 0.3
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        rotationY: 0,
+        rotationX: 0,
+        ease: 'power2.out',
+        duration: 0.6
+      });
+    });
   });
 }
 
@@ -219,8 +250,7 @@ function initLeafletMap(): void {
   });
 }
 
-
-// Map Layer Style Switcher
+// Map Layer Style Switcher with GSAP Scale Feedback
 function setupMapLayerToggles(): void {
   const btnSat = document.getElementById('map-style-sat');
   const btnStreet = document.getElementById('map-style-street');
@@ -229,6 +259,10 @@ function setupMapLayerToggles(): void {
   const updateActiveLayer = (btn: HTMLElement | null, tileUrl: string, attr: string) => {
     [btnSat, btnStreet, btnDark].forEach(b => b?.classList.remove('active'));
     btn?.classList.add('active');
+
+    if (btn) {
+      gsap.fromTo(btn, { scale: 0.9 }, { scale: 1.0, duration: 0.3, ease: 'back.out(2)' });
+    }
 
     if (leafletMap && currentTileLayer) {
       leafletMap.removeLayer(currentTileLayer);
@@ -268,11 +302,10 @@ function populateMapMarkers(): void {
   if (!leafletMap) return;
 
   const cityStats = analyticsData?.city_stats;
-  
-  // Custom Red Icon for Active City
+
   const customIcon = L.divIcon({
     className: 'custom-map-pin',
-    html: `<div style="background-color: #f43f5e; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 10px #f43f5e;"></div>`,
+    html: `<div style="background-color: #f43f5e; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 12px #f43f5e;"></div>`,
     iconSize: [14, 14],
     iconAnchor: [7, 7]
   });
@@ -297,7 +330,6 @@ function populateMapMarkers(): void {
       .addTo(leafletMap)
       .bindPopup(popupContent);
 
-    // Click marker selects city & state in app!
     marker.on('click', () => {
       selectLocationFromMap(info.state, cityName);
     });
@@ -386,7 +418,7 @@ function updateLocalitiesForCity(city: string): void {
   updateCityBenchmark(city);
 }
 
-// Update City Benchmark Box
+// Update City Benchmark Box with GSAP Count-Up
 function updateCityBenchmark(city: string): void {
   const nameEl = document.getElementById('avg-city-name');
   const priceEl = document.getElementById('avg-city-price');
@@ -396,16 +428,28 @@ function updateCityBenchmark(city: string): void {
   const stats = analyticsData.city_stats[city];
 
   if (nameEl) nameEl.textContent = city;
-  if (priceEl) priceEl.textContent = `₹ ${stats.avg_price_lakhs} Lakhs`;
-  if (rateEl) rateEl.textContent = `₹ ${stats.avg_rate_per_sqft.toLocaleString()}/sqft`;
+
+  if (priceEl && rateEl) {
+    const benchObj = { price: 0, rate: 0 };
+    gsap.to(benchObj, {
+      price: stats.avg_price_lakhs,
+      rate: stats.avg_rate_per_sqft,
+      duration: 1.0,
+      ease: 'power2.out',
+      onUpdate: () => {
+        priceEl.textContent = `₹ ${benchObj.price.toFixed(2)} Lakhs`;
+        rateEl.textContent = `₹ ${Math.round(benchObj.rate).toLocaleString()}/sqft`;
+      }
+    });
+  }
 
   // Pan Leaflet Map to City Coordinates
   if (leafletMap && stats.lat && stats.lon) {
-    leafletMap.panTo([stats.lat, stats.lon], { animate: true, duration: 1.0 });
+    leafletMap.panTo([stats.lat, stats.lon], { animate: true, duration: 1.2 });
   }
 }
 
-// Update Visual State Landmark Banner
+// Update Visual State Landmark Banner with GSAP Parallax Reveal
 function updateStateBanner(state: string): void {
   const bannerCard = document.getElementById('state-banner-card');
   const landmarkTag = document.getElementById('state-landmark-tag');
@@ -417,20 +461,21 @@ function updateStateBanner(state: string): void {
   const meta = STATE_METADATA[state] || DEFAULT_METADATA;
 
   gsap.to(bannerCard, {
-    opacity: 0.4,
-    duration: 0.2,
+    opacity: 0.3,
+    scale: 0.97,
+    duration: 0.25,
     onComplete: () => {
       bannerCard.style.backgroundImage = `url('${meta.image}')`;
       landmarkTag.textContent = meta.landmark;
       bannerTitle.textContent = `${state} Real Estate Market`;
       bannerDesc.textContent = meta.tagline;
 
-      gsap.to(bannerCard, { opacity: 1.0, duration: 0.35, ease: 'power2.out' });
+      gsap.to(bannerCard, { opacity: 1.0, scale: 1.0, duration: 0.45, ease: 'back.out(1.5)' });
     }
   });
 }
 
-// Navigation & Three Dots Toggle Setup
+// Navigation & Three Dots Toggle Setup with GSAP View Switching
 function setupNavigationEvents(): void {
   const btnValuation = document.getElementById('nav-valuation-btn');
   const btnDashboard = document.getElementById('nav-dashboard-btn');
@@ -446,11 +491,12 @@ function setupNavigationEvents(): void {
 
       gsap.to(viewValuation, {
         opacity: 0,
-        duration: 0.25,
+        y: -15,
+        duration: 0.3,
         onComplete: () => {
           viewValuation?.classList.add('hidden');
           viewDashboard?.classList.remove('hidden');
-          gsap.fromTo(viewDashboard, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
+          gsap.fromTo(viewDashboard, { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
         }
       });
     } else {
@@ -459,11 +505,12 @@ function setupNavigationEvents(): void {
 
       gsap.to(viewDashboard, {
         opacity: 0,
-        duration: 0.25,
+        y: -15,
+        duration: 0.3,
         onComplete: () => {
           viewDashboard?.classList.add('hidden');
           viewValuation?.classList.remove('hidden');
-          gsap.fromTo(viewValuation, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
+          gsap.fromTo(viewValuation, { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
           leafletMap?.invalidateSize();
         }
       });
@@ -473,14 +520,13 @@ function setupNavigationEvents(): void {
   btnValuation?.addEventListener('click', () => switchToView(false));
   btnDashboard?.addEventListener('click', () => switchToView(true));
   
-  // Three Dots button toggles dashboard
   btnThreeDots?.addEventListener('click', () => {
     const isDashboardHidden = viewDashboard?.classList.contains('hidden');
     switchToView(Boolean(isDashboardHidden));
   });
 }
 
-// Setup Form Controls
+// Setup Form Controls & Input Focus Scale
 function setupFormEvents(): void {
   const stateSelect = document.getElementById('state-select') as HTMLSelectElement;
   const citySelect = document.getElementById('city-select') as HTMLSelectElement;
@@ -578,7 +624,7 @@ async function handleFormSubmit(e: Event): Promise<void> {
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span>⚡ Calculating Valuation...</span>';
+    submitBtn.innerHTML = '<span>⚡ Computing Valuation...</span>';
   }
 
   try {
@@ -600,7 +646,7 @@ async function handleFormSubmit(e: Event): Promise<void> {
   } finally {
     if (submitBtn) {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = '<span>💰 Calculate Price Valuation</span>';
+      submitBtn.innerHTML = '<span>💰 Calculate Property Price Valuation</span>';
     }
   }
 }
@@ -631,11 +677,13 @@ function displayResults(data: PredictionResponse, payload: any): void {
 
   const counterObj = { lakhs: 0, crores: 0 };
 
+  gsap.fromTo(resultSection, { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1.0, duration: 0.7, ease: 'back.out(1.4)' });
+
   gsap.to(counterObj, {
     lakhs: data.price_lakhs,
     crores: data.price_crores,
-    duration: 1.5,
-    ease: 'power2.out',
+    duration: 1.8,
+    ease: 'power3.out',
     onUpdate: () => {
       if (data.price_lakhs >= 100) {
         mainCounter.textContent = `₹ ${counterObj.crores.toFixed(2)} Cr`;
@@ -651,7 +699,7 @@ function displayResults(data: PredictionResponse, payload: any): void {
   resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// Setup Print Export & City Comparator Logic
+// Setup Print Export & Side-by-Side City Comparator Logic
 function setupExportAndComparator(): void {
   const exportBtn = document.getElementById('export-pdf-btn');
   exportBtn?.addEventListener('click', () => {
@@ -691,7 +739,6 @@ function setupExportAndComparator(): void {
   updateCmp();
 }
 
-
 // Render Chart.js Market Analytics Dashboard
 function renderAnalyticsCharts(): void {
   if (!analyticsData) return;
@@ -710,7 +757,7 @@ function renderAnalyticsCharts(): void {
           label: 'Avg Rate (₹/sqft)',
           data: stateRates,
           backgroundColor: '#38bdf8',
-          borderRadius: 6
+          borderRadius: 8
         }]
       },
       options: {
