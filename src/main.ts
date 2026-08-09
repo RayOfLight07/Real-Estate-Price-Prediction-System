@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initGSAPMasterSequence();
   initLeafletMap();
   fetchServerData();
-  setupNavigationEvents();
+  setupHeroEvents();
   setupFormEvents();
 });
 
@@ -167,23 +167,23 @@ document.addEventListener('DOMContentLoaded', () => {
 function initGSAPMasterSequence(): void {
   const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-  tl.from('.top-header', { opacity: 0, y: -20, duration: 0.8 })
-    .from('.gsap-row1 .pastel-card', { opacity: 0, y: 30, stagger: 0.12, duration: 0.8, ease: 'back.out(1.6)' }, '-=0.4')
-    .from('.gsap-row2', { opacity: 0, y: 25, duration: 0.8 }, '-=0.4')
-    .from('.gsap-row3', { opacity: 0, scale: 0.97, duration: 0.7 }, '-=0.4')
-    .from('.gsap-row4', { opacity: 0, y: 30, duration: 0.8 }, '-=0.5')
-    .from('.gsap-row5', { opacity: 0, y: 30, duration: 0.8 }, '-=0.5');
+  tl.from('.portal-header', { opacity: 0, y: -20, duration: 0.8 })
+    .from('.hero-badge', { opacity: 0, scale: 0.85, duration: 0.5 }, '-=0.4')
+    .from('.hero-main-heading', { opacity: 0, y: 25, duration: 0.8 }, '-=0.3')
+    .from('.hero-subtext', { opacity: 0, y: 20, duration: 0.7 }, '-=0.5')
+    .from('.search-portal-card', { opacity: 0, y: 30, duration: 0.9 }, '-=0.5')
+    .from('.kpi-box', { opacity: 0, y: 20, stagger: 0.1, duration: 0.7 }, '-=0.4');
 
-  // Mini Metric Count-up
-  const miniObj = { val: 0 };
-  const miniEl = document.getElementById('mini-val-listings');
-  if (miniEl) {
-    gsap.to(miniObj, {
+  // KPI Counter Animation
+  const kpiObj = { val: 0 };
+  const kpiEl = document.getElementById('kpi-listings');
+  if (kpiEl) {
+    gsap.to(kpiObj, {
       val: 250000,
       duration: 2.0,
       ease: 'power2.out',
       onUpdate: () => {
-        miniEl.textContent = Math.round(miniObj.val).toLocaleString();
+        kpiEl.textContent = Math.round(kpiObj.val).toLocaleString();
       }
     });
   }
@@ -194,14 +194,12 @@ function initLeafletMap(): void {
   const mapContainer = document.getElementById('leaflet-map');
   if (!mapContainer) return;
 
-  // Centered on India
   leafletMap = L.map('leaflet-map', {
     center: [22.5, 78.5],
     zoom: 5,
     zoomControl: true
   });
 
-  // Default Satellite Tile Layer
   currentTileLayer = L.tileLayer(TILE_LAYERS.satellite, {
     maxZoom: 18,
     attribution: '© Esri — Satellite imagery'
@@ -269,7 +267,7 @@ function populateMapMarkers(): void {
 
   const customIcon = L.divIcon({
     className: 'custom-map-pin',
-    html: `<div style="background-color: #10b981; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 12px rgba(16,185,129,0.8);"></div>`,
+    html: `<div style="background-color: #f43f5e; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 12px #f43f5e;"></div>`,
     iconSize: [14, 14],
     iconAnchor: [7, 7]
   });
@@ -326,38 +324,45 @@ function populateLocationDropdowns(): void {
   if (!serverMetadata) return;
 
   const stateSelect = document.getElementById('state-select') as HTMLSelectElement;
-  if (stateSelect && serverMetadata.states) {
-    stateSelect.innerHTML = '';
-    serverMetadata.states.forEach((st) => {
-      const opt = document.createElement('option');
-      opt.value = st;
-      opt.textContent = st;
-      stateSelect.appendChild(opt);
-    });
+  const heroStateSelect = document.getElementById('hero-state-select') as HTMLSelectElement;
 
-    if (serverMetadata.states.includes("Rajasthan")) {
-      stateSelect.value = "Rajasthan";
+  const states = serverMetadata.states || ["Rajasthan", "Maharashtra", "Karnataka"];
+
+  [stateSelect, heroStateSelect].forEach(selectEl => {
+    if (selectEl) {
+      selectEl.innerHTML = '';
+      states.forEach(st => {
+        const opt = document.createElement('option');
+        opt.value = st;
+        opt.textContent = st;
+        selectEl.appendChild(opt);
+      });
+      if (states.includes("Rajasthan")) selectEl.value = "Rajasthan";
     }
-    updateCitiesForState(stateSelect.value);
-  }
+  });
+
+  updateCitiesForState("Rajasthan");
 }
 
 function updateCitiesForState(state: string): void {
   const citySelect = document.getElementById('city-select') as HTMLSelectElement;
-  if (!citySelect) return;
-
-  citySelect.innerHTML = '';
-
+  const heroCitySelect = document.getElementById('hero-city-select') as HTMLSelectElement;
   const cities = serverMetadata?.cities_by_state[state] || ["Jaipur", "Jodhpur"];
-  cities.forEach((ct) => {
-    const opt = document.createElement('option');
-    opt.value = ct;
-    opt.textContent = ct;
-    citySelect.appendChild(opt);
+
+  [citySelect, heroCitySelect].forEach(selectEl => {
+    if (selectEl) {
+      selectEl.innerHTML = '';
+      cities.forEach(ct => {
+        const opt = document.createElement('option');
+        opt.value = ct;
+        opt.textContent = ct;
+        selectEl.appendChild(opt);
+      });
+      if (cities.length > 0) selectEl.value = cities[0];
+    }
   });
 
   if (cities.length > 0) {
-    citySelect.value = cities[0];
     updateLocalitiesForCity(cities[0]);
     updateCityBenchmark(cities[0]);
   }
@@ -370,7 +375,6 @@ function updateLocalitiesForCity(city: string): void {
   if (!localitySelect) return;
 
   localitySelect.innerHTML = '';
-
   const localities = serverMetadata?.localities_by_city[city] || ["Locality_1", "Locality_2"];
   localities.forEach((loc) => {
     const opt = document.createElement('option');
@@ -412,7 +416,7 @@ function updateCityBenchmark(city: string): void {
   }
 }
 
-// Update Visual State Landmark Banner with GSAP Parallax Reveal
+// Update Visual State Landmark Banner
 function updateStateBanner(state: string): void {
   const bannerCard = document.getElementById('state-banner-card');
   const landmarkTag = document.getElementById('state-landmark-tag');
@@ -438,67 +442,63 @@ function updateStateBanner(state: string): void {
   });
 }
 
-// Navigation & Sidebar Switcher
-function setupNavigationEvents(): void {
-  const btnValuation = document.getElementById('nav-valuation-btn');
-  const btnDashboard = document.getElementById('nav-dashboard-btn');
-  const btnSideHome = document.getElementById('side-home-btn');
-  const btnSideAnalytics = document.getElementById('side-analytics-btn');
-  const btnSideMap = document.getElementById('side-map-btn');
-  const btnThreeDots = document.getElementById('three-dots-btn');
+// Hero Search Banner Events & Quick Pills
+function setupHeroEvents(): void {
+  const heroStateSelect = document.getElementById('hero-state-select') as HTMLSelectElement;
+  const heroCitySelect = document.getElementById('hero-city-select') as HTMLSelectElement;
+  const heroPropSelect = document.getElementById('hero-prop-select') as HTMLSelectElement;
+  const heroSearchBtn = document.getElementById('hero-search-btn');
+  const navCalcBtn = document.getElementById('nav-calc-btn');
 
-  const viewValuation = document.getElementById('view-valuation');
-  const viewDashboard = document.getElementById('view-dashboard');
+  if (heroStateSelect) {
+    heroStateSelect.addEventListener('change', (e) => {
+      const selectedState = (e.target as HTMLSelectElement).value;
+      updateCitiesForState(selectedState);
+    });
+  }
 
-  const switchToView = (showDashboard: boolean) => {
-    if (showDashboard) {
-      btnValuation?.classList.remove('active');
-      btnDashboard?.classList.add('active');
-      btnSideHome?.classList.remove('active');
-      btnSideAnalytics?.classList.add('active');
+  const handleHeroSearch = () => {
+    const st = heroStateSelect?.value || "Rajasthan";
+    const ct = heroCitySelect?.value || "Jaipur";
+    const pr = heroPropSelect?.value || "Apartment";
 
-      gsap.to(viewValuation, {
-        opacity: 0,
-        y: -15,
-        duration: 0.3,
-        onComplete: () => {
-          viewValuation?.classList.add('hidden');
-          viewDashboard?.classList.remove('hidden');
-          gsap.fromTo(viewDashboard, { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
-        }
-      });
-    } else {
-      btnDashboard?.classList.remove('active');
-      btnValuation?.classList.add('active');
-      btnSideAnalytics?.classList.remove('active');
-      btnSideHome?.classList.add('active');
+    const mainStateSelect = document.getElementById('state-select') as HTMLSelectElement;
+    const mainCitySelect = document.getElementById('city-select') as HTMLSelectElement;
+    const mainPropSelect = document.getElementById('property-type-select') as HTMLSelectElement;
 
-      gsap.to(viewDashboard, {
-        opacity: 0,
-        y: -15,
-        duration: 0.3,
-        onComplete: () => {
-          viewDashboard?.classList.add('hidden');
-          viewValuation?.classList.remove('hidden');
-          gsap.fromTo(viewValuation, { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
-          leafletMap?.invalidateSize();
-        }
-      });
+    if (mainStateSelect && mainStateSelect.value !== st) {
+      mainStateSelect.value = st;
+      updateCitiesForState(st);
     }
+    if (mainCitySelect) mainCitySelect.value = ct;
+    if (mainPropSelect) mainPropSelect.value = pr;
+
+    document.getElementById('valuation-calculator')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  btnValuation?.addEventListener('click', () => switchToView(false));
-  btnDashboard?.addEventListener('click', () => switchToView(true));
-  btnSideHome?.addEventListener('click', () => switchToView(false));
-  btnSideAnalytics?.addEventListener('click', () => switchToView(true));
-  btnSideMap?.addEventListener('click', () => {
-    switchToView(false);
-    document.getElementById('leaflet-map')?.scrollIntoView({ behavior: 'smooth' });
+  heroSearchBtn?.addEventListener('click', handleHeroSearch);
+  navCalcBtn?.addEventListener('click', () => {
+    document.getElementById('valuation-calculator')?.scrollIntoView({ behavior: 'smooth' });
   });
 
-  btnThreeDots?.addEventListener('click', () => {
-    const isDashboardHidden = viewDashboard?.classList.contains('hidden');
-    switchToView(Boolean(isDashboardHidden));
+  // Quick City Pills
+  const cityPills = document.querySelectorAll('.city-pill');
+  cityPills.forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      const btn = e.currentTarget as HTMLElement;
+      const st = btn.dataset.state;
+      const ct = btn.dataset.city;
+
+      if (st && ct) {
+        if (heroStateSelect) {
+          heroStateSelect.value = st;
+          updateCitiesForState(st);
+        }
+        if (heroCitySelect) heroCitySelect.value = ct;
+        selectLocationFromMap(st, ct);
+        document.getElementById('valuation-calculator')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
   });
 }
 
@@ -543,7 +543,7 @@ function setupFormEvents(): void {
   }
 }
 
-// Handle Prediction Form Submission
+// Handle Form Submission
 async function handleFormSubmit(e: Event): Promise<void> {
   e.preventDefault();
 
@@ -627,7 +627,7 @@ async function handleFormSubmit(e: Event): Promise<void> {
   }
 }
 
-// Display Prediction Results with GSAP Counter
+// Display Results
 function displayResults(data: PredictionResponse, payload: any): void {
   const resultSection = document.getElementById('results-section');
   const mainCounter = document.getElementById('price-main-counter');
@@ -675,7 +675,7 @@ function displayResults(data: PredictionResponse, payload: any): void {
   resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// Setup Print Export & Side-by-Side City Comparator Logic
+// Export PDF & City Comparator
 function setupExportAndComparator(): void {
   const exportBtn = document.getElementById('export-pdf-btn');
   exportBtn?.addEventListener('click', () => {
@@ -719,7 +719,7 @@ function setupExportAndComparator(): void {
 function renderAnalyticsCharts(): void {
   if (!analyticsData) return;
 
-  // 1. State Rate Comparison Bar Chart (Soft Pastel Colors)
+  // 1. State Rate Comparison Bar Chart
   const stateCanvas = document.getElementById('chart-state-rate') as HTMLCanvasElement;
   if (stateCanvas) {
     const statesList = Object.keys(analyticsData.state_stats).slice(0, 10);
@@ -741,8 +741,8 @@ function renderAnalyticsCharts(): void {
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: { ticks: { color: '#64748b' }, grid: { display: false } },
-          y: { ticks: { color: '#64748b' }, grid: { color: '#f1f5f9' } }
+          x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
+          y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } }
         }
       }
     });
@@ -762,7 +762,7 @@ function renderAnalyticsCharts(): void {
           label: 'Avg Price (Lakhs)',
           data: bhkPrices,
           borderColor: '#10b981',
-          backgroundColor: 'rgba(16, 185, 129, 0.12)',
+          backgroundColor: 'rgba(16, 185, 129, 0.15)',
           fill: true,
           tension: 0.4
         }]
@@ -772,8 +772,8 @@ function renderAnalyticsCharts(): void {
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: { ticks: { color: '#64748b' }, grid: { display: false } },
-          y: { ticks: { color: '#64748b' }, grid: { color: '#f1f5f9' } }
+          x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
+          y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } }
         }
       }
     });
@@ -791,13 +791,13 @@ function renderAnalyticsCharts(): void {
         labels: ptypes,
         datasets: [{
           data: pprices,
-          backgroundColor: ['#38bdf8', '#10b981', '#f43f5e']
+          backgroundColor: ['#38bdf8', '#818cf8', '#f43f5e']
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: '#1e293b' } } }
+        plugins: { legend: { labels: { color: '#f8fafc' } } }
       }
     });
   }

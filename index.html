@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INDIAREALESTATES — Real Estate Intelligence & Market Analytics</title>
+  <title>INDIAREALESTATES — India's #1 Real Estate Valuation & Property Intelligence Portal</title>
 
   <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,606 +16,621 @@
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
-  <div class="app-layout">
-    <!-- Left Floating Navigation Sidebar (Matching Screenshot) -->
-    <aside class="app-sidebar">
-      <div class="sidebar-brand" title="INDIAREALESTATES">
-        <svg class="brand-logo-svg" viewBox="0 0 32 32" fill="none">
-          <path d="M4 28L12 12L20 28H4Z" fill="url(#logo-grad1)"/>
-          <path d="M12 28L20 6L28 28H12Z" fill="url(#logo-grad2)" opacity="0.85"/>
-          <circle cx="20" cy="6" r="2.5" fill="#10b981"/>
-          <defs>
-            <linearGradient id="logo-grad1" x1="4" y1="28" x2="20" y2="12">
-              <stop offset="0%" stop-color="#0284c7"/>
-              <stop offset="100%" stop-color="#38bdf8"/>
-            </linearGradient>
-            <linearGradient id="logo-grad2" x1="12" y1="28" x2="28" y2="6">
-              <stop offset="0%" stop-color="#4338ca"/>
-              <stop offset="100%" stop-color="#f43f5e"/>
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
+  <div id="app">
+    <!-- Top Sticky Header Navigation Bar (MagicBricks Style) -->
+    <header class="portal-header">
+      <div class="header-container">
+        <div class="brand">
+          <svg class="brand-logo-svg" viewBox="0 0 32 32" fill="none">
+            <path d="M4 28L12 12L20 28H4Z" fill="url(#logo-grad1)"/>
+            <path d="M12 28L20 6L28 28H12Z" fill="url(#logo-grad2)" opacity="0.85"/>
+            <circle cx="20" cy="6" r="2.5" fill="#f43f5e"/>
+            <defs>
+              <linearGradient id="logo-grad1" x1="4" y1="28" x2="20" y2="12">
+                <stop offset="0%" stop-color="#0284c7"/>
+                <stop offset="100%" stop-color="#38bdf8"/>
+              </linearGradient>
+              <linearGradient id="logo-grad2" x1="12" y1="28" x2="28" y2="6">
+                <stop offset="0%" stop-color="#4338ca"/>
+                <stop offset="100%" stop-color="#f43f5e"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="brand-name">INDIA<span class="accent-text">REALESTATES</span></span>
+        </div>
 
-      <nav class="sidebar-nav">
-        <button id="side-home-btn" class="sidebar-icon-btn active" title="Valuation & Overview">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M3 13h1v7c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-7h1a1 1 0 0 0 .7-1.7l-9-9a1 1 0 0 0-1.4 0l-9 9A1 1 0 0 0 3 13zm9-7.6l6 6V20H6v-8.6l6-6z"/></svg>
-        </button>
+        <nav class="portal-nav">
+          <a href="#hero-search" class="p-nav-link active">Home</a>
+          <a href="#valuation-calculator" class="p-nav-link">Valuation Engine</a>
+          <a href="#interactive-map-section" class="p-nav-link">Map Explorer</a>
+          <a href="#analytics-dashboard-section" class="p-nav-link">Market Trends</a>
+          <a href="#top-cities-section" class="p-nav-link">Top Cities</a>
+        </nav>
 
-        <button id="side-analytics-btn" class="sidebar-icon-btn" title="Price Analytics Dashboard">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>
-        </button>
-
-        <button id="side-map-btn" class="sidebar-icon-btn" title="Interactive Map Explorer">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9A1 1 0 0 0 2.7 6.2v12.9a1 1 0 0 0 1.25.96L9 18.9l6 2.1 5.64-1.9a1 1 0 0 0 .66-.96V5.24A1 1 0 0 0 20.5 3zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
-        </button>
-
-        <button id="three-dots-btn" class="sidebar-icon-btn" title="More Options & Dashboard">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-        </button>
-      </nav>
-
-      <div class="sidebar-footer">
-        <div class="avatar-badge" title="User Account">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="User Avatar" />
+        <div class="header-actions">
+          <div class="live-badge">
+            <span class="pulse-dot"></span>
+            <span>250K+ Properties</span>
+          </div>
+          <button id="nav-calc-btn" class="header-cta-btn">💰 Instant Valuation</button>
         </div>
       </div>
-    </aside>
+    </header>
 
-    <!-- Main Outer Container -->
-    <div class="main-wrapper">
-      
-      <!-- Top Bar Header (Matching Screenshot) -->
-      <header class="top-header">
-        <div class="header-left">
-          <h1 class="welcome-title">Welcome back 👋</h1>
-          <p class="welcome-subtitle">Indian Real Estate Market Valuation & Price Analytics Engine</p>
-        </div>
+    <!-- SECTION 1: HERO SEARCH BANNER (MagicBricks Portal Style) -->
+    <section id="hero-search" class="hero-banner-section">
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-content-container">
+        <div class="hero-badge">⚡ INDIA'S #1 PROPERTY VALUATION ENGINE</div>
+        <h1 class="hero-main-heading">Find Real Estate & Get Instant Price Valuations</h1>
+        <p class="hero-subtext">Evaluate 250,000+ properties across 20 States and 42 Major Cities with precision Machine Learning models.</p>
 
-        <div class="header-right">
-          <div class="search-bar-pill">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="global-search-input" placeholder="Search city, state, or locality..." />
+        <!-- MagicBricks Style Search & Filter Box -->
+        <div class="search-portal-card">
+          <div class="search-tabs">
+            <button class="search-tab active">💰 Price Estimator</button>
+            <button class="search-tab">🏙️ Buy Property</button>
+            <button class="search-tab">🏢 Commercial</button>
+            <button class="search-tab">🏡 Villas & Plots</button>
           </div>
 
-          <div class="header-tab-group">
-            <button id="nav-valuation-btn" class="top-tab-btn active">🏠 Valuation Tool</button>
-            <button id="nav-dashboard-btn" class="top-tab-btn">📊 Analytics Dashboard</button>
-          </div>
-        </div>
-      </header>
-
-      <!-- VIEW 1: LANDING OVERVIEW & VALUATION DASHBOARD -->
-      <div id="view-valuation" class="view-container">
-        
-        <!-- Row 1: Featured High-Growth Market Pastel Cards (Matching Screenshot) -->
-        <section class="pastel-cards-grid gsap-row1">
-          <!-- Card 1: Mint Green -->
-          <div class="pastel-card card-mint" id="card-market-1">
-            <div class="p-card-header">
-              <span class="p-tag">⭐ 4.9 Premium</span>
-              <button class="arrow-circle-btn">↗</button>
-            </div>
-            <div class="p-card-body">
-              <div class="p-avatars">
-                <span class="avatar-chip">🏙️</span>
-                <span class="avatar-chip">🌊</span>
-                <span class="avatar-chip">🏢</span>
-                <span class="avatar-count">+42</span>
-              </div>
-              <h3 class="p-card-title">Mumbai & MMR Metro</h3>
-              <div class="p-card-price">Avg. ₹ 18,450 / sqft</div>
-            </div>
-          </div>
-
-          <!-- Card 2: Blush Pink -->
-          <div class="pastel-card card-pink" id="card-market-2">
-            <div class="p-card-header">
-              <span class="p-tag">⭐ 4.8 IT Corridor</span>
-              <button class="arrow-circle-btn">↗</button>
-            </div>
-            <div class="p-card-body">
-              <div class="p-avatars">
-                <span class="avatar-chip">💻</span>
-                <span class="avatar-chip">🌳</span>
-                <span class="avatar-chip">🚀</span>
-                <span class="avatar-count">+18</span>
-              </div>
-              <h3 class="p-card-title">Bangalore Tech Hub</h3>
-              <div class="p-card-price">Avg. ₹ 9,399 / sqft</div>
-            </div>
-          </div>
-
-          <!-- Card 3: Warm Lemon -->
-          <div class="pastel-card card-lemon" id="card-market-3">
-            <div class="p-card-header">
-              <span class="p-tag">🚀 Rapid Scaling</span>
-              <button class="arrow-circle-btn">↗</button>
-            </div>
-            <div class="p-card-body">
-              <div class="p-avatars">
-                <span class="avatar-chip">🏛️</span>
-                <span class="avatar-chip">🚆</span>
-                <span class="avatar-chip">🏰</span>
-                <span class="avatar-count">+24</span>
-              </div>
-              <h3 class="p-card-title">Delhi NCR & Gurgaon</h3>
-              <div class="p-card-price">Avg. ₹ 11,200 / sqft</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Row 2: Market Progress Bar & Schedule Calendar Widget (Matching Screenshot) -->
-        <section class="overview-widgets-grid gsap-row2">
-          <!-- Left Column: Learning Progress & Market Metrics -->
-          <div class="widget-col-left">
-            <h2 class="widget-heading">Market Activity & Progress Summary</h2>
-            
-            <div class="mini-metrics-grid">
-              <div class="mini-metric-card card-mint-soft">
-                <span class="mini-lbl">Verified Listings</span>
-                <span class="mini-val" id="mini-val-listings">250,000</span>
-                <button class="mini-arrow">↗</button>
-              </div>
-
-              <div class="mini-metric-card card-lemon-soft">
-                <span class="mini-lbl">Active States</span>
-                <span class="mini-val">20 States</span>
-                <button class="mini-arrow">↗</button>
-              </div>
-
-              <div class="mini-metric-card card-lavender-soft">
-                <span class="mini-lbl">Major Cities</span>
-                <span class="mini-val">42 Cities</span>
-                <button class="mini-arrow">↗</button>
-              </div>
+          <div class="search-form-row">
+            <div class="search-col">
+              <label>Select State</label>
+              <select id="hero-state-select" class="search-select">
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="West Bengal">West Bengal</option>
+              </select>
             </div>
 
-            <!-- Wide Pastel Progress Banner -->
-            <div class="pastel-banner-card card-lemon-wide">
-              <div class="pb-header">
-                <span class="pb-tag">⚡ INTEL ENGINE ACTIVE</span>
-                <button class="arrow-circle-btn">↗</button>
-              </div>
-              <div class="pb-sub">250,000 Dataset Sampled & Trained</div>
-              <h3 class="pb-title">Real-Time Valuation & Precision Machine Learning Engine</h3>
-              <div class="pb-progress-bar">
-                <div class="pb-progress-fill" style="width: 94%;"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right Column: Market Trends Calendar Widget (Matching Screenshot) -->
-          <div class="widget-col-right">
-            <div class="calendar-widget-card">
-              <div class="cal-header">
-                <h3 class="cal-month-title">Market Activity Log — 2026</h3>
-                <div class="cal-arrows">
-                  <button class="cal-nav">&lt;</button>
-                  <button class="cal-nav">&gt;</button>
-                </div>
-              </div>
-
-              <div class="cal-days-grid">
-                <span class="day-lbl">MON</span>
-                <span class="day-lbl">THU</span>
-                <span class="day-lbl">WED</span>
-                <span class="day-lbl">TUE</span>
-                <span class="day-lbl">FRI</span>
-                <span class="day-lbl">SAT</span>
-                <span class="day-lbl">SUN</span>
-
-                <span class="day-num inactive">30</span>
-                <span class="day-num">1</span>
-                <span class="day-num">2</span>
-                <span class="day-num">3</span>
-                <span class="day-num">4</span>
-                <span class="day-num">5</span>
-                <span class="day-num">6</span>
-                <span class="day-num">7</span>
-                <span class="day-num">8</span>
-                <span class="day-num highlight-mint">9</span>
-                <span class="day-num">10</span>
-                <span class="day-num">11</span>
-                <span class="day-num highlight-mint">12</span>
-                <span class="day-num">13</span>
-                <span class="day-num">14</span>
-                <span class="day-num">15</span>
-                <span class="day-num highlight-black">16</span>
-                <span class="day-num highlight-black">17</span>
-                <span class="day-num">18</span>
-                <span class="day-num">19</span>
-                <span class="day-num">20</span>
-                <span class="day-num">21</span>
-                <span class="day-num">22</span>
-                <span class="day-num">23</span>
-                <span class="day-num">24</span>
-                <span class="day-num">25</span>
-                <span class="day-num">26</span>
-                <span class="day-num">27</span>
-                <span class="day-num">28</span>
-                <span class="day-num">29</span>
-                <span class="day-num">30</span>
-                <span class="day-num">31</span>
-              </div>
-
-              <div class="cal-events-list">
-                <div class="cal-event-pill card-mint-soft">
-                  <span class="event-icon">📖</span>
-                  <div class="event-text">
-                    <b>Mumbai Metropolitan Region</b>
-                    <span>High demand in residential towers</span>
-                  </div>
-                </div>
-
-                <div class="cal-event-pill card-pink-soft">
-                  <span class="event-icon">📖</span>
-                  <div class="event-text">
-                    <b>Bangalore Whitefield IT Corridor</b>
-                    <span>+12.4% YoY rate expansion</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Dynamic State Visual Landmark Showcase Banner -->
-        <div id="state-banner-card" class="state-banner-card gsap-row3">
-          <div class="state-banner-overlay">
-            <span id="state-landmark-tag" class="landmark-badge">✨ Hawa Mahal & Pink City</span>
-            <h3 id="state-banner-title" class="banner-title">Rajasthan Market</h3>
-            <p id="state-banner-desc" class="banner-desc">Land of Forts, Royal Heritage & Rapidly Growing Housing Hubs</p>
-          </div>
-        </div>
-
-        <!-- Location Attributes & Satellite Leaflet Map Section -->
-        <section class="location-map-section gsap-row4">
-          <div class="location-grid">
-            <!-- Location Selectors Card -->
-            <div class="card location-card">
-              <div class="card-header-with-icon">
-                <span class="icon-badge">📍</span>
-                <h3 class="column-header">Location Attributes</h3>
-              </div>
-              <p class="helper-text">Click any city pin on the map or choose location below:</p>
-              
-              <div class="input-field">
-                <label for="state-select">Select State</label>
-                <select id="state-select" class="select-control">
-                  <option value="Rajasthan">Rajasthan</option>
-                  <option value="Maharashtra">Maharashtra</option>
-                  <option value="Karnataka">Karnataka</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Tamil Nadu">Tamil Nadu</option>
-                  <option value="Telangana">Telangana</option>
-                  <option value="West Bengal">West Bengal</option>
-                </select>
-              </div>
-
-              <div class="input-field">
-                <label for="city-select">Select City</label>
-                <select id="city-select" class="select-control">
-                  <option value="Jaipur">Jaipur</option>
-                  <option value="Jodhpur">Jodhpur</option>
-                </select>
-              </div>
-
-              <div class="input-field">
-                <label for="locality-select">Select Locality</label>
-                <select id="locality-select" class="select-control">
-                  <option value="Locality_1">Locality 1</option>
-                </select>
-              </div>
-
-              <!-- City Avg Price Display Box -->
-              <div id="city-avg-box" class="city-avg-box">
-                <div class="avg-box-title">📍 <span id="avg-city-name">Jaipur</span> Market Benchmark</div>
-                <div class="avg-box-grid">
-                  <div>
-                    <span class="avg-val" id="avg-city-price">₹ 258.46 Lakhs</span>
-                    <span class="avg-lbl">Avg Property Price</span>
-                  </div>
-                  <div>
-                    <span class="avg-val" id="avg-city-rate">₹ 9,399/sqft</span>
-                    <span class="avg-lbl">Avg Rate per Sq. Ft.</span>
-                  </div>
-                </div>
-              </div>
+            <div class="search-col">
+              <label>Select City</label>
+              <select id="hero-city-select" class="search-select">
+                <option value="Jaipur">Jaipur</option>
+                <option value="Jodhpur">Jodhpur</option>
+              </select>
             </div>
 
-            <!-- Leaflet Interactive Map Card with Floating Controls -->
-            <div class="card map-card">
-              <div class="map-layer-toggles map-floating-toggles">
-                <button id="map-style-sat" class="map-layer-btn active">📡 Satellite View</button>
-                <button id="map-style-street" class="map-layer-btn">🗺️ Streets View</button>
-                <button id="map-style-dark" class="map-layer-btn">🌙 Dark Mode</button>
-              </div>
-              <div id="leaflet-map" class="leaflet-map-container"></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Property Specifications Form -->
-        <section class="config-section gsap-row5">
-          <form id="valuation-form" class="card form-card">
-            <div class="card-header-with-icon">
-              <span class="icon-badge">📋</span>
-              <h2 class="card-title">Property Specifications & Configuration</h2>
+            <div class="search-col">
+              <label>Property Type</label>
+              <select id="hero-prop-select" class="search-select">
+                <option value="Apartment">Apartment</option>
+                <option value="Independent House">Independent House</option>
+                <option value="Villa">Villa</option>
+              </select>
             </div>
 
-            <div class="form-grid">
-              <!-- Col 1: Layout & Size -->
-              <div class="form-column">
-                <h3 class="column-header">🏢 Space & Layout</h3>
-
-                <div class="input-field">
-                  <label for="bhk-input">BHK (Bedrooms): <span id="bhk-val" class="slider-val">3 BHK</span></label>
-                  <input type="range" id="bhk-input" min="1" max="6" value="3" step="1" class="range-slider" />
-                </div>
-
-                <div class="input-field">
-                  <label for="size-input">Built-up Area (Sq. Ft.)</label>
-                  <input type="number" id="size-input" min="300" max="10000" value="1450" step="50" class="text-input" />
-                </div>
-
-                <div class="input-field">
-                  <label for="property-type-select">Property Type</label>
-                  <select id="property-type-select" class="select-control">
-                    <option value="Apartment">Apartment</option>
-                    <option value="Independent House">Independent House</option>
-                    <option value="Villa">Villa</option>
-                  </select>
-                </div>
-
-                <div class="form-row-2">
-                  <div class="input-field">
-                    <label for="floor-no-input">Floor No</label>
-                    <input type="number" id="floor-no-input" min="0" max="50" value="5" class="text-input" />
-                  </div>
-                  <div class="input-field">
-                    <label for="total-floors-input">Total Floors</label>
-                    <input type="number" id="total-floors-input" min="1" max="50" value="15" class="text-input" />
-                  </div>
-                </div>
-              </div>
-
-              <!-- Col 2: Details & Age -->
-              <div class="form-column">
-                <h3 class="column-header">⚙️ Attributes & Orientation</h3>
-
-                <div class="input-field">
-                  <label for="year-built-input">Year Built: <span id="year-val" class="slider-val">2018</span></label>
-                  <input type="range" id="year-built-input" min="1990" max="2024" value="2018" step="1" class="range-slider" />
-                </div>
-
-                <div class="input-field">
-                  <label for="furnishing-select">Furnishing Status</label>
-                  <select id="furnishing-select" class="select-control">
-                    <option value="Furnished">Furnished</option>
-                    <option value="Semi-furnished">Semi-furnished</option>
-                    <option value="Unfurnished">Unfurnished</option>
-                  </select>
-                </div>
-
-                <div class="input-field">
-                  <label for="facing-select">Facing Direction</label>
-                  <select id="facing-select" class="select-control">
-                    <option value="East">East</option>
-                    <option value="West">West</option>
-                    <option value="North">North</option>
-                    <option value="South">South</option>
-                  </select>
-                </div>
-
-                <div class="form-row-2">
-                  <div class="input-field">
-                    <label for="owner-type-select">Seller Type</label>
-                    <select id="owner-type-select" class="select-control">
-                      <option value="Owner">Owner</option>
-                      <option value="Builder">Builder</option>
-                      <option value="Broker">Broker</option>
-                    </select>
-                  </div>
-                  <div class="input-field">
-                    <label for="availability-select">Status</label>
-                    <select id="availability-select" class="select-control">
-                      <option value="Ready_to_Move">Ready to Move</option>
-                      <option value="Under_Construction">Under Construction</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Col 3: Amenities & Connectivity -->
-              <div class="form-column">
-                <h3 class="column-header">🏊 Amenities & Connectivity</h3>
-
-                <div class="input-field">
-                  <label>Included Amenities</label>
-                  <div class="amenities-grid">
-                    <label class="chip-label"><input type="checkbox" id="am-gym" checked /> Gymnasium</label>
-                    <label class="chip-label"><input type="checkbox" id="am-pool" checked /> Pool</label>
-                    <label class="chip-label"><input type="checkbox" id="am-garden" checked /> Garden</label>
-                    <label class="chip-label"><input type="checkbox" id="am-playground" checked /> Playground</label>
-                    <label class="chip-label"><input type="checkbox" id="am-clubhouse" checked /> Clubhouse</label>
-                  </div>
-                </div>
-
-                <div class="form-row-2">
-                  <div class="input-field">
-                    <label for="parking-select">Parking</label>
-                    <select id="parking-select" class="select-control">
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                    </select>
-                  </div>
-                  <div class="input-field">
-                    <label for="security-select">Security / CCTV</label>
-                    <select id="security-select" class="select-control">
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="input-field">
-                  <label for="transport-select">Public Transport Access</label>
-                  <select id="transport-select" class="select-control">
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div class="button-wrapper">
-              <button type="submit" id="submit-btn" class="primary-btn shimmer-btn">
-                <span>💰 Calculate Property Price Valuation</span>
-              </button>
-            </div>
-          </form>
-        </section>
-
-        <!-- Valuation Results Section -->
-        <section id="results-section" class="results-section hidden">
-          <div class="card result-card">
-            <div class="result-header">ESTIMATED PROPERTY MARKET VALUE</div>
-            
-            <!-- Animated GSAP Price Counter -->
-            <div id="price-main-counter" class="price-counter">₹ 0.00 Cr</div>
-            <div id="price-sub-counter" class="price-sub">₹ 0.00 Lakhs</div>
-
-            <!-- Price Confidence Range Badge -->
-            <div id="price-range-badge" class="price-range-badge">
-              <span class="range-lbl">Expected Valuation Range (±10% Confidence):</span>
-              <span id="price-range-val" class="range-val">₹ 2.32 Cr – ₹ 2.84 Cr</span>
-            </div>
-
-            <div class="result-metrics-grid">
-              <div class="res-metric-box">
-                <span id="res-bhk-type" class="res-metric-val">3 BHK</span>
-                <span class="res-metric-lbl">Layout & Property Type</span>
-              </div>
-              <div class="res-metric-box">
-                <span id="res-area" class="res-metric-val">1,450 sq ft</span>
-                <span class="res-metric-lbl">Total Built-up Area</span>
-              </div>
-              <div class="res-metric-box">
-                <span id="res-rate" class="res-metric-val">₹ 14,250/sqft</span>
-                <span class="res-metric-lbl">Estimated Unit Rate</span>
-              </div>
-              <div class="res-metric-box">
-                <span id="res-location" class="res-metric-val">Jaipur, Rajasthan</span>
-                <span class="res-metric-lbl">Target Location</span>
-              </div>
-            </div>
-
-            <!-- Print / Export Valuation Report Button -->
-            <div class="export-wrapper">
-              <button id="export-pdf-btn" class="secondary-btn">
-                <span>📄 Export / Print Official Valuation Report</span>
+            <div class="search-col btn-col">
+              <button id="hero-search-btn" class="search-submit-btn">
+                <span>🔍 Search & Estimate Price</span>
               </button>
             </div>
           </div>
-        </section>
+
+          <!-- Quick City Pills -->
+          <div class="quick-pills-row">
+            <span class="pill-title">Popular Hubs:</span>
+            <button class="city-pill" data-state="Maharashtra" data-city="Mumbai">Mumbai</button>
+            <button class="city-pill" data-state="Karnataka" data-city="Bangalore">Bangalore</button>
+            <button class="city-pill" data-state="Delhi" data-city="New Delhi">Delhi NCR</button>
+            <button class="city-pill" data-state="Rajasthan" data-city="Jaipur">Jaipur</button>
+            <button class="city-pill" data-state="Telangana" data-city="Hyderabad">Hyderabad</button>
+            <button class="city-pill" data-state="Tamil Nadu" data-city="Chennai">Chennai</button>
+          </div>
+        </div>
+
+        <!-- KPI Metrics Ribbon -->
+        <div class="kpi-ribbon">
+          <div class="kpi-box">
+            <span class="kpi-num" id="kpi-listings">250,000</span>
+            <span class="kpi-label">Market Listings</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-num">20</span>
+            <span class="kpi-label">Indian States</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-num">42</span>
+            <span class="kpi-label">Major Cities</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-num">±10%</span>
+            <span class="kpi-label">Precision Margin</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: PROPERTY CATEGORY GRID -->
+    <section class="section-container category-section">
+      <div class="section-header">
+        <h2 class="section-title">Explore Property Categories across India</h2>
+        <p class="section-subtitle">Discover market averages, price trends, and listings tailored to your property requirements.</p>
       </div>
 
-
-      <!-- VIEW 2: PRICE COMPARISON & ANALYTICS DASHBOARD VIEW -->
-      <div id="view-dashboard" class="view-container hidden">
-        <section class="hero-section">
-          <div class="hero-tag">📊 INDIAN REAL ESTATE ANALYTICS DASHBOARD</div>
-          <h1 class="hero-title">Market Price Trends & State Comparisons</h1>
-          <p class="hero-subtitle">Analyze rate per sqft across top Indian states, valuation distribution by BHK layout, and compare 2 property locations side-by-side.</p>
-        </section>
-
-        <section class="dashboard-grid">
-          <!-- State Price Rate Comparison Chart -->
-          <div class="card chart-card">
-            <h3 class="card-title">📈 Average Rate per Sq. Ft. by State (₹/sqft)</h3>
-            <div class="chart-container">
-              <canvas id="chart-state-rate"></canvas>
-            </div>
+      <div class="categories-grid">
+        <div class="cat-card">
+          <div class="cat-img" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="cat-content">
+            <span class="cat-badge">120,000+ Units</span>
+            <h3 class="cat-title">Residential Highrises & Apartments</h3>
+            <p class="cat-desc">Modern multi-story gated towers with luxury amenities.</p>
           </div>
+        </div>
 
-          <!-- BHK Price Trend Chart -->
-          <div class="card chart-card">
-            <h3 class="card-title">🏠 Average Price Valuation by BHK Layout (₹ Lakhs)</h3>
-            <div class="chart-container">
-              <canvas id="chart-bhk-price"></canvas>
-            </div>
+        <div class="cat-card">
+          <div class="cat-img" style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="cat-content">
+            <span class="cat-badge">65,000+ Units</span>
+            <h3 class="cat-title">Luxury Villas & Independent Estates</h3>
+            <p class="cat-desc">Spacious private estates with gardens, pools & clubhouses.</p>
           </div>
+        </div>
 
-          <!-- Property Type Benchmark Chart -->
-          <div class="card chart-card">
-            <h3 class="card-title">🏢 Valuation Distribution by Property Type</h3>
-            <div class="chart-container">
-              <canvas id="chart-prop-type"></canvas>
-            </div>
+        <div class="cat-card">
+          <div class="cat-img" style="background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="cat-content">
+            <span class="cat-badge">65,000+ Units</span>
+            <h3 class="cat-title">Independent Houses & Builder Floors</h3>
+            <p class="cat-desc">Stand-alone residential houses in prime city corridors.</p>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- Side-by-Side City Market Comparator Card -->
-          <div class="card compare-card">
-            <h3 class="card-title">⚔️ Side-by-Side City Market Comparator</h3>
-            <p class="helper-text">Select 2 cities to compare average valuation & sqft rate benchmarks:</p>
-            <div class="compare-selectors">
-              <div class="compare-col">
-                <label for="cmp-city-1">City A</label>
-                <select id="cmp-city-1" class="select-control">
-                  <option value="Mumbai">Mumbai</option>
-                  <option value="Jaipur">Jaipur</option>
-                  <option value="Bangalore">Bangalore</option>
-                  <option value="Gurgaon">Gurgaon</option>
-                </select>
-                <div id="cmp-box-1" class="cmp-res-box">
-                  <div class="cmp-city-title">Mumbai</div>
-                  <div class="cmp-metric"><b>Avg Price:</b> <span id="cmp-price-1">₹ 258.46 Lakhs</span></div>
-                  <div class="cmp-metric"><b>Avg Rate:</b> <span id="cmp-rate-1">₹ 9,399/sqft</span></div>
-                </div>
-              </div>
+    <!-- SECTION 3: DYNAMIC STATE LANDMARK BANNER SHOWCASE -->
+    <section class="section-container banner-section">
+      <div id="state-banner-card" class="state-banner-card">
+        <div class="state-banner-overlay">
+          <span id="state-landmark-tag" class="landmark-badge">✨ Hawa Mahal & Pink City</span>
+          <h3 id="state-banner-title" class="banner-title">Rajasthan Market</h3>
+          <p id="state-banner-desc" class="banner-desc">Land of Forts, Royal Heritage & Rapidly Growing Housing Hubs</p>
+        </div>
+      </div>
+    </section>
 
-              <div class="compare-col">
-                <label for="cmp-city-2">City B</label>
-                <select id="cmp-city-2" class="select-control">
-                  <option value="Jaipur">Jaipur</option>
-                  <option value="Mumbai">Mumbai</option>
-                  <option value="Bangalore">Bangalore</option>
-                  <option value="Hyderabad">Hyderabad</option>
-                </select>
-                <div id="cmp-box-2" class="cmp-res-box">
-                  <div class="cmp-city-title">Jaipur</div>
-                  <div class="cmp-metric"><b>Avg Price:</b> <span id="cmp-price-2">₹ 257.37 Lakhs</span></div>
-                  <div class="cmp-metric"><b>Avg Rate:</b> <span id="cmp-rate-2">₹ 9,270/sqft</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- State Comparison Table -->
-          <div class="card table-card">
-            <h3 class="card-title">📋 State Market Comparison Table</h3>
-            <div class="table-wrapper">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>State</th>
-                    <th>Avg Property Price</th>
-                    <th>Avg Rate / Sq. Ft.</th>
-                    <th>Active Listings</th>
-                  </tr>
-                </thead>
-                <tbody id="state-table-body">
-                  <!-- Dynamically populated -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+    <!-- SECTION 4: INTERACTIVE SATELLITE MAP & LOCATION EXPLORER -->
+    <section id="interactive-map-section" class="section-container map-explorer-section">
+      <div class="section-header">
+        <h2 class="section-title">📍 Interactive Satellite Map Explorer</h2>
+        <p class="section-subtitle">Click any city marker on the map to inspect average price benchmarks and list property dropdowns.</p>
       </div>
 
-    </div>
+      <div class="location-grid">
+        <!-- Location Attributes Selection Box -->
+        <div class="card location-card">
+          <div class="card-header-with-icon">
+            <span class="icon-badge">📍</span>
+            <h3 class="column-header">Location Attributes</h3>
+          </div>
+          <p class="helper-text">Click any city pin on the map or choose location below:</p>
+          
+          <div class="input-field">
+            <label for="state-select">Select State</label>
+            <select id="state-select" class="select-control">
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Telangana">Telangana</option>
+              <option value="West Bengal">West Bengal</option>
+            </select>
+          </div>
+
+          <div class="input-field">
+            <label for="city-select">Select City</label>
+            <select id="city-select" class="select-control">
+              <option value="Jaipur">Jaipur</option>
+              <option value="Jodhpur">Jodhpur</option>
+            </select>
+          </div>
+
+          <div class="input-field">
+            <label for="locality-select">Select Locality</label>
+            <select id="locality-select" class="select-control">
+              <option value="Locality_1">Locality 1</option>
+            </select>
+          </div>
+
+          <!-- City Avg Price Display Box -->
+          <div id="city-avg-box" class="city-avg-box">
+            <div class="avg-box-title">📍 <span id="avg-city-name">Jaipur</span> Market Benchmark</div>
+            <div class="avg-box-grid">
+              <div>
+                <span class="avg-val" id="avg-city-price">₹ 258.46 Lakhs</span>
+                <span class="avg-lbl">Avg Property Price</span>
+              </div>
+              <div>
+                <span class="avg-val" id="avg-city-rate">₹ 9,399/sqft</span>
+                <span class="avg-lbl">Avg Rate per Sq. Ft.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leaflet Map Card with Floating Satellite Controls Overlay -->
+        <div class="card map-card">
+          <div class="map-layer-toggles map-floating-toggles">
+            <button id="map-style-sat" class="map-layer-btn active">📡 Satellite View</button>
+            <button id="map-style-street" class="map-layer-btn">🗺️ Streets View</button>
+            <button id="map-style-dark" class="map-layer-btn">🌙 Dark Mode</button>
+          </div>
+          <div id="leaflet-map" class="leaflet-map-container"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: INSTANT PROPERTY PRICE VALUATION CALCULATOR FORM -->
+    <section id="valuation-calculator" class="section-container valuation-section">
+      <div class="section-header">
+        <h2 class="section-title">📋 Instant Property Price Valuation Calculator</h2>
+        <p class="section-subtitle">Configure your property layout, built-up sqft, floor height, age, and amenities to generate precise price estimates.</p>
+      </div>
+
+      <form id="valuation-form" class="card form-card">
+        <div class="form-grid">
+          <!-- Col 1: Layout & Size -->
+          <div class="form-column">
+            <h3 class="column-header">🏢 Space & Layout</h3>
+
+            <div class="input-field">
+              <label for="bhk-input">BHK (Bedrooms): <span id="bhk-val" class="slider-val">3 BHK</span></label>
+              <input type="range" id="bhk-input" min="1" max="6" value="3" step="1" class="range-slider" />
+            </div>
+
+            <div class="input-field">
+              <label for="size-input">Built-up Area (Sq. Ft.)</label>
+              <input type="number" id="size-input" min="300" max="10000" value="1450" step="50" class="text-input" />
+            </div>
+
+            <div class="input-field">
+              <label for="property-type-select">Property Type</label>
+              <select id="property-type-select" class="select-control">
+                <option value="Apartment">Apartment</option>
+                <option value="Independent House">Independent House</option>
+                <option value="Villa">Villa</option>
+              </select>
+            </div>
+
+            <div class="form-row-2">
+              <div class="input-field">
+                <label for="floor-no-input">Floor No</label>
+                <input type="number" id="floor-no-input" min="0" max="50" value="5" class="text-input" />
+              </div>
+              <div class="input-field">
+                <label for="total-floors-input">Total Floors</label>
+                <input type="number" id="total-floors-input" min="1" max="50" value="15" class="text-input" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Col 2: Details & Age -->
+          <div class="form-column">
+            <h3 class="column-header">⚙️ Attributes & Orientation</h3>
+
+            <div class="input-field">
+              <label for="year-built-input">Year Built: <span id="year-val" class="slider-val">2018</span></label>
+              <input type="range" id="year-built-input" min="1990" max="2024" value="2018" step="1" class="range-slider" />
+            </div>
+
+            <div class="input-field">
+              <label for="furnishing-select">Furnishing Status</label>
+              <select id="furnishing-select" class="select-control">
+                <option value="Furnished">Furnished</option>
+                <option value="Semi-furnished">Semi-furnished</option>
+                <option value="Unfurnished">Unfurnished</option>
+              </select>
+            </div>
+
+            <div class="input-field">
+              <label for="facing-select">Facing Direction</label>
+              <select id="facing-select" class="select-control">
+                <option value="East">East</option>
+                <option value="West">West</option>
+                <option value="North">North</option>
+                <option value="South">South</option>
+              </select>
+            </div>
+
+            <div class="form-row-2">
+              <div class="input-field">
+                <label for="owner-type-select">Seller Type</label>
+                <select id="owner-type-select" class="select-control">
+                  <option value="Owner">Owner</option>
+                  <option value="Builder">Builder</option>
+                  <option value="Broker">Broker</option>
+                </select>
+              </div>
+              <div class="input-field">
+                <label for="availability-select">Status</label>
+                <select id="availability-select" class="select-control">
+                  <option value="Ready_to_Move">Ready to Move</option>
+                  <option value="Under_Construction">Under Construction</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Col 3: Amenities & Connectivity -->
+          <div class="form-column">
+            <h3 class="column-header">🏊 Amenities & Connectivity</h3>
+
+            <div class="input-field">
+              <label>Included Amenities</label>
+              <div class="amenities-grid">
+                <label class="chip-label"><input type="checkbox" id="am-gym" checked /> Gymnasium</label>
+                <label class="chip-label"><input type="checkbox" id="am-pool" checked /> Pool</label>
+                <label class="chip-label"><input type="checkbox" id="am-garden" checked /> Garden</label>
+                <label class="chip-label"><input type="checkbox" id="am-playground" checked /> Playground</label>
+                <label class="chip-label"><input type="checkbox" id="am-clubhouse" checked /> Clubhouse</label>
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="input-field">
+                <label for="parking-select">Parking</label>
+                <select id="parking-select" class="select-control">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div class="input-field">
+                <label for="security-select">Security / CCTV</label>
+                <select id="security-select" class="select-control">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="input-field">
+              <label for="transport-select">Public Transport Access</label>
+              <select id="transport-select" class="select-control">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="button-wrapper">
+          <button type="submit" id="submit-btn" class="primary-btn shimmer-btn">
+            <span>💰 Calculate Property Price Valuation</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Valuation Results Card -->
+      <div id="results-section" class="results-section hidden">
+        <div class="card result-card">
+          <div class="result-header">ESTIMATED PROPERTY MARKET VALUE</div>
+          
+          <!-- Animated GSAP Price Counter -->
+          <div id="price-main-counter" class="price-counter">₹ 0.00 Cr</div>
+          <div id="price-sub-counter" class="price-sub">₹ 0.00 Lakhs</div>
+
+          <!-- Price Confidence Range Badge -->
+          <div id="price-range-badge" class="price-range-badge">
+            <span class="range-lbl">Expected Valuation Range (±10% Confidence):</span>
+            <span id="price-range-val" class="range-val">₹ 2.32 Cr – ₹ 2.84 Cr</span>
+          </div>
+
+          <div class="result-metrics-grid">
+            <div class="res-metric-box">
+              <span id="res-bhk-type" class="res-metric-val">3 BHK</span>
+              <span class="res-metric-lbl">Layout & Property Type</span>
+            </div>
+            <div class="res-metric-box">
+              <span id="res-area" class="res-metric-val">1,450 sq ft</span>
+              <span class="res-metric-lbl">Total Built-up Area</span>
+            </div>
+            <div class="res-metric-box">
+              <span id="res-rate" class="res-metric-val">₹ 14,250/sqft</span>
+              <span class="res-metric-lbl">Estimated Unit Rate</span>
+            </div>
+            <div class="res-metric-box">
+              <span id="res-location" class="res-metric-val">Jaipur, Rajasthan</span>
+              <span class="res-metric-lbl">Target Location</span>
+            </div>
+          </div>
+
+          <!-- Print / Export Valuation Report Button -->
+          <div class="export-wrapper">
+            <button id="export-pdf-btn" class="secondary-btn">
+              <span>📄 Export / Print Official Valuation Report</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: MARKET ANALYTICS & CITY COMPARATOR DASHBOARD -->
+    <section id="analytics-dashboard-section" class="section-container analytics-section">
+      <div class="section-header">
+        <h2 class="section-title">📊 Indian Real Estate Market Analytics Dashboard</h2>
+        <p class="section-subtitle">Comprehensive market visualization comparing state sqft rates, BHK price trends, and side-by-side city metrics.</p>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- State Price Rate Comparison Chart -->
+        <div class="card chart-card">
+          <h3 class="card-title">📈 Average Rate per Sq. Ft. by State (₹/sqft)</h3>
+          <div class="chart-container">
+            <canvas id="chart-state-rate"></canvas>
+          </div>
+        </div>
+
+        <!-- BHK Price Trend Chart -->
+        <div class="card chart-card">
+          <h3 class="card-title">🏠 Average Price Valuation by BHK Layout (₹ Lakhs)</h3>
+          <div class="chart-container">
+            <canvas id="chart-bhk-price"></canvas>
+          </div>
+        </div>
+
+        <!-- Property Type Benchmark Chart -->
+        <div class="card chart-card">
+          <h3 class="card-title">🏢 Valuation Distribution by Property Type</h3>
+          <div class="chart-container">
+            <canvas id="chart-prop-type"></canvas>
+          </div>
+        </div>
+
+        <!-- Side-by-Side City Market Comparator Card -->
+        <div class="card compare-card">
+          <h3 class="card-title">⚔️ Side-by-Side City Market Comparator</h3>
+          <p class="helper-text">Select 2 cities to compare average valuation & sqft rate benchmarks:</p>
+          <div class="compare-selectors">
+            <div class="compare-col">
+              <label for="cmp-city-1">City A</label>
+              <select id="cmp-city-1" class="select-control">
+                <option value="Mumbai">Mumbai</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Gurgaon">Gurgaon</option>
+              </select>
+              <div id="cmp-box-1" class="cmp-res-box">
+                <div class="cmp-city-title">Mumbai</div>
+                <div class="cmp-metric"><b>Avg Price:</b> <span id="cmp-price-1">₹ 258.46 Lakhs</span></div>
+                <div class="cmp-metric"><b>Avg Rate:</b> <span id="cmp-rate-1">₹ 9,399/sqft</span></div>
+              </div>
+            </div>
+
+            <div class="compare-col">
+              <label for="cmp-city-2">City B</label>
+              <select id="cmp-city-2" class="select-control">
+                <option value="Jaipur">Jaipur</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Hyderabad">Hyderabad</option>
+              </select>
+              <div id="cmp-box-2" class="cmp-res-box">
+                <div class="cmp-city-title">Jaipur</div>
+                <div class="cmp-metric"><b>Avg Price:</b> <span id="cmp-price-2">₹ 257.37 Lakhs</span></div>
+                <div class="cmp-metric"><b>Avg Rate:</b> <span id="cmp-rate-2">₹ 9,270/sqft</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- State Comparison Table -->
+        <div class="card table-card">
+          <h3 class="card-title">📋 State Market Comparison Table</h3>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>State</th>
+                  <th>Avg Property Price</th>
+                  <th>Avg Rate / Sq. Ft.</th>
+                  <th>Active Listings</th>
+                </tr>
+              </thead>
+              <tbody id="state-table-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: TOP INDIAN CITIES & HOT MARKETS CAROUSEL/GRID -->
+    <section id="top-cities-section" class="section-container top-cities-section">
+      <div class="section-header">
+        <h2 class="section-title">🏙️ Top Real Estate Markets in India</h2>
+        <p class="section-subtitle">Explore high-growth property hubs with live market valuations and listings.</p>
+      </div>
+
+      <div class="cities-cards-grid">
+        <div class="city-card">
+          <div class="city-card-img" style="background-image: url('https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=600&q=80')">
+            <span class="city-badge">🔥 #1 Premium Hub</span>
+          </div>
+          <div class="city-card-content">
+            <h3>Mumbai & MMR</h3>
+            <p>Avg Rate: <b>₹ 18,450 / sqft</b></p>
+            <span class="listings-count">42,000+ Listings</span>
+          </div>
+        </div>
+
+        <div class="city-card">
+          <div class="city-card-img" style="background-image: url('https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=600&q=80')">
+            <span class="city-badge">💻 IT Corridor</span>
+          </div>
+          <div class="city-card-content">
+            <h3>Bangalore</h3>
+            <p>Avg Rate: <b>₹ 9,399 / sqft</b></p>
+            <span class="listings-count">38,000+ Listings</span>
+          </div>
+        </div>
+
+        <div class="city-card">
+          <div class="city-card-img" style="background-image: url('https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=600&q=80')">
+            <span class="city-badge">🚀 NCR Growth</span>
+          </div>
+          <div class="city-card-content">
+            <h3>Delhi NCR & Gurgaon</h3>
+            <p>Avg Rate: <b>₹ 11,200 / sqft</b></p>
+            <span class="listings-count">35,000+ Listings</span>
+          </div>
+        </div>
+
+        <div class="city-card">
+          <div class="city-card-img" style="background-image: url('https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=600&q=80')">
+            <span class="city-badge">✨ Royal Heritage</span>
+          </div>
+          <div class="city-card-content">
+            <h3>Jaipur & Pink City</h3>
+            <p>Avg Rate: <b>₹ 9,270 / sqft</b></p>
+            <span class="listings-count">24,000+ Listings</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: PORTAL FOOTER (MagicBricks Style) -->
+    <footer class="portal-footer">
+      <div class="footer-container">
+        <div class="footer-col brand-col">
+          <div class="brand">
+            <span class="brand-name">INDIA<span class="accent-text">REALESTATES</span></span>
+          </div>
+          <p class="footer-tagline">Next-Generation Real Estate Valuation Engine & Market Intelligence Platform.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Top Cities</h4>
+          <ul>
+            <li><a href="#hero-search">Mumbai Real Estate</a></li>
+            <li><a href="#hero-search">Bangalore Real Estate</a></li>
+            <li><a href="#hero-search">Delhi NCR Properties</a></li>
+            <li><a href="#hero-search">Jaipur Property Valuation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Tools & Analytics</h4>
+          <ul>
+            <li><a href="#valuation-calculator">Instant Price Estimator</a></li>
+            <li><a href="#interactive-map-section">Satellite Map Explorer</a></li>
+            <li><a href="#analytics-dashboard-section">Market Price Trends</a></li>
+            <li><a href="#analytics-dashboard-section">Side-by-Side City Comparator</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 INDIAREALESTATES — Machine Learning Internship Submission. All Rights Reserved.</p>
+      </div>
+    </footer>
   </div>
 
   <script type="module" src="/src/main.ts"></script>
