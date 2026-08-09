@@ -544,12 +544,11 @@ function updateStateBanner(state: string): void {
   });
 }
 
-// NAVIGATION VIEW SWITCHER LOGIC (SUPPORTING 3 VIEWS + MAP NAV)
+// NAVIGATION VIEW SWITCHER LOGIC
 function setupNavigationEvents(): void {
   const btnLandingTab = document.getElementById('nav-landing-tab');
   const btnDashboardTab = document.getElementById('nav-dashboard-tab');
   const btnEmiTab = document.getElementById('nav-emi-tab');
-  const btnMapTab = document.getElementById('nav-map-btn');
 
   const btnSideHome = document.getElementById('side-home-btn');
   const btnSideDash = document.getElementById('side-dash-btn');
@@ -560,7 +559,7 @@ function setupNavigationEvents(): void {
   const viewEmi = document.getElementById('view-emi');
 
   const switchView = (targetView: 'landing' | 'dashboard' | 'emi') => {
-    [btnLandingTab, btnDashboardTab, btnEmiTab, btnMapTab].forEach(btn => btn?.classList.remove('active'));
+    [btnLandingTab, btnDashboardTab, btnEmiTab].forEach(btn => btn?.classList.remove('active'));
     [viewLanding, viewDashboard, viewEmi].forEach(v => v?.classList.add('hidden'));
 
     if (targetView === 'landing') {
@@ -583,23 +582,9 @@ function setupNavigationEvents(): void {
   btnDashboardTab?.addEventListener('click', () => switchView('dashboard'));
   btnEmiTab?.addEventListener('click', () => switchView('emi'));
 
-  btnMapTab?.addEventListener('click', () => {
-    switchView('landing');
-    document.getElementById('interactive-map-section')?.scrollIntoView({ behavior: 'smooth' });
-  });
-
   btnSideHome?.addEventListener('click', () => switchView('landing'));
   btnSideDash?.addEventListener('click', () => switchView('dashboard'));
   footerNavDash?.addEventListener('click', () => switchView('dashboard'));
-
-  // Header Actions Handlers
-  document.querySelector('.user-profile-btn')?.addEventListener('click', () => {
-    alert("👤 User Account Portal:\n\nSign In / Register modal opening...");
-  });
-
-  document.querySelector('.saved-heart-btn')?.addEventListener('click', () => {
-    alert("❤️ Saved Wishlist:\n\nYou have 0 saved properties in your wishlist.");
-  });
 }
 
 // Hero Events & Tile Click Anchors
