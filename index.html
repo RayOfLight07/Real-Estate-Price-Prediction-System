@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INDIAREALESTATES — Smart Real Estate Valuation & Market Analytics</title>
+  <title>INDIAREALESTATES — Real Estate Intelligence & Market Analytics</title>
 
   <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Leaflet CSS for Map -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -16,86 +16,252 @@
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
-  <!-- Ambient Floating Neon Background Orbs -->
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
-  <div class="ambient-glow glow-3"></div>
+  <div class="app-layout">
+    <!-- Left Floating Navigation Sidebar (Matching Screenshot) -->
+    <aside class="app-sidebar">
+      <div class="sidebar-brand" title="INDIAREALESTATES">
+        <svg class="brand-logo-svg" viewBox="0 0 32 32" fill="none">
+          <path d="M4 28L12 12L20 28H4Z" fill="url(#logo-grad1)"/>
+          <path d="M12 28L20 6L28 28H12Z" fill="url(#logo-grad2)" opacity="0.85"/>
+          <circle cx="20" cy="6" r="2.5" fill="#10b981"/>
+          <defs>
+            <linearGradient id="logo-grad1" x1="4" y1="28" x2="20" y2="12">
+              <stop offset="0%" stop-color="#0284c7"/>
+              <stop offset="100%" stop-color="#38bdf8"/>
+            </linearGradient>
+            <linearGradient id="logo-grad2" x1="12" y1="28" x2="28" y2="6">
+              <stop offset="0%" stop-color="#4338ca"/>
+              <stop offset="100%" stop-color="#f43f5e"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
 
-  <div id="app">
-    <!-- Navbar -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <div class="brand">
-          <svg class="brand-logo-svg" viewBox="0 0 32 32" fill="none">
-            <path d="M4 28L12 12L20 28H4Z" fill="url(#logo-grad1)"/>
-            <path d="M12 28L20 6L28 28H12Z" fill="url(#logo-grad2)" opacity="0.85"/>
-            <circle cx="20" cy="6" r="2.5" fill="#38bdf8"/>
-            <defs>
-              <linearGradient id="logo-grad1" x1="4" y1="28" x2="20" y2="12">
-                <stop offset="0%" stop-color="#0284c7"/>
-                <stop offset="100%" stop-color="#38bdf8"/>
-              </linearGradient>
-              <linearGradient id="logo-grad2" x1="12" y1="28" x2="28" y2="6">
-                <stop offset="0%" stop-color="#4338ca"/>
-                <stop offset="100%" stop-color="#f43f5e"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          <span class="brand-name">INDIA<span class="accent-text">REALESTATES</span></span>
-        </div>
+      <nav class="sidebar-nav">
+        <button id="side-home-btn" class="sidebar-icon-btn active" title="Valuation & Overview">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M3 13h1v7c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-7h1a1 1 0 0 0 .7-1.7l-9-9a1 1 0 0 0-1.4 0l-9 9A1 1 0 0 0 3 13zm9-7.6l6 6V20H6v-8.6l6-6z"/></svg>
+        </button>
 
-        <div class="nav-actions">
-          <div class="status-pill">
-            <span class="pulse-dot"></span>
-            <span>250,000 Verified Listings</span>
-          </div>
+        <button id="side-analytics-btn" class="sidebar-icon-btn" title="Price Analytics Dashboard">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>
+        </button>
 
-          <button id="nav-valuation-btn" class="nav-tab active">🏠 Valuation Tool</button>
-          <button id="nav-dashboard-btn" class="nav-tab">📊 Price Analytics Dashboard</button>
-          
-          <!-- Three Dots Menu Toggle -->
-          <button id="three-dots-btn" class="three-dots-btn" title="Open Analytics Dashboard & Options">
-            <span>⋮</span>
-          </button>
+        <button id="side-map-btn" class="sidebar-icon-btn" title="Interactive Map Explorer">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9A1 1 0 0 0 2.7 6.2v12.9a1 1 0 0 0 1.25.96L9 18.9l6 2.1 5.64-1.9a1 1 0 0 0 .66-.96V5.24A1 1 0 0 0 20.5 3zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+        </button>
+
+        <button id="three-dots-btn" class="sidebar-icon-btn" title="More Options & Dashboard">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="avatar-badge" title="User Account">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="User Avatar" />
         </div>
       </div>
-    </nav>
+    </aside>
 
-    <!-- Main Content Area -->
-    <main class="main-content">
+    <!-- Main Outer Container -->
+    <div class="main-wrapper">
       
-      <!-- VIEW 1: VALUATION & INTERACTIVE MAP VIEW -->
+      <!-- Top Bar Header (Matching Screenshot) -->
+      <header class="top-header">
+        <div class="header-left">
+          <h1 class="welcome-title">Welcome back 👋</h1>
+          <p class="welcome-subtitle">Indian Real Estate Market Valuation & Price Analytics Engine</p>
+        </div>
+
+        <div class="header-right">
+          <div class="search-bar-pill">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="global-search-input" placeholder="Search city, state, or locality..." />
+          </div>
+
+          <div class="header-tab-group">
+            <button id="nav-valuation-btn" class="top-tab-btn active">🏠 Valuation Tool</button>
+            <button id="nav-dashboard-btn" class="top-tab-btn">📊 Analytics Dashboard</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- VIEW 1: LANDING OVERVIEW & VALUATION DASHBOARD -->
       <div id="view-valuation" class="view-container">
         
-        <!-- Hero Section -->
-        <section class="hero-section gsap-hero">
-          <div class="hero-tag">⚡ Smart Real Estate Intelligence</div>
-          <h1 class="hero-title">Real-Time Property Valuation & Market Insights</h1>
-          <p class="hero-subtitle">Select your target location on the interactive satellite map or dropdowns below to discover average sqft rates, instant price predictions, and market benchmarks.</p>
-          
-          <!-- Hero KPI Stats Counter Chips -->
-          <div class="hero-stats-grid">
-            <div class="hero-stat-card">
-              <span class="h-stat-num" id="h-stat-listings">250,000</span>
-              <span class="h-stat-label">Market Listings</span>
+        <!-- Row 1: Featured High-Growth Market Pastel Cards (Matching Screenshot) -->
+        <section class="pastel-cards-grid gsap-row1">
+          <!-- Card 1: Mint Green -->
+          <div class="pastel-card card-mint" id="card-market-1">
+            <div class="p-card-header">
+              <span class="p-tag">⭐ 4.9 Premium</span>
+              <button class="arrow-circle-btn">↗</button>
             </div>
-            <div class="hero-stat-card">
-              <span class="h-stat-num">20</span>
-              <span class="h-stat-label">Indian States</span>
+            <div class="p-card-body">
+              <div class="p-avatars">
+                <span class="avatar-chip">🏙️</span>
+                <span class="avatar-chip">🌊</span>
+                <span class="avatar-chip">🏢</span>
+                <span class="avatar-count">+42</span>
+              </div>
+              <h3 class="p-card-title">Mumbai & MMR Metro</h3>
+              <div class="p-card-price">Avg. ₹ 18,450 / sqft</div>
             </div>
-            <div class="hero-stat-card">
-              <span class="h-stat-num">42</span>
-              <span class="h-stat-label">Major Cities</span>
+          </div>
+
+          <!-- Card 2: Blush Pink -->
+          <div class="pastel-card card-pink" id="card-market-2">
+            <div class="p-card-header">
+              <span class="p-tag">⭐ 4.8 IT Corridor</span>
+              <button class="arrow-circle-btn">↗</button>
             </div>
-            <div class="hero-stat-card">
-              <span class="h-stat-num">±10%</span>
-              <span class="h-stat-label">Precision Band</span>
+            <div class="p-card-body">
+              <div class="p-avatars">
+                <span class="avatar-chip">💻</span>
+                <span class="avatar-chip">🌳</span>
+                <span class="avatar-chip">🚀</span>
+                <span class="avatar-count">+18</span>
+              </div>
+              <h3 class="p-card-title">Bangalore Tech Hub</h3>
+              <div class="p-card-price">Avg. ₹ 9,399 / sqft</div>
+            </div>
+          </div>
+
+          <!-- Card 3: Warm Lemon -->
+          <div class="pastel-card card-lemon" id="card-market-3">
+            <div class="p-card-header">
+              <span class="p-tag">🚀 Rapid Scaling</span>
+              <button class="arrow-circle-btn">↗</button>
+            </div>
+            <div class="p-card-body">
+              <div class="p-avatars">
+                <span class="avatar-chip">🏛️</span>
+                <span class="avatar-chip">🚆</span>
+                <span class="avatar-chip">🏰</span>
+                <span class="avatar-count">+24</span>
+              </div>
+              <h3 class="p-card-title">Delhi NCR & Gurgaon</h3>
+              <div class="p-card-price">Avg. ₹ 11,200 / sqft</div>
             </div>
           </div>
         </section>
 
-        <!-- Dynamic State Visual Showcase Banner Card -->
-        <div id="state-banner-card" class="card state-banner-card gsap-banner">
+        <!-- Row 2: Market Progress Bar & Schedule Calendar Widget (Matching Screenshot) -->
+        <section class="overview-widgets-grid gsap-row2">
+          <!-- Left Column: Learning Progress & Market Metrics -->
+          <div class="widget-col-left">
+            <h2 class="widget-heading">Market Activity & Progress Summary</h2>
+            
+            <div class="mini-metrics-grid">
+              <div class="mini-metric-card card-mint-soft">
+                <span class="mini-lbl">Verified Listings</span>
+                <span class="mini-val" id="mini-val-listings">250,000</span>
+                <button class="mini-arrow">↗</button>
+              </div>
+
+              <div class="mini-metric-card card-lemon-soft">
+                <span class="mini-lbl">Active States</span>
+                <span class="mini-val">20 States</span>
+                <button class="mini-arrow">↗</button>
+              </div>
+
+              <div class="mini-metric-card card-lavender-soft">
+                <span class="mini-lbl">Major Cities</span>
+                <span class="mini-val">42 Cities</span>
+                <button class="mini-arrow">↗</button>
+              </div>
+            </div>
+
+            <!-- Wide Pastel Progress Banner -->
+            <div class="pastel-banner-card card-lemon-wide">
+              <div class="pb-header">
+                <span class="pb-tag">⚡ INTEL ENGINE ACTIVE</span>
+                <button class="arrow-circle-btn">↗</button>
+              </div>
+              <div class="pb-sub">250,000 Dataset Sampled & Trained</div>
+              <h3 class="pb-title">Real-Time Valuation & Precision Machine Learning Engine</h3>
+              <div class="pb-progress-bar">
+                <div class="pb-progress-fill" style="width: 94%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Market Trends Calendar Widget (Matching Screenshot) -->
+          <div class="widget-col-right">
+            <div class="calendar-widget-card">
+              <div class="cal-header">
+                <h3 class="cal-month-title">Market Activity Log — 2026</h3>
+                <div class="cal-arrows">
+                  <button class="cal-nav">&lt;</button>
+                  <button class="cal-nav">&gt;</button>
+                </div>
+              </div>
+
+              <div class="cal-days-grid">
+                <span class="day-lbl">MON</span>
+                <span class="day-lbl">THU</span>
+                <span class="day-lbl">WED</span>
+                <span class="day-lbl">TUE</span>
+                <span class="day-lbl">FRI</span>
+                <span class="day-lbl">SAT</span>
+                <span class="day-lbl">SUN</span>
+
+                <span class="day-num inactive">30</span>
+                <span class="day-num">1</span>
+                <span class="day-num">2</span>
+                <span class="day-num">3</span>
+                <span class="day-num">4</span>
+                <span class="day-num">5</span>
+                <span class="day-num">6</span>
+                <span class="day-num">7</span>
+                <span class="day-num">8</span>
+                <span class="day-num highlight-mint">9</span>
+                <span class="day-num">10</span>
+                <span class="day-num">11</span>
+                <span class="day-num highlight-mint">12</span>
+                <span class="day-num">13</span>
+                <span class="day-num">14</span>
+                <span class="day-num">15</span>
+                <span class="day-num highlight-black">16</span>
+                <span class="day-num highlight-black">17</span>
+                <span class="day-num">18</span>
+                <span class="day-num">19</span>
+                <span class="day-num">20</span>
+                <span class="day-num">21</span>
+                <span class="day-num">22</span>
+                <span class="day-num">23</span>
+                <span class="day-num">24</span>
+                <span class="day-num">25</span>
+                <span class="day-num">26</span>
+                <span class="day-num">27</span>
+                <span class="day-num">28</span>
+                <span class="day-num">29</span>
+                <span class="day-num">30</span>
+                <span class="day-num">31</span>
+              </div>
+
+              <div class="cal-events-list">
+                <div class="cal-event-pill card-mint-soft">
+                  <span class="event-icon">📖</span>
+                  <div class="event-text">
+                    <b>Mumbai Metropolitan Region</b>
+                    <span>High demand in residential towers</span>
+                  </div>
+                </div>
+
+                <div class="cal-event-pill card-pink-soft">
+                  <span class="event-icon">📖</span>
+                  <div class="event-text">
+                    <b>Bangalore Whitefield IT Corridor</b>
+                    <span>+12.4% YoY rate expansion</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dynamic State Visual Landmark Showcase Banner -->
+        <div id="state-banner-card" class="state-banner-card gsap-row3">
           <div class="state-banner-overlay">
             <span id="state-landmark-tag" class="landmark-badge">✨ Hawa Mahal & Pink City</span>
             <h3 id="state-banner-title" class="banner-title">Rajasthan Market</h3>
@@ -103,15 +269,11 @@
           </div>
         </div>
 
-        <!-- Location & Interactive Satellite Map Section -->
-        <section class="location-map-section gsap-location">
-          <div class="location-map-header">
-            <h2 class="card-title">📍 Interactive India Map & Location Explorer</h2>
-          </div>
-
+        <!-- Location Attributes & Satellite Leaflet Map Section -->
+        <section class="location-map-section gsap-row4">
           <div class="location-grid">
             <!-- Location Selectors Card -->
-            <div class="card location-card gsap-card">
+            <div class="card location-card">
               <div class="card-header-with-icon">
                 <span class="icon-badge">📍</span>
                 <h3 class="column-header">Location Attributes</h3>
@@ -162,9 +324,8 @@
               </div>
             </div>
 
-            <!-- Leaflet Interactive Map Card with Floating Layer Controls -->
-            <div class="card map-card gsap-card">
-              <!-- Floating Layer Overlay Control -->
+            <!-- Leaflet Interactive Map Card with Floating Controls -->
+            <div class="card map-card">
               <div class="map-layer-toggles map-floating-toggles">
                 <button id="map-style-sat" class="map-layer-btn active">📡 Satellite View</button>
                 <button id="map-style-street" class="map-layer-btn">🗺️ Streets View</button>
@@ -175,12 +336,12 @@
           </div>
         </section>
 
-        <!-- Property Configuration Form -->
-        <section class="config-section gsap-form">
-          <form id="valuation-form" class="card form-card gsap-card">
+        <!-- Property Specifications Form -->
+        <section class="config-section gsap-row5">
+          <form id="valuation-form" class="card form-card">
             <div class="card-header-with-icon">
               <span class="icon-badge">📋</span>
-              <h2 class="card-title">Property Specification & Configuration</h2>
+              <h2 class="card-title">Property Specifications & Configuration</h2>
             </div>
 
             <div class="form-grid">
@@ -318,8 +479,8 @@
         </section>
 
         <!-- Valuation Results Section -->
-        <section id="results-section" class="results-section gsap-result hidden">
-          <div class="card result-card gsap-card">
+        <section id="results-section" class="results-section hidden">
+          <div class="card result-card">
             <div class="result-header">ESTIMATED PROPERTY MARKET VALUE</div>
             
             <!-- Animated GSAP Price Counter -->
@@ -372,7 +533,7 @@
 
         <section class="dashboard-grid">
           <!-- State Price Rate Comparison Chart -->
-          <div class="card chart-card gsap-card">
+          <div class="card chart-card">
             <h3 class="card-title">📈 Average Rate per Sq. Ft. by State (₹/sqft)</h3>
             <div class="chart-container">
               <canvas id="chart-state-rate"></canvas>
@@ -380,7 +541,7 @@
           </div>
 
           <!-- BHK Price Trend Chart -->
-          <div class="card chart-card gsap-card">
+          <div class="card chart-card">
             <h3 class="card-title">🏠 Average Price Valuation by BHK Layout (₹ Lakhs)</h3>
             <div class="chart-container">
               <canvas id="chart-bhk-price"></canvas>
@@ -388,7 +549,7 @@
           </div>
 
           <!-- Property Type Benchmark Chart -->
-          <div class="card chart-card gsap-card">
+          <div class="card chart-card">
             <h3 class="card-title">🏢 Valuation Distribution by Property Type</h3>
             <div class="chart-container">
               <canvas id="chart-prop-type"></canvas>
@@ -396,7 +557,7 @@
           </div>
 
           <!-- Side-by-Side City Market Comparator Card -->
-          <div class="card compare-card gsap-card">
+          <div class="card compare-card">
             <h3 class="card-title">⚔️ Side-by-Side City Market Comparator</h3>
             <p class="helper-text">Select 2 cities to compare average valuation & sqft rate benchmarks:</p>
             <div class="compare-selectors">
@@ -433,7 +594,7 @@
           </div>
 
           <!-- State Comparison Table -->
-          <div class="card table-card gsap-card">
+          <div class="card table-card">
             <h3 class="card-title">📋 State Market Comparison Table</h3>
             <div class="table-wrapper">
               <table class="data-table">
@@ -454,14 +615,7 @@
         </section>
       </div>
 
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-container">
-        <p>© 2026 INDIAREALESTATES — Next-Generation Real Estate Intelligence & Price Engine</p>
-      </div>
-    </footer>
+    </div>
   </div>
 
   <script type="module" src="/src/main.ts"></script>

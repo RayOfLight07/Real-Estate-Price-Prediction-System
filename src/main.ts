@@ -161,64 +161,32 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchServerData();
   setupNavigationEvents();
   setupFormEvents();
-  setupCardTiltEffects();
 });
 
 // GSAP Master Reveal Sequence
 function initGSAPMasterSequence(): void {
   const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-  tl.from('.navbar', { opacity: 0, y: -20, duration: 0.8 })
-    .from('.hero-tag', { opacity: 0, scale: 0.85, duration: 0.5 }, '-=0.4')
-    .from('.hero-title', { opacity: 0, y: 25, duration: 0.9 }, '-=0.3')
-    .from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.7 }, '-=0.5')
-    .from('.hero-stat-card', { opacity: 0, y: 25, stagger: 0.1, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.4')
-    .from('.gsap-banner', { opacity: 0, scale: 0.96, duration: 0.8 }, '-=0.5')
-    .from('.gsap-card', { opacity: 0, y: 35, stagger: 0.12, duration: 0.9 }, '-=0.6');
+  tl.from('.top-header', { opacity: 0, y: -20, duration: 0.8 })
+    .from('.gsap-row1 .pastel-card', { opacity: 0, y: 30, stagger: 0.12, duration: 0.8, ease: 'back.out(1.6)' }, '-=0.4')
+    .from('.gsap-row2', { opacity: 0, y: 25, duration: 0.8 }, '-=0.4')
+    .from('.gsap-row3', { opacity: 0, scale: 0.97, duration: 0.7 }, '-=0.4')
+    .from('.gsap-row4', { opacity: 0, y: 30, duration: 0.8 }, '-=0.5')
+    .from('.gsap-row5', { opacity: 0, y: 30, duration: 0.8 }, '-=0.5');
 
-  // Hero Stat Counter Animation
-  const statNumObj = { count: 0 };
-  const statEl = document.getElementById('h-stat-listings');
-  if (statEl) {
-    gsap.to(statNumObj, {
-      count: 250000,
-      duration: 2.2,
+  // Mini Metric Count-up
+  const miniObj = { val: 0 };
+  const miniEl = document.getElementById('mini-val-listings');
+  if (miniEl) {
+    gsap.to(miniObj, {
+      val: 250000,
+      duration: 2.0,
       ease: 'power2.out',
       onUpdate: () => {
-        statEl.textContent = Math.round(statNumObj.count).toLocaleString();
+        miniEl.textContent = Math.round(miniObj.val).toLocaleString();
       }
     });
   }
-}
-
-// Interactive GSAP 3D Tilt Effect on Cards
-function setupCardTiltEffects(): void {
-  const cards = document.querySelectorAll('.card');
-  cards.forEach(card => {
-    card.addEventListener('mousemove', (e: Event) => {
-      const mouseEvent = e as MouseEvent;
-      const rect = (card as HTMLElement).getBoundingClientRect();
-      const x = mouseEvent.clientX - rect.left - rect.width / 2;
-      const y = mouseEvent.clientY - rect.top - rect.height / 2;
-
-      gsap.to(card, {
-        rotationY: x * 0.02,
-        rotationX: -y * 0.02,
-        transformPerspective: 1000,
-        ease: 'power1.out',
-        duration: 0.3
-      });
-    });
-
-    card.addEventListener('mouseleave', () => {
-      gsap.to(card, {
-        rotationY: 0,
-        rotationX: 0,
-        ease: 'power2.out',
-        duration: 0.6
-      });
-    });
-  });
 }
 
 // Leaflet Map Initialization
@@ -250,7 +218,7 @@ function initLeafletMap(): void {
   });
 }
 
-// Map Layer Style Switcher with GSAP Scale Feedback
+// Map Layer Style Switcher
 function setupMapLayerToggles(): void {
   const btnSat = document.getElementById('map-style-sat');
   const btnStreet = document.getElementById('map-style-street');
@@ -259,10 +227,6 @@ function setupMapLayerToggles(): void {
   const updateActiveLayer = (btn: HTMLElement | null, tileUrl: string, attr: string) => {
     [btnSat, btnStreet, btnDark].forEach(b => b?.classList.remove('active'));
     btn?.classList.add('active');
-
-    if (btn) {
-      gsap.fromTo(btn, { scale: 0.9 }, { scale: 1.0, duration: 0.3, ease: 'back.out(2)' });
-    }
 
     if (leafletMap && currentTileLayer) {
       leafletMap.removeLayer(currentTileLayer);
@@ -305,7 +269,7 @@ function populateMapMarkers(): void {
 
   const customIcon = L.divIcon({
     className: 'custom-map-pin',
-    html: `<div style="background-color: #f43f5e; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 12px #f43f5e;"></div>`,
+    html: `<div style="background-color: #10b981; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 12px rgba(16,185,129,0.8);"></div>`,
     iconSize: [14, 14],
     iconAnchor: [7, 7]
   });
@@ -443,7 +407,6 @@ function updateCityBenchmark(city: string): void {
     });
   }
 
-  // Pan Leaflet Map to City Coordinates
   if (leafletMap && stats.lat && stats.lon) {
     leafletMap.panTo([stats.lat, stats.lon], { animate: true, duration: 1.2 });
   }
@@ -462,7 +425,7 @@ function updateStateBanner(state: string): void {
 
   gsap.to(bannerCard, {
     opacity: 0.3,
-    scale: 0.97,
+    scale: 0.98,
     duration: 0.25,
     onComplete: () => {
       bannerCard.style.backgroundImage = `url('${meta.image}')`;
@@ -475,10 +438,13 @@ function updateStateBanner(state: string): void {
   });
 }
 
-// Navigation & Three Dots Toggle Setup with GSAP View Switching
+// Navigation & Sidebar Switcher
 function setupNavigationEvents(): void {
   const btnValuation = document.getElementById('nav-valuation-btn');
   const btnDashboard = document.getElementById('nav-dashboard-btn');
+  const btnSideHome = document.getElementById('side-home-btn');
+  const btnSideAnalytics = document.getElementById('side-analytics-btn');
+  const btnSideMap = document.getElementById('side-map-btn');
   const btnThreeDots = document.getElementById('three-dots-btn');
 
   const viewValuation = document.getElementById('view-valuation');
@@ -488,6 +454,8 @@ function setupNavigationEvents(): void {
     if (showDashboard) {
       btnValuation?.classList.remove('active');
       btnDashboard?.classList.add('active');
+      btnSideHome?.classList.remove('active');
+      btnSideAnalytics?.classList.add('active');
 
       gsap.to(viewValuation, {
         opacity: 0,
@@ -502,6 +470,8 @@ function setupNavigationEvents(): void {
     } else {
       btnDashboard?.classList.remove('active');
       btnValuation?.classList.add('active');
+      btnSideAnalytics?.classList.remove('active');
+      btnSideHome?.classList.add('active');
 
       gsap.to(viewDashboard, {
         opacity: 0,
@@ -519,14 +489,20 @@ function setupNavigationEvents(): void {
 
   btnValuation?.addEventListener('click', () => switchToView(false));
   btnDashboard?.addEventListener('click', () => switchToView(true));
-  
+  btnSideHome?.addEventListener('click', () => switchToView(false));
+  btnSideAnalytics?.addEventListener('click', () => switchToView(true));
+  btnSideMap?.addEventListener('click', () => {
+    switchToView(false);
+    document.getElementById('leaflet-map')?.scrollIntoView({ behavior: 'smooth' });
+  });
+
   btnThreeDots?.addEventListener('click', () => {
     const isDashboardHidden = viewDashboard?.classList.contains('hidden');
     switchToView(Boolean(isDashboardHidden));
   });
 }
 
-// Setup Form Controls & Input Focus Scale
+// Setup Form Controls
 function setupFormEvents(): void {
   const stateSelect = document.getElementById('state-select') as HTMLSelectElement;
   const citySelect = document.getElementById('city-select') as HTMLSelectElement;
@@ -677,7 +653,7 @@ function displayResults(data: PredictionResponse, payload: any): void {
 
   const counterObj = { lakhs: 0, crores: 0 };
 
-  gsap.fromTo(resultSection, { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1.0, duration: 0.7, ease: 'back.out(1.4)' });
+  gsap.fromTo(resultSection, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1.0, duration: 0.7, ease: 'back.out(1.4)' });
 
   gsap.to(counterObj, {
     lakhs: data.price_lakhs,
@@ -743,7 +719,7 @@ function setupExportAndComparator(): void {
 function renderAnalyticsCharts(): void {
   if (!analyticsData) return;
 
-  // 1. State Rate Comparison Bar Chart
+  // 1. State Rate Comparison Bar Chart (Soft Pastel Colors)
   const stateCanvas = document.getElementById('chart-state-rate') as HTMLCanvasElement;
   if (stateCanvas) {
     const statesList = Object.keys(analyticsData.state_stats).slice(0, 10);
@@ -765,8 +741,8 @@ function renderAnalyticsCharts(): void {
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
-          y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } }
+          x: { ticks: { color: '#64748b' }, grid: { display: false } },
+          y: { ticks: { color: '#64748b' }, grid: { color: '#f1f5f9' } }
         }
       }
     });
@@ -786,7 +762,7 @@ function renderAnalyticsCharts(): void {
           label: 'Avg Price (Lakhs)',
           data: bhkPrices,
           borderColor: '#10b981',
-          backgroundColor: 'rgba(16, 185, 129, 0.15)',
+          backgroundColor: 'rgba(16, 185, 129, 0.12)',
           fill: true,
           tension: 0.4
         }]
@@ -796,8 +772,8 @@ function renderAnalyticsCharts(): void {
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
-          y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } }
+          x: { ticks: { color: '#64748b' }, grid: { display: false } },
+          y: { ticks: { color: '#64748b' }, grid: { color: '#f1f5f9' } }
         }
       }
     });
@@ -815,13 +791,13 @@ function renderAnalyticsCharts(): void {
         labels: ptypes,
         datasets: [{
           data: pprices,
-          backgroundColor: ['#38bdf8', '#818cf8', '#f43f5e']
+          backgroundColor: ['#38bdf8', '#10b981', '#f43f5e']
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: '#f8fafc' } } }
+        plugins: { legend: { labels: { color: '#1e293b' } } }
       }
     });
   }
