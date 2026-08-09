@@ -16,9 +16,33 @@
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body class="light-theme">
+  
+  <!-- CINEMATIC LUXURY VILLA WALKTHROUGH PRELOADER INTRO -->
+  <div id="villa-intro-preloader" class="villa-preloader">
+    <div class="preloader-bg" id="preloader-bg-img"></div>
+    <div class="preloader-overlay"></div>
+    
+    <div class="preloader-content">
+      <div class="preloader-badge" id="preloader-badge">✨ LUXURY VILLA TOUR</div>
+      <h1 class="preloader-title" id="preloader-title">Welcome to Exceptional Living</h1>
+      <p class="preloader-subtitle" id="preloader-sub">Exploring 250,000+ Verified Real Estate Properties Across India...</p>
+      
+      <div class="preloader-progress-box">
+        <div class="preloader-progress-bar">
+          <div class="preloader-fill" id="preloader-fill"></div>
+        </div>
+        <span class="preloader-pct" id="preloader-pct">0%</span>
+      </div>
+    </div>
+
+    <button id="skip-intro-btn" class="skip-intro-btn">
+      <span>Skip Tour ⏩</span>
+    </button>
+  </div>
+
   <div id="app">
     
-    <!-- Top Portal Sticky Header Navigation Bar (Light Mode) -->
+    <!-- Top Portal Sticky Header Navigation Bar -->
     <header class="portal-header">
       <div class="header-container">
         <div class="brand">
@@ -55,7 +79,7 @@
       </div>
     </header>
 
-    <!-- VIEW 1: FULL-SCROLL LANDING PAGE PORTAL (Light Theme) -->
+    <!-- VIEW 1: FULL-SCROLL LANDING PAGE PORTAL -->
     <div id="view-landing" class="view-container">
       
       <!-- HERO SEARCH BANNER -->
@@ -141,6 +165,76 @@
             <div class="kpi-box">
               <span class="kpi-num">±10%</span>
               <span class="kpi-label">Precision Margin</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURE: MORTGAGE EMI & RENTAL YIELD CALCULATORS SECTION -->
+      <section class="section-container tools-section">
+        <div class="section-header">
+          <h2 class="section-title">🧮 Financial Intelligence & Home Loan Calculators</h2>
+          <p class="section-subtitle">Plan your property purchase with instant monthly EMI estimates and expected rental return yields.</p>
+        </div>
+
+        <div class="tools-grid">
+          <!-- EMI Calculator Card -->
+          <div class="card tool-card">
+            <div class="card-header-with-icon">
+              <span class="icon-badge">🏦</span>
+              <h3 class="card-title">Home Loan EMI Calculator</h3>
+            </div>
+
+            <div class="input-field">
+              <label for="emi-amount-input">Loan Amount: <span id="emi-amount-val" class="slider-val">₹ 75 Lakhs</span></label>
+              <input type="range" id="emi-amount-input" min="10" max="500" value="75" step="5" class="range-slider" />
+            </div>
+
+            <div class="form-row-2">
+              <div class="input-field">
+                <label for="emi-rate-input">Interest Rate (% p.a.)</label>
+                <input type="number" id="emi-rate-input" min="5" max="15" value="8.5" step="0.1" class="text-input" />
+              </div>
+
+              <div class="input-field">
+                <label for="emi-tenure-input">Tenure (Years)</label>
+                <input type="number" id="emi-tenure-input" min="5" max="30" value="20" step="1" class="text-input" />
+              </div>
+            </div>
+
+            <div class="tool-result-box card-mint-soft">
+              <div class="res-sub-title">ESTIMATED MONTHLY EMI</div>
+              <div id="emi-result-val" class="tool-res-num">₹ 65,086 / month</div>
+              <div class="emi-details-row">
+                <span>Principal: ₹ 75.0 Lakhs</span>
+                <span>Total Interest: ₹ 81.2 Lakhs</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rental Yield & ROI Calculator Card -->
+          <div class="card tool-card">
+            <div class="card-header-with-icon">
+              <span class="icon-badge">📈</span>
+              <h3 class="card-title">Rental Yield & ROI Estimator</h3>
+            </div>
+
+            <div class="input-field">
+              <label for="rent-price-input">Property Cost (Lakhs)</label>
+              <input type="number" id="rent-price-input" min="20" max="1000" value="120" step="5" class="text-input" />
+            </div>
+
+            <div class="input-field">
+              <label for="rent-monthly-input">Expected Monthly Rent (₹)</label>
+              <input type="number" id="rent-monthly-input" min="5000" max="300000" value="42000" step="1000" class="text-input" />
+            </div>
+
+            <div class="tool-result-box card-lemon-soft">
+              <div class="res-sub-title">GROSS RENTAL YIELD</div>
+              <div id="yield-result-val" class="tool-res-num">4.20% p.a.</div>
+              <div class="yield-badge-row">
+                <span id="yield-rating-badge" class="cat-badge">⭐ Strong Investment ROI</span>
+              </div>
             </div>
           </div>
         </div>
@@ -538,7 +632,7 @@
     </div>
 
 
-    <!-- VIEW 2: SOFT PASTEL ANALYTICS DASHBOARD (Matching Reference Image) -->
+    <!-- VIEW 2: SOFT PASTEL ANALYTICS DASHBOARD -->
     <div id="view-dashboard" class="view-container hidden">
       <div class="dash-layout">
         <!-- Floating Left Sidebar -->
@@ -581,7 +675,7 @@
             </div>
           </div>
 
-          <!-- Featured Pastel Highlight Cards (Matching Reference Screenshot) -->
+          <!-- Featured Pastel Highlight Cards -->
           <div class="pastel-cards-grid">
             <div class="pastel-card card-mint">
               <div class="p-card-header">
@@ -616,7 +710,7 @@
             </div>
           </div>
 
-          <!-- Widgets Row: Progress & Trends Calendar (Matching Screenshot) -->
+          <!-- Widgets Row: Progress & Trends Calendar -->
           <div class="overview-widgets-grid">
             <div class="widget-col-left">
               <h3 class="widget-heading">Market Activity Today</h3>

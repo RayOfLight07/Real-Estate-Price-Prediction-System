@@ -63,6 +63,125 @@ h1, h2, h3, h4, .brand-name {
   font-family: var(--font-heading);
 }
 
+/* CINEMATIC LUXURY VILLA WALKTHROUGH PRELOADER INTRO */
+.villa-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #06080e;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.preloader-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.15);
+  filter: brightness(0.7);
+  transition: transform 4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.preloader-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(6, 8, 14, 0.6) 0%, rgba(6, 8, 14, 0.95) 100%);
+}
+
+.preloader-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 720px;
+  padding: 2rem;
+}
+
+.preloader-badge {
+  display: inline-block;
+  background: rgba(244, 63, 94, 0.2);
+  border: 1px solid var(--accent-rose);
+  color: var(--accent-rose);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.preloader-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+  color: #ffffff;
+}
+
+.preloader-subtitle {
+  font-size: 1.15rem;
+  color: #94a3b8;
+  margin-bottom: 2rem;
+}
+
+.preloader-progress-box {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.preloader-progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.preloader-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8 0%, #f43f5e 100%);
+  border-radius: 10px;
+}
+
+.preloader-pct {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1rem;
+  color: #38bdf8;
+  width: 45px;
+}
+
+.skip-intro-btn {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 0.6rem 1.4rem;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.skip-intro-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
 /* Light Sticky Portal Header */
 .portal-header {
   background: rgba(255, 255, 255, 0.95);
@@ -371,6 +490,52 @@ h1, h2, h3, h4, .brand-name {
 .kpi-label {
   font-size: 0.82rem;
   color: var(--text-muted);
+}
+
+/* TOOLS SECTION: EMI & RENTAL CALCULATORS */
+.tools-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8rem;
+}
+
+.tool-card {
+  padding: 2rem;
+}
+
+.tool-result-box {
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+.res-sub-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+
+.tool-res-num {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.emi-details-row {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.yield-badge-row {
+  margin-top: 0.4rem;
 }
 
 /* Common Section Layout */
@@ -883,7 +1048,7 @@ h1, h2, h3, h4, .brand-name {
 }
 
 
-/* VIEW 2: DASHBOARD LAYOUT (Matching Reference Image) */
+/* VIEW 2: DASHBOARD LAYOUT */
 .dash-layout {
   display: flex;
   min-height: calc(100vh - 70px);
@@ -1153,7 +1318,7 @@ h1, h2, h3, h4, .brand-name {
 
 /* Responsive Breakdown */
 @media (max-width: 1024px) {
-  .search-form-row, .categories-grid, .location-grid, .form-grid, .dashboard-grid, .cities-cards-grid, .kpi-ribbon, .pastel-cards-grid, .overview-widgets-grid, .footer-container {
+  .search-form-row, .categories-grid, .location-grid, .form-grid, .dashboard-grid, .cities-cards-grid, .kpi-ribbon, .pastel-cards-grid, .overview-widgets-grid, .tools-grid, .footer-container {
     grid-template-columns: 1fr;
   }
   .app-sidebar { display: none; }

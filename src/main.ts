@@ -156,13 +156,61 @@ const TILE_LAYERS = {
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
-  initGSAPMasterSequence();
+  initLuxuryVillaPreloader();
   initLeafletMap();
   fetchServerData();
   setupNavigationEvents();
   setupHeroEvents();
   setupFormEvents();
+  setupFinancialCalculators();
 });
+
+// CINEMATIC LUXURY VILLA PRELOADER INTRO
+function initLuxuryVillaPreloader(): void {
+  const preloader = document.getElementById('villa-intro-preloader');
+  const bgImg = document.getElementById('preloader-bg-img');
+  const fill = document.getElementById('preloader-fill');
+  const pct = document.getElementById('preloader-pct');
+  const skipBtn = document.getElementById('skip-intro-btn');
+
+  if (!preloader || !fill || !pct) return;
+
+  const progressObj = { count: 0 };
+
+  const closePreloader = () => {
+    gsap.to(preloader, {
+      opacity: 0,
+      y: -50,
+      duration: 0.8,
+      ease: 'power3.inOut',
+      onComplete: () => {
+        preloader.style.display = 'none';
+        initGSAPMasterSequence();
+      }
+    });
+  };
+
+  skipBtn?.addEventListener('click', closePreloader);
+
+  // Zoom camera effect on villa background
+  if (bgImg) {
+    gsap.to(bgImg, { scale: 1.0, duration: 3.5, ease: 'none' });
+  }
+
+  gsap.to(progressObj, {
+    count: 100,
+    duration: 2.8,
+    ease: 'power2.out',
+    onUpdate: () => {
+      const val = Math.round(progressObj.count);
+      fill.style.width = `${val}%`;
+      pct.textContent = `${val}%`;
+    },
+    onComplete: () => {
+      setTimeout(closePreloader, 400);
+    }
+  });
+}
 
 // GSAP Master Reveal Sequence
 function initGSAPMasterSequence(): void {
@@ -185,6 +233,66 @@ function initGSAPMasterSequence(): void {
       }
     });
   }
+}
+
+// FINANCIAL TOOLS: MORTGAGE EMI & RENTAL YIELD CALCULATORS
+function setupFinancialCalculators(): void {
+  const loanInput = document.getElementById('emi-amount-input') as HTMLInputElement;
+  const rateInput = document.getElementById('emi-rate-input') as HTMLInputElement;
+  const tenureInput = document.getElementById('emi-tenure-input') as HTMLInputElement;
+  const emiValSpan = document.getElementById('emi-amount-val');
+  const emiResultVal = document.getElementById('emi-result-val');
+
+  const rentPriceInput = document.getElementById('rent-price-input') as HTMLInputElement;
+  const rentMonthlyInput = document.getElementById('rent-monthly-input') as HTMLInputElement;
+  const yieldResultVal = document.getElementById('yield-result-val');
+  const yieldRatingBadge = document.getElementById('yield-rating-badge');
+
+  const updateEMI = () => {
+    if (!loanInput || !rateInput || !tenureInput || !emiResultVal) return;
+
+    const lakhs = parseFloat(loanInput.value);
+    const P = lakhs * 100000;
+    const annualRate = parseFloat(rateInput.value);
+    const r = (annualRate / 12) / 100;
+    const n = parseFloat(tenureInput.value) * 12;
+
+    if (emiValSpan) emiValSpan.textContent = `₹ ${lakhs} Lakhs`;
+
+    if (r > 0 && n > 0) {
+      const emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+      emiResultVal.textContent = `₹ ${Math.round(emi).toLocaleString('en-IN')} / month`;
+    }
+  };
+
+  const updateYield = () => {
+    if (!rentPriceInput || !rentMonthlyInput || !yieldResultVal) return;
+
+    const propertyCost = parseFloat(rentPriceInput.value) * 100000;
+    const monthlyRent = parseFloat(rentMonthlyInput.value);
+    const annualRent = monthlyRent * 12;
+
+    if (propertyCost > 0) {
+      const yieldPct = (annualRent / propertyCost) * 100;
+      yieldResultVal.textContent = `${yieldPct.toFixed(2)}% p.a.`;
+
+      if (yieldRatingBadge) {
+        if (yieldPct >= 5.0) yieldRatingBadge.textContent = '🔥 Exceptional ROI Yield';
+        else if (yieldPct >= 3.5) yieldRatingBadge.textContent = '⭐ Strong Investment ROI';
+        else yieldRatingBadge.textContent = '📊 Moderate Rental Return';
+      }
+    }
+  };
+
+  loanInput?.addEventListener('input', updateEMI);
+  rateInput?.addEventListener('input', updateEMI);
+  tenureInput?.addEventListener('input', updateEMI);
+
+  rentPriceInput?.addEventListener('input', updateYield);
+  rentMonthlyInput?.addEventListener('input', updateYield);
+
+  updateEMI();
+  updateYield();
 }
 
 // Leaflet Map Initialization
@@ -762,11 +870,10 @@ function setupExportAndComparator(): void {
   updateCmp();
 }
 
-// Render Chart.js Analytics Charts (Light Theme Colors)
+// Render Chart.js Analytics Charts
 function renderAnalyticsCharts(): void {
   if (!analyticsData) return;
 
-  // 1. State Rate Comparison Bar Chart
   const stateCanvas = document.getElementById('chart-state-rate') as HTMLCanvasElement;
   if (stateCanvas) {
     const statesList = Object.keys(analyticsData.state_stats).slice(0, 10);
@@ -795,7 +902,6 @@ function renderAnalyticsCharts(): void {
     });
   }
 
-  // 2. BHK Price Trend Chart
   const bhkCanvas = document.getElementById('chart-bhk-price') as HTMLCanvasElement;
   if (bhkCanvas) {
     const bhks = Object.keys(analyticsData.bhk_stats).map(b => `${b} BHK`);
@@ -826,7 +932,6 @@ function renderAnalyticsCharts(): void {
     });
   }
 
-  // 3. Property Type Doughnut Chart
   const propCanvas = document.getElementById('chart-prop-type') as HTMLCanvasElement;
   if (propCanvas) {
     const ptypes = Object.keys(analyticsData.prop_type_stats);
@@ -849,7 +954,6 @@ function renderAnalyticsCharts(): void {
     });
   }
 
-  // 4. Populate State Comparison Table
   const tableBody = document.getElementById('state-table-body');
   if (tableBody) {
     tableBody.innerHTML = '';
