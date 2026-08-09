@@ -18,7 +18,25 @@
 <body class="light-theme">
   <div id="app">
     
-    <!-- Top Portal Sticky Header Navigation Bar -->
+    <!-- TOP PROFESSIONAL ANNOUNCEMENT UTILITY BAR -->
+    <div class="top-utility-bar">
+      <div class="utility-container">
+        <div class="utility-left">
+          <span>🇮🇳 India's #1 Real Estate Intelligence Portal</span>
+          <span class="utility-divider">•</span>
+          <span>📍 20 States & 42 Cities Covered</span>
+          <span class="utility-divider">•</span>
+          <span class="utility-highlight">⚡ AI Model Accuracy: 98.4%</span>
+        </div>
+        <div class="utility-right">
+          <a href="tel:18001024567" class="utility-link">📞 Toll Free: 1800-102-4567</a>
+          <span class="utility-divider">|</span>
+          <span class="utility-link">🌐 EN (IN) ₹</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN PROFESSIONAL STICKY NAVIGATION HEADER BAR -->
     <header class="portal-header">
       <div class="header-container">
         <div class="brand">
@@ -37,21 +55,42 @@
               </linearGradient>
             </defs>
           </svg>
-          <span class="brand-name">INDIA<span class="accent-text">REALESTATES</span></span>
+          <div class="brand-text-group">
+            <span class="brand-name">INDIA<span class="accent-text">REALESTATES</span></span>
+            <span class="brand-tagline">PROPERTY VALUATION & ANALYTICS</span>
+          </div>
         </div>
 
         <nav class="portal-nav">
-          <button id="nav-landing-tab" class="top-view-tab active">🏠 Portal Landing Page</button>
-          <button id="nav-dashboard-tab" class="top-view-tab">📊 Analytics Dashboard</button>
-          <button id="nav-emi-tab" class="top-view-tab">🏦 Bank Home Loans & EMI</button>
+          <button id="nav-landing-tab" class="top-view-tab active">
+            <span>🏠 Properties Portal</span>
+          </button>
+          <button id="nav-dashboard-tab" class="top-view-tab">
+            <span>📊 Market Insights</span>
+          </button>
+          <button id="nav-emi-tab" class="top-view-tab">
+            <span>🏦 Home Loans & EMI</span>
+            <span class="nav-mini-badge">8.5% p.a.</span>
+          </button>
+          <button id="nav-map-btn" class="top-view-tab">
+            <span>📍 Satellite Map</span>
+          </button>
         </nav>
 
         <div class="header-actions">
-          <div class="live-badge">
-            <span class="pulse-dot"></span>
-            <span>250K+ Verified Listings</span>
+          <div class="saved-heart-btn" title="Saved Properties">
+            <span>❤️</span>
+            <span class="heart-count">0</span>
           </div>
-          <button id="nav-calc-btn" class="header-cta-btn">💰 Valuation Calculator</button>
+
+          <div class="user-profile-btn">
+            <span class="user-avatar-icon">👤</span>
+            <span>Login</span>
+          </div>
+
+          <button id="nav-calc-btn" class="header-cta-btn">
+            <span>💰 Get Price Valuation</span>
+          </button>
         </div>
       </div>
     </header>
@@ -131,21 +170,45 @@
         </div>
       </section>
 
-      <!-- LIVE MARKET TICKER MARQUEE BANNER -->
+      <!-- LIVE MARKET TICKER MARQUEE BANNER (SEAMLESS FULL-WIDTH INFINITE LOOP, ZERO GAP) -->
       <div class="live-ticker-banner">
-        <div class="ticker-track" id="ticker-track">
-          <span class="ticker-item">🔥 <b>Mumbai Avg:</b> ₹ 18,450 / sqft</span>
-          <span class="ticker-item">💻 <b>Bangalore Avg:</b> ₹ 9,399 / sqft</span>
-          <span class="ticker-item">🚀 <b>Delhi NCR Avg:</b> ₹ 11,200 / sqft</span>
-          <span class="ticker-item">✨ <b>Jaipur Avg:</b> ₹ 9,270 / sqft</span>
-          <span class="ticker-item">🌴 <b>Hyderabad Avg:</b> ₹ 8,150 / sqft</span>
-          <span class="ticker-item">🌊 <b>Chennai Avg:</b> ₹ 8,750 / sqft</span>
-          <span class="ticker-item">🔥 <b>Mumbai Avg:</b> ₹ 18,450 / sqft</span>
-          <span class="ticker-item">💻 <b>Bangalore Avg:</b> ₹ 9,399 / sqft</span>
-          <span class="ticker-item">🚀 <b>Delhi NCR Avg:</b> ₹ 11,200 / sqft</span>
-          <span class="ticker-item">✨ <b>Jaipur Avg:</b> ₹ 9,270 / sqft</span>
-          <span class="ticker-item">🌴 <b>Hyderabad Avg:</b> ₹ 8,150 / sqft</span>
-          <span class="ticker-item">🌊 <b>Chennai Avg:</b> ₹ 8,750 / sqft</span>
+        <div class="ticker-wrapper">
+          <div class="ticker-track">
+            <span class="ticker-item">🔥 <b>Mumbai Avg:</b> ₹ 18,450 / sqft</span>
+            <span class="ticker-item">💻 <b>Bangalore Avg:</b> ₹ 9,399 / sqft</span>
+            <span class="ticker-item">🚀 <b>Delhi NCR Avg:</b> ₹ 11,200 / sqft</span>
+            <span class="ticker-item">✨ <b>Jaipur Avg:</b> ₹ 9,270 / sqft</span>
+            <span class="ticker-item">🌴 <b>Hyderabad Avg:</b> ₹ 8,150 / sqft</span>
+            <span class="ticker-item">🌊 <b>Chennai Avg:</b> ₹ 8,750 / sqft</span>
+            <span class="ticker-item">🏙️ <b>Pune Avg:</b> ₹ 7,650 / sqft</span>
+            <span class="ticker-item">💼 <b>Gurgaon Avg:</b> ₹ 12,400 / sqft</span>
+            <span class="ticker-item">🔥 <b>Mumbai Avg:</b> ₹ 18,450 / sqft</span>
+            <span class="ticker-item">💻 <b>Bangalore Avg:</b> ₹ 9,399 / sqft</span>
+            <span class="ticker-item">🚀 <b>Delhi NCR Avg:</b> ₹ 11,200 / sqft</span>
+            <span class="ticker-item">✨ <b>Jaipur Avg:</b> ₹ 9,270 / sqft</span>
+            <span class="ticker-item">🌴 <b>Hyderabad Avg:</b> ₹ 8,150 / sqft</span>
+            <span class="ticker-item">🌊 <b>Chennai Avg:</b> ₹ 8,750 / sqft</span>
+            <span class="ticker-item">🏙️ <b>Pune Avg:</b> ₹ 7,650 / sqft</span>
+            <span class="ticker-item">💼 <b>Gurgaon Avg:</b> ₹ 12,400 / sqft</span>
+          </div>
+          <div class="ticker-track" aria-hidden="true">
+            <span class="ticker-item">🔥 <b>Mumbai Avg:</b> ₹ 18,450 / sqft</span>
+            <span class="ticker-item">💻 <b>Bangalore Avg:</b> ₹ 9,399 / sqft</span>
+            <span class="ticker-item">🚀 <b>Delhi NCR Avg:</b> ₹ 11,200 / sqft</span>
+            <span class="ticker-item">✨ <b>Jaipur Avg:</b> ₹ 9,270 / sqft</span>
+            <span class="ticker-item">🌴 <b>Hyderabad Avg:</b> ₹ 8,150 / sqft</span>
+            <span class="ticker-item">🌊 <b>Chennai Avg:</b> ₹ 8,750 / sqft</span>
+            <span class="ticker-item">🏙️ <b>Pune Avg:</b> ₹ 7,650 / sqft</span>
+            <span class="ticker-item">💼 <b>Gurgaon Avg:</b> ₹ 12,400 / sqft</span>
+            <span class="ticker-item">🔥 <b>Mumbai Avg:</b> ₹ 18,450 / sqft</span>
+            <span class="ticker-item">💻 <b>Bangalore Avg:</b> ₹ 9,399 / sqft</span>
+            <span class="ticker-item">🚀 <b>Delhi NCR Avg:</b> ₹ 11,200 / sqft</span>
+            <span class="ticker-item">✨ <b>Jaipur Avg:</b> ₹ 9,270 / sqft</span>
+            <span class="ticker-item">🌴 <b>Hyderabad Avg:</b> ₹ 8,150 / sqft</span>
+            <span class="ticker-item">🌊 <b>Chennai Avg:</b> ₹ 8,750 / sqft</span>
+            <span class="ticker-item">🏙️ <b>Pune Avg:</b> ₹ 7,650 / sqft</span>
+            <span class="ticker-item">💼 <b>Gurgaon Avg:</b> ₹ 12,400 / sqft</span>
+          </div>
         </div>
       </div>
 
@@ -529,7 +592,7 @@
             <ul>
               <li><a href="#valuation-calculator">Instant Price Estimator</a></li>
               <li><a href="#interactive-map-section">Satellite Map Explorer</a></li>
-              <li><button class="footer-link-btn" id="footer-nav-dash">Market Analytics Dashboard</button></li>
+              <li><button class="footer-link-btn" id="footer-nav-dash">Market Insights Dashboard</button></li>
             </ul>
           </div>
         </div>
@@ -554,10 +617,10 @@
           </div>
 
           <nav class="sidebar-nav">
-            <button id="side-home-btn" class="sidebar-icon-btn" title="Return to Landing Portal">
+            <button id="side-home-btn" class="sidebar-icon-btn" title="Return to Properties Portal">
               <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
             </button>
-            <button id="side-dash-btn" class="sidebar-icon-btn active" title="Analytics Dashboard">
+            <button id="side-dash-btn" class="sidebar-icon-btn active" title="Market Insights Dashboard">
               <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
             </button>
           </nav>
