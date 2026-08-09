@@ -164,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupHeroEvents();
   setupFormEvents();
   setupFinancialCalculators();
+  setupBankApplyButtons();
 });
 
 // DYNAMIC KINETIC TYPOGRAPHY ANIMATION
@@ -178,7 +179,6 @@ function initKineticTypographyAnimation(): void {
     currentIndex = (currentIndex + 1) % words.length;
     const nextWord = words[currentIndex];
 
-    // GSAP flip & fade sequence
     gsap.to(dynamicWordEl, {
       y: -15,
       opacity: 0,
@@ -219,64 +219,82 @@ function initGSAPMasterSequence(): void {
   }
 }
 
-// FINANCIAL TOOLS: MORTGAGE EMI & RENTAL YIELD CALCULATORS
+// FINANCIAL TOOLS: MORTGAGE EMI & RENTAL YIELD CALCULATORS FOR DEDICATED EMI PAGE
 function setupFinancialCalculators(): void {
-  const loanInput = document.getElementById('emi-amount-input') as HTMLInputElement;
-  const rateInput = document.getElementById('emi-rate-input') as HTMLInputElement;
-  const tenureInput = document.getElementById('emi-tenure-input') as HTMLInputElement;
-  const emiValSpan = document.getElementById('emi-amount-val');
-  const emiResultVal = document.getElementById('emi-result-val');
+  const pageLoanInput = document.getElementById('page-emi-amount') as HTMLInputElement;
+  const pageRateInput = document.getElementById('page-emi-rate') as HTMLInputElement;
+  const pageTenureInput = document.getElementById('page-emi-tenure') as HTMLInputElement;
+  const pageEmiValSpan = document.getElementById('page-emi-amount-val');
+  const pageEmiResult = document.getElementById('page-emi-result');
+  const pagePrincipalText = document.getElementById('page-principal-text');
+  const pageInterestText = document.getElementById('page-interest-text');
 
-  const rentPriceInput = document.getElementById('rent-price-input') as HTMLInputElement;
-  const rentMonthlyInput = document.getElementById('rent-monthly-input') as HTMLInputElement;
-  const yieldResultVal = document.getElementById('yield-result-val');
-  const yieldRatingBadge = document.getElementById('yield-rating-badge');
+  const pageRentCost = document.getElementById('page-rent-cost') as HTMLInputElement;
+  const pageRentMonthly = document.getElementById('page-rent-monthly') as HTMLInputElement;
+  const pageYieldResult = document.getElementById('page-yield-result');
+  const pageYieldBadge = document.getElementById('page-yield-badge');
 
-  const updateEMI = () => {
-    if (!loanInput || !rateInput || !tenureInput || !emiResultVal) return;
+  const updatePageEMI = () => {
+    if (!pageLoanInput || !pageRateInput || !pageTenureInput || !pageEmiResult) return;
 
-    const lakhs = parseFloat(loanInput.value);
+    const lakhs = parseFloat(pageLoanInput.value);
     const P = lakhs * 100000;
-    const annualRate = parseFloat(rateInput.value);
+    const annualRate = parseFloat(pageRateInput.value);
     const r = (annualRate / 12) / 100;
-    const n = parseFloat(tenureInput.value) * 12;
+    const n = parseFloat(pageTenureInput.value) * 12;
 
-    if (emiValSpan) emiValSpan.textContent = `₹ ${lakhs} Lakhs`;
+    if (pageEmiValSpan) pageEmiValSpan.textContent = `₹ ${lakhs} Lakhs`;
 
     if (r > 0 && n > 0) {
       const emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-      emiResultVal.textContent = `₹ ${Math.round(emi).toLocaleString('en-IN')} / month`;
+      const totalPayment = emi * n;
+      const totalInterest = totalPayment - P;
+
+      pageEmiResult.textContent = `₹ ${Math.round(emi).toLocaleString('en-IN')} / month`;
+      if (pagePrincipalText) pagePrincipalText.textContent = `₹ ${lakhs.toFixed(1)} Lakhs`;
+      if (pageInterestText) pageInterestText.textContent = `₹ ${(totalInterest / 100000).toFixed(1)} Lakhs`;
     }
   };
 
-  const updateYield = () => {
-    if (!rentPriceInput || !rentMonthlyInput || !yieldResultVal) return;
+  const updatePageYield = () => {
+    if (!pageRentCost || !pageRentMonthly || !pageYieldResult) return;
 
-    const propertyCost = parseFloat(rentPriceInput.value) * 100000;
-    const monthlyRent = parseFloat(rentMonthlyInput.value);
+    const propertyCost = parseFloat(pageRentCost.value) * 100000;
+    const monthlyRent = parseFloat(pageRentMonthly.value);
     const annualRent = monthlyRent * 12;
 
     if (propertyCost > 0) {
       const yieldPct = (annualRent / propertyCost) * 100;
-      yieldResultVal.textContent = `${yieldPct.toFixed(2)}% p.a.`;
+      pageYieldResult.textContent = `${yieldPct.toFixed(2)}% p.a.`;
 
-      if (yieldRatingBadge) {
-        if (yieldPct >= 5.0) yieldRatingBadge.textContent = '🔥 Exceptional ROI Yield';
-        else if (yieldPct >= 3.5) yieldRatingBadge.textContent = '⭐ Strong Investment ROI';
-        else yieldRatingBadge.textContent = '📊 Moderate Rental Return';
+      if (pageYieldBadge) {
+        if (yieldPct >= 5.0) pageYieldBadge.textContent = '🔥 Exceptional ROI Yield';
+        else if (yieldPct >= 3.5) pageYieldBadge.textContent = '⭐ Strong Investment ROI';
+        else pageYieldBadge.textContent = '📊 Moderate Rental Return';
       }
     }
   };
 
-  loanInput?.addEventListener('input', updateEMI);
-  rateInput?.addEventListener('input', updateEMI);
-  tenureInput?.addEventListener('input', updateEMI);
+  pageLoanInput?.addEventListener('input', updatePageEMI);
+  pageRateInput?.addEventListener('input', updatePageEMI);
+  pageTenureInput?.addEventListener('input', updatePageEMI);
 
-  rentPriceInput?.addEventListener('input', updateYield);
-  rentMonthlyInput?.addEventListener('input', updateYield);
+  pageRentCost?.addEventListener('input', updatePageYield);
+  pageRentMonthly?.addEventListener('input', updatePageYield);
 
-  updateEMI();
-  updateYield();
+  updatePageEMI();
+  updatePageYield();
+}
+
+// BANK LOAN APPLICATION BUTTON HANDLERS
+function setupBankApplyButtons(): void {
+  const applyBtns = document.querySelectorAll('.bank-apply-btn');
+  applyBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const bankName = (e.currentTarget as HTMLElement).dataset.bank || 'Selected Bank';
+      alert(`🎉 Thank you for selecting ${bankName} Home Loans!\n\nYour pre-approval eligibility request has been registered. An official bank representative will contact you shortly.`);
+    });
+  });
 }
 
 // Leaflet Map Initialization
@@ -525,55 +543,47 @@ function updateStateBanner(state: string): void {
   });
 }
 
-// Navigation & View Switcher Logic
+// NAVIGATION VIEW SWITCHER LOGIC (SUPPORTING 3 VIEWS)
 function setupNavigationEvents(): void {
   const btnLandingTab = document.getElementById('nav-landing-tab');
   const btnDashboardTab = document.getElementById('nav-dashboard-tab');
+  const btnEmiTab = document.getElementById('nav-emi-tab');
+
   const btnSideHome = document.getElementById('side-home-btn');
   const btnSideDash = document.getElementById('side-dash-btn');
   const footerNavDash = document.getElementById('footer-nav-dash');
 
   const viewLanding = document.getElementById('view-landing');
   const viewDashboard = document.getElementById('view-dashboard');
+  const viewEmi = document.getElementById('view-emi');
 
-  const switchView = (showDashboard: boolean) => {
-    if (showDashboard) {
-      btnLandingTab?.classList.remove('active');
-      btnDashboardTab?.classList.add('active');
+  const switchView = (targetView: 'landing' | 'dashboard' | 'emi') => {
+    [btnLandingTab, btnDashboardTab, btnEmiTab].forEach(btn => btn?.classList.remove('active'));
+    [viewLanding, viewDashboard, viewEmi].forEach(v => v?.classList.add('hidden'));
 
-      gsap.to(viewLanding, {
-        opacity: 0,
-        y: -15,
-        duration: 0.3,
-        onComplete: () => {
-          viewLanding?.classList.add('hidden');
-          viewDashboard?.classList.remove('hidden');
-          gsap.fromTo(viewDashboard, { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
-        }
-      });
-    } else {
-      btnDashboardTab?.classList.remove('active');
+    if (targetView === 'landing') {
       btnLandingTab?.classList.add('active');
-
-      gsap.to(viewDashboard, {
-        opacity: 0,
-        y: -15,
-        duration: 0.3,
-        onComplete: () => {
-          viewDashboard?.classList.add('hidden');
-          viewLanding?.classList.remove('hidden');
-          gsap.fromTo(viewLanding, { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
-          leafletMap?.invalidateSize();
-        }
-      });
+      viewLanding?.classList.remove('hidden');
+      gsap.fromTo(viewLanding, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' });
+      leafletMap?.invalidateSize();
+    } else if (targetView === 'dashboard') {
+      btnDashboardTab?.classList.add('active');
+      viewDashboard?.classList.remove('hidden');
+      gsap.fromTo(viewDashboard, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' });
+    } else if (targetView === 'emi') {
+      btnEmiTab?.classList.add('active');
+      viewEmi?.classList.remove('hidden');
+      gsap.fromTo(viewEmi, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' });
     }
   };
 
-  btnLandingTab?.addEventListener('click', () => switchView(false));
-  btnDashboardTab?.addEventListener('click', () => switchView(true));
-  btnSideHome?.addEventListener('click', () => switchView(false));
-  btnSideDash?.addEventListener('click', () => switchView(true));
-  footerNavDash?.addEventListener('click', () => switchView(true));
+  btnLandingTab?.addEventListener('click', () => switchView('landing'));
+  btnDashboardTab?.addEventListener('click', () => switchView('dashboard'));
+  btnEmiTab?.addEventListener('click', () => switchView('emi'));
+
+  btnSideHome?.addEventListener('click', () => switchView('landing'));
+  btnSideDash?.addEventListener('click', () => switchView('dashboard'));
+  footerNavDash?.addEventListener('click', () => switchView('dashboard'));
 }
 
 // Hero Events & Tile Click Anchors
@@ -581,7 +591,7 @@ function setupHeroEvents(): void {
   const navCalcBtn = document.getElementById('nav-calc-btn');
   const tileCalc = document.getElementById('hero-tile-calc');
   const tileMap = document.getElementById('hero-tile-map');
-  const tileDash = document.getElementById('hero-tile-dash');
+  const tileBank = document.getElementById('hero-tile-bank');
 
   navCalcBtn?.addEventListener('click', () => {
     document.getElementById('valuation-calculator')?.scrollIntoView({ behavior: 'smooth' });
@@ -595,8 +605,9 @@ function setupHeroEvents(): void {
     document.getElementById('interactive-map-section')?.scrollIntoView({ behavior: 'smooth' });
   });
 
-  tileDash?.addEventListener('click', () => {
-    document.getElementById('tools-section-anchor')?.scrollIntoView({ behavior: 'smooth' });
+  tileBank?.addEventListener('click', () => {
+    const btnEmiTab = document.getElementById('nav-emi-tab');
+    btnEmiTab?.click();
   });
 }
 

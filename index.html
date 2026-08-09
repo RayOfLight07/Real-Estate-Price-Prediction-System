@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INDIAREALESTATES — Real Estate Valuation Portal & Analytics Dashboard</title>
+  <title>INDIAREALESTATES — Real Estate Valuation Portal & Bank Home Loans</title>
 
   <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +43,7 @@
         <nav class="portal-nav">
           <button id="nav-landing-tab" class="top-view-tab active">🏠 Portal Landing Page</button>
           <button id="nav-dashboard-tab" class="top-view-tab">📊 Analytics Dashboard</button>
+          <button id="nav-emi-tab" class="top-view-tab">🏦 Bank Home Loans & EMI</button>
         </nav>
 
         <div class="header-actions">
@@ -97,13 +98,13 @@
               </div>
             </div>
 
-            <div class="hero-tile-card tile-emerald" id="hero-tile-dash">
-              <div class="tile-icon-bg">📊</div>
+            <div class="hero-tile-card tile-emerald" id="hero-tile-bank">
+              <div class="tile-icon-bg">🏦</div>
               <div class="tile-content">
-                <span class="tile-tag">FINANCIAL TOOLS</span>
-                <h3 class="tile-title">EMI & ROI Calculators</h3>
-                <p class="tile-desc">Estimate monthly home loan EMIs and annual gross rental return yields.</p>
-                <div class="tile-action">View Financial Tools ➔</div>
+                <span class="tile-tag">BANKING & FINANCING</span>
+                <h3 class="tile-title">Home Loans & EMI Portal</h3>
+                <p class="tile-desc">Compare bank interest rates, EMI calculators & tax policy benefits.</p>
+                <div class="tile-action">Open Bank Loan Portal ➔</div>
               </div>
             </div>
           </div>
@@ -147,74 +148,6 @@
           <span class="ticker-item">🌊 <b>Chennai Avg:</b> ₹ 8,750 / sqft</span>
         </div>
       </div>
-
-      <!-- FINANCIAL CALCULATORS SECTION -->
-      <section id="tools-section-anchor" class="section-container tools-section">
-        <div class="section-header">
-          <h2 class="section-title">🧮 Financial Intelligence & Home Loan Calculators</h2>
-          <p class="section-subtitle">Plan your property purchase with instant monthly EMI estimates and expected rental return yields.</p>
-        </div>
-
-        <div class="tools-grid">
-          <div class="card tool-card">
-            <div class="card-header-with-icon">
-              <span class="icon-badge">🏦</span>
-              <h3 class="card-title">Home Loan EMI Calculator</h3>
-            </div>
-
-            <div class="input-field">
-              <label for="emi-amount-input">Loan Amount: <span id="emi-amount-val" class="slider-val">₹ 75 Lakhs</span></label>
-              <input type="range" id="emi-amount-input" min="10" max="500" value="75" step="5" class="range-slider" />
-            </div>
-
-            <div class="form-row-2">
-              <div class="input-field">
-                <label for="emi-rate-input">Interest Rate (% p.a.)</label>
-                <input type="number" id="emi-rate-input" min="5" max="15" value="8.5" step="0.1" class="text-input" />
-              </div>
-
-              <div class="input-field">
-                <label for="emi-tenure-input">Tenure (Years)</label>
-                <input type="number" id="emi-tenure-input" min="5" max="30" value="20" step="1" class="text-input" />
-              </div>
-            </div>
-
-            <div class="tool-result-box card-mint-soft">
-              <div class="res-sub-title">ESTIMATED MONTHLY EMI</div>
-              <div id="emi-result-val" class="tool-res-num">₹ 65,086 / month</div>
-              <div class="emi-details-row">
-                <span>Principal: ₹ 75.0 Lakhs</span>
-                <span>Total Interest: ₹ 81.2 Lakhs</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="card tool-card">
-            <div class="card-header-with-icon">
-              <span class="icon-badge">📈</span>
-              <h3 class="card-title">Rental Yield & ROI Estimator</h3>
-            </div>
-
-            <div class="input-field">
-              <label for="rent-price-input">Property Cost (Lakhs)</label>
-              <input type="number" id="rent-price-input" min="20" max="1000" value="120" step="5" class="text-input" />
-            </div>
-
-            <div class="input-field">
-              <label for="rent-monthly-input">Expected Monthly Rent (₹)</label>
-              <input type="number" id="rent-monthly-input" min="5000" max="300000" value="42000" step="1000" class="text-input" />
-            </div>
-
-            <div class="tool-result-box card-lemon-soft">
-              <div class="res-sub-title">GROSS RENTAL YIELD</div>
-              <div id="yield-result-val" class="tool-res-num">4.20% p.a.</div>
-              <div class="yield-badge-row">
-                <span id="yield-rating-badge" class="cat-badge">⭐ Strong Investment ROI</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- PROPERTY CATEGORIES GRID -->
       <section class="section-container category-section">
@@ -832,6 +765,244 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+
+    <!-- VIEW 3: DEDICATED BANK HOME LOANS & EMI PORTAL PAGE -->
+    <div id="view-emi" class="view-container hidden">
+      <div class="bank-portal-hero">
+        <div class="section-container">
+          <span class="cat-badge">🏦 OFFICIAL BANKING PARTNERS & FINANCING HUB</span>
+          <h1 class="hero-main-heading">Home Loan EMI Calculators & Bank Policy Offers</h1>
+          <p class="hero-subtext">Compare top Indian bank interest rates, calculate monthly EMIs, and review government tax exemption policies (PMAY & Section 24b).</p>
+        </div>
+      </div>
+
+      <div class="section-container">
+        
+        <!-- Interactive EMI & Amortization Calculator -->
+        <div class="bank-calc-wrapper card">
+          <div class="section-header">
+            <h2 class="section-title">🧮 Interactive Home Loan EMI Calculator</h2>
+            <p class="section-subtitle">Adjust your loan amount, tenure & interest rate to view real-time monthly repayment breakdowns.</p>
+          </div>
+
+          <div class="tools-grid">
+            <div class="tool-card-inner">
+              <div class="input-field">
+                <label for="page-emi-amount">Loan Amount: <span id="page-emi-amount-val" class="slider-val">₹ 75 Lakhs</span></label>
+                <input type="range" id="page-emi-amount" min="10" max="500" value="75" step="5" class="range-slider" />
+              </div>
+
+              <div class="form-row-2">
+                <div class="input-field">
+                  <label for="page-emi-rate">Interest Rate (% p.a.)</label>
+                  <input type="number" id="page-emi-rate" min="5" max="15" value="8.50" step="0.05" class="text-input" />
+                </div>
+                <div class="input-field">
+                  <label for="page-emi-tenure">Tenure (Years)</label>
+                  <input type="number" id="page-emi-tenure" min="5" max="30" value="20" step="1" class="text-input" />
+                </div>
+              </div>
+
+              <div class="tool-result-box card-mint-soft">
+                <div class="res-sub-title">MONTHLY REPAYMENT EMI</div>
+                <div id="page-emi-result" class="tool-res-num">₹ 65,086 / month</div>
+                <div class="emi-details-row">
+                  <span>Principal: <b id="page-principal-text">₹ 75.0 Lakhs</b></span>
+                  <span>Total Interest: <b id="page-interest-text">₹ 81.2 Lakhs</b></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rental Yield & ROI Estimator on Page -->
+            <div class="tool-card-inner">
+              <h3 class="column-header">📈 Rental Yield & Investment ROI</h3>
+              <div class="input-field">
+                <label for="page-rent-cost">Property Cost (Lakhs)</label>
+                <input type="number" id="page-rent-cost" min="20" max="1000" value="120" step="5" class="text-input" />
+              </div>
+
+              <div class="input-field">
+                <label for="page-rent-monthly">Monthly Rental Income (₹)</label>
+                <input type="number" id="page-rent-monthly" min="5000" max="300000" value="42000" step="1000" class="text-input" />
+              </div>
+
+              <div class="tool-result-box card-lemon-soft">
+                <div class="res-sub-title">GROSS RENTAL RETURN YIELD</div>
+                <div id="page-yield-result" class="tool-res-num">4.20% p.a.</div>
+                <div class="yield-badge-row">
+                  <span id="page-yield-badge" class="cat-badge">⭐ Strong Investment ROI</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOP INDIAN BANKS COMPARISON GRID (MOCK DATA) -->
+        <div class="bank-offers-section">
+          <div class="section-header">
+            <h2 class="section-title">🏦 Top Bank Home Loan Rates & Policies (2026)</h2>
+            <p class="section-subtitle">Compare interest rate slabs, processing fee structures & pre-approval policies across top Indian banks.</p>
+          </div>
+
+          <div class="banks-grid">
+            <!-- Bank 1: SBI -->
+            <div class="bank-card">
+              <div class="bank-card-header">
+                <div class="bank-logo-badge">🏛️ SBI</div>
+                <span class="bank-status-pill pill-rose">🔥 Popular Choice</span>
+              </div>
+              <h3 class="bank-name">State Bank of India (SBI)</h3>
+              <div class="bank-rate">8.50% – 9.15% <span class="rate-lbl">p.a.</span></div>
+
+              <div class="bank-details-list">
+                <div class="bank-detail-item"><span>Max Tenure:</span> <b>30 Years</b></div>
+                <div class="bank-detail-item"><span>Processing Fee:</span> <b>0.35% (Max ₹10,000)</b></div>
+                <div class="bank-detail-item"><span>Prepayment Penalty:</span> <b>Zero Penalty</b></div>
+              </div>
+
+              <div class="bank-policy-box">
+                <span class="policy-tag">KEY BANK POLICY</span>
+                <p>0.25% interest concession for female home buyers and green-certified eco housing projects.</p>
+              </div>
+
+              <button class="primary-btn bank-apply-btn" data-bank="State Bank of India">
+                <span>⚡ Apply / Check Eligibility</span>
+              </button>
+            </div>
+
+            <!-- Bank 2: HDFC -->
+            <div class="bank-card">
+              <div class="bank-card-header">
+                <div class="bank-logo-badge">🏦 HDFC</div>
+                <span class="bank-status-pill pill-blue">⚡ Fast Approval</span>
+              </div>
+              <h3 class="bank-name">HDFC Bank Home Loans</h3>
+              <div class="bank-rate">8.60% – 9.25% <span class="rate-lbl">p.a.</span></div>
+
+              <div class="bank-details-list">
+                <div class="bank-detail-item"><span>Max Tenure:</span> <b>30 Years</b></div>
+                <div class="bank-detail-item"><span>Processing Fee:</span> <b>0.50% (Up to ₹3,000)</b></div>
+                <div class="bank-detail-item"><span>Prepayment Penalty:</span> <b>Zero Penalty</b></div>
+              </div>
+
+              <div class="bank-policy-box">
+                <span class="policy-tag">KEY BANK POLICY</span>
+                <p>Instant digital pre-approval letter within 30 minutes for salaried corporate employees.</p>
+              </div>
+
+              <button class="primary-btn bank-apply-btn" data-bank="HDFC Bank">
+                <span>⚡ Apply / Check Eligibility</span>
+              </button>
+            </div>
+
+            <!-- Bank 3: ICICI -->
+            <div class="bank-card">
+              <div class="bank-card-header">
+                <div class="bank-logo-badge">💎 ICICI</div>
+                <span class="bank-status-pill pill-emerald">⭐ Top Digital Bank</span>
+              </div>
+              <h3 class="bank-name">ICICI Express Home Loan</h3>
+              <div class="bank-rate">8.65% – 9.35% <span class="rate-lbl">p.a.</span></div>
+
+              <div class="bank-details-list">
+                <div class="bank-detail-item"><span>Max Tenure:</span> <b>30 Years</b></div>
+                <div class="bank-detail-item"><span>Processing Fee:</span> <b>0.50%</b></div>
+                <div class="bank-detail-item"><span>Prepayment Penalty:</span> <b>Zero Penalty</b></div>
+              </div>
+
+              <div class="bank-policy-box">
+                <span class="policy-tag">KEY BANK POLICY</span>
+                <p>100% paperless digital sanction with step-up repayment structure for young professionals.</p>
+              </div>
+
+              <button class="primary-btn bank-apply-btn" data-bank="ICICI Bank">
+                <span>⚡ Apply / Check Eligibility</span>
+              </button>
+            </div>
+
+            <!-- Bank 4: AXIS BANK -->
+            <div class="bank-card">
+              <div class="bank-card-header">
+                <div class="bank-logo-badge">💳 AXIS</div>
+                <span class="bank-status-pill pill-purple">🎁 EMI Waiver</span>
+              </div>
+              <h3 class="bank-name">Axis Bank Shubh Aarambh</h3>
+              <div class="bank-rate">8.70% – 9.40% <span class="rate-lbl">p.a.</span></div>
+
+              <div class="bank-details-list">
+                <div class="bank-detail-item"><span>Max Tenure:</span> <b>30 Years</b></div>
+                <div class="bank-detail-item"><span>Processing Fee:</span> <b>₹ 10,000 + GST</b></div>
+                <div class="bank-detail-item"><span>Prepayment Penalty:</span> <b>Zero Penalty</b></div>
+              </div>
+
+              <div class="bank-policy-box">
+                <span class="policy-tag">KEY BANK POLICY</span>
+                <p>12 Monthly EMIs waived off (4 EMIs waived at end of 4th, 8th and 12th year) under regular repayment policy.</p>
+              </div>
+
+              <button class="primary-btn bank-apply-btn" data-bank="Axis Bank">
+                <span>⚡ Apply / Check Eligibility</span>
+              </button>
+            </div>
+
+            <!-- Bank 5: KOTAK -->
+            <div class="bank-card">
+              <div class="bank-card-header">
+                <div class="bank-logo-badge">🦁 KOTAK</div>
+                <span class="bank-status-pill pill-lemon">💎 Lowest Rate</span>
+              </div>
+              <h3 class="bank-name">Kotak Mahindra Bank</h3>
+              <div class="bank-rate">8.55% – 9.10% <span class="rate-lbl">p.a.</span></div>
+
+              <div class="bank-details-list">
+                <div class="bank-detail-item"><span>Max Tenure:</span> <b>30 Years</b></div>
+                <div class="bank-detail-item"><span>Processing Fee:</span> <b>0.25%</b></div>
+                <div class="bank-detail-item"><span>Prepayment Penalty:</span> <b>Zero Penalty</b></div>
+              </div>
+
+              <div class="bank-policy-box">
+                <span class="policy-tag">KEY BANK POLICY</span>
+                <p>Lowest interest rates for applicants with CIBIL credit score above 750 with doorstep valuation service.</p>
+              </div>
+
+              <button class="primary-btn bank-apply-btn" data-bank="Kotak Mahindra Bank">
+                <span>⚡ Apply / Check Eligibility</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- GOVERNMENT HOME LOAN TAX POLICIES & SUBSIDY SCHEMES -->
+        <div class="tax-policies-wrapper card">
+          <div class="section-header">
+            <h2 class="section-title">📜 Government Tax Policies & Subsidy Benefits</h2>
+            <p class="section-subtitle">Maximize your tax savings under Income Tax Act & Housing Scheme policies.</p>
+          </div>
+
+          <div class="policies-grid">
+            <div class="policy-card card-mint-soft">
+              <div class="policy-icon">📝</div>
+              <h3>Section 24(b) Tax Deduction</h3>
+              <p>Deduct up to <b>₹ 2,00,000</b> per financial year on home loan interest payments for self-occupied properties.</p>
+            </div>
+
+            <div class="policy-card card-lemon-soft">
+              <div class="policy-icon">💰</div>
+              <h3>Section 80C Principal Benefit</h3>
+              <p>Deduct up to <b>₹ 1,50,000</b> per year on the principal repayment portion of home loan installments.</p>
+            </div>
+
+            <div class="policy-card card-lavender-soft">
+              <div class="policy-icon">🏗️</div>
+              <h3>Pradhan Mantri Awas Yojana (PMAY)</h3>
+              <p>Interest subsidy up to <b>₹ 2.67 Lakhs</b> under Credit Linked Subsidy Scheme (CLSS) for EWS / LIG home buyers.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 

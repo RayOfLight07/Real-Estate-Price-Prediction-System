@@ -250,7 +250,6 @@ h1, h2, h3, h4, .brand-name {
   margin-bottom: 0.8rem;
 }
 
-/* ANIMATED KINETIC TYPOGRAPHY ACCENT WORD */
 .accent-animated-word {
   display: inline-block;
   background: linear-gradient(135deg, #0284c7 0%, #f43f5e 100%);
@@ -284,7 +283,7 @@ h1, h2, h3, h4, .brand-name {
   border-radius: var(--radius-lg);
   padding: 1.8rem;
   cursor: pointer;
-  transition: all 0.35 cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: var(--shadow-soft);
   display: flex;
   gap: 1.2rem;
@@ -371,6 +370,170 @@ h1, h2, h3, h4, .brand-name {
 @keyframes ticker {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+/* VIEW 3: BANK HOME LOANS & EMI PORTAL STYLING */
+.bank-portal-hero {
+  background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+  padding: 3rem 0 1.5rem 0;
+  border-bottom: 1px solid var(--border-card);
+  margin-bottom: 1rem;
+}
+
+.bank-calc-wrapper {
+  margin-bottom: 3rem;
+}
+
+.tool-card-inner {
+  padding: 1rem;
+}
+
+.banks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.bank-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bank-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.bank-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.bank-logo-badge {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.bank-status-pill {
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.pill-rose { background: #fff1f2; color: #f43f5e; }
+.pill-blue { background: #e0f2fe; color: #0284c7; }
+.pill-emerald { background: #eef7f3; color: #059669; }
+.pill-purple { background: #f3e8ff; color: #7c3aed; }
+.pill-lemon { background: #fffbeb; color: #b45309; }
+
+.bank-name {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+}
+
+.bank-rate {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent-blue);
+  margin-bottom: 1rem;
+}
+
+.rate-lbl {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.bank-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-top: 1px solid var(--border-card);
+  padding-top: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.bank-detail-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.bank-detail-item b {
+  color: var(--text-main);
+}
+
+.bank-policy-box {
+  background: #f8fafc;
+  border-left: 3px solid var(--accent-blue);
+  padding: 0.85rem;
+  border-radius: 6px;
+  margin-bottom: 1.2rem;
+}
+
+.policy-tag {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--accent-blue);
+  margin-bottom: 0.2rem;
+}
+
+.bank-policy-box p {
+  font-size: 0.82rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.bank-apply-btn {
+  margin-top: auto;
+}
+
+/* Tax Policies Grid */
+.policies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.policy-card {
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+}
+
+.policy-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.policy-card h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+}
+
+.policy-card p {
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 /* KPI Ribbon */
@@ -1228,7 +1391,7 @@ h1, h2, h3, h4, .brand-name {
 
 /* Responsive Breakdown */
 @media (max-width: 1024px) {
-  .hero-tiles-grid, .categories-grid, .location-grid, .form-grid, .dashboard-grid, .cities-cards-grid, .kpi-ribbon, .pastel-cards-grid, .overview-widgets-grid, .tools-grid, .footer-container {
+  .hero-tiles-grid, .categories-grid, .location-grid, .form-grid, .dashboard-grid, .cities-cards-grid, .kpi-ribbon, .pastel-cards-grid, .overview-widgets-grid, .tools-grid, .banks-grid, .policies-grid, .footer-container {
     grid-template-columns: 1fr;
   }
   .app-sidebar { display: none; }
