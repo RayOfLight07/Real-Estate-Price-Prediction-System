@@ -171,7 +171,7 @@ function initKineticTypographyAnimation(): void {
   const dynamicWordEl = document.getElementById('hero-dynamic-word');
   if (!dynamicWordEl) return;
 
-  const words = ["Real Estate", "Luxury Villas", "Highrise Towers", "Builder Floors", "Prime Plots"];
+  const words = ["Luxury Villas", "Highrise Towers", "Builder Floors", "Prime Plots", "Commercial Hubs"];
   let currentIndex = 0;
 
   setInterval(() => {
@@ -201,9 +201,9 @@ function initGSAPMasterSequence(): void {
   const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
   tl.from('.portal-header', { opacity: 0, y: -20, duration: 0.8 })
-    .from('.hero-badge', { opacity: 0, scale: 0.85, duration: 0.5 }, '-=0.4')
+    .from('.hero-badge-row', { opacity: 0, scale: 0.85, duration: 0.5 }, '-=0.4')
     .from('.hero-main-heading', { opacity: 0, y: 25, duration: 0.8 }, '-=0.3')
-    .from('.search-portal-card', { opacity: 0, y: 30, duration: 0.9 }, '-=0.5');
+    .from('.hero-tiles-grid', { opacity: 0, y: 30, duration: 0.9 }, '-=0.5');
 
   const kpiObj = { val: 0 };
   const kpiEl = document.getElementById('kpi-listings');
@@ -414,42 +414,36 @@ function populateLocationDropdowns(): void {
   if (!serverMetadata) return;
 
   const stateSelect = document.getElementById('state-select') as HTMLSelectElement;
-  const heroStateSelect = document.getElementById('hero-state-select') as HTMLSelectElement;
   const states = serverMetadata.states || ["Rajasthan", "Maharashtra", "Karnataka"];
 
-  [stateSelect, heroStateSelect].forEach(selectEl => {
-    if (selectEl) {
-      selectEl.innerHTML = '';
-      states.forEach(st => {
-        const opt = document.createElement('option');
-        opt.value = st;
-        opt.textContent = st;
-        selectEl.appendChild(opt);
-      });
-      if (states.includes("Rajasthan")) selectEl.value = "Rajasthan";
-    }
-  });
+  if (stateSelect) {
+    stateSelect.innerHTML = '';
+    states.forEach(st => {
+      const opt = document.createElement('option');
+      opt.value = st;
+      opt.textContent = st;
+      stateSelect.appendChild(opt);
+    });
+    if (states.includes("Rajasthan")) stateSelect.value = "Rajasthan";
+  }
 
   updateCitiesForState("Rajasthan");
 }
 
 function updateCitiesForState(state: string): void {
   const citySelect = document.getElementById('city-select') as HTMLSelectElement;
-  const heroCitySelect = document.getElementById('hero-city-select') as HTMLSelectElement;
   const cities = serverMetadata?.cities_by_state[state] || ["Jaipur", "Jodhpur"];
 
-  [citySelect, heroCitySelect].forEach(selectEl => {
-    if (selectEl) {
-      selectEl.innerHTML = '';
-      cities.forEach(ct => {
-        const opt = document.createElement('option');
-        opt.value = ct;
-        opt.textContent = ct;
-        selectEl.appendChild(opt);
-      });
-      if (cities.length > 0) selectEl.value = cities[0];
-    }
-  });
+  if (citySelect) {
+    citySelect.innerHTML = '';
+    cities.forEach(ct => {
+      const opt = document.createElement('option');
+      opt.value = ct;
+      opt.textContent = ct;
+      citySelect.appendChild(opt);
+    });
+    if (cities.length > 0) citySelect.value = cities[0];
+  }
 
   if (cities.length > 0) {
     updateLocalitiesForCity(cities[0]);
@@ -582,62 +576,27 @@ function setupNavigationEvents(): void {
   footerNavDash?.addEventListener('click', () => switchView(true));
 }
 
-// Hero Events & Quick Pills
+// Hero Events & Tile Click Anchors
 function setupHeroEvents(): void {
-  const heroStateSelect = document.getElementById('hero-state-select') as HTMLSelectElement;
-  const heroCitySelect = document.getElementById('hero-city-select') as HTMLSelectElement;
-  const heroPropSelect = document.getElementById('hero-prop-select') as HTMLSelectElement;
-  const heroSearchBtn = document.getElementById('hero-search-btn');
   const navCalcBtn = document.getElementById('nav-calc-btn');
+  const tileCalc = document.getElementById('hero-tile-calc');
+  const tileMap = document.getElementById('hero-tile-map');
+  const tileDash = document.getElementById('hero-tile-dash');
 
-  if (heroStateSelect) {
-    heroStateSelect.addEventListener('change', (e) => {
-      const selectedState = (e.target as HTMLSelectElement).value;
-      updateCitiesForState(selectedState);
-    });
-  }
-
-  const handleHeroSearch = () => {
-    const st = heroStateSelect?.value || "Rajasthan";
-    const ct = heroCitySelect?.value || "Jaipur";
-    const pr = heroPropSelect?.value || "Apartment";
-
-    const mainStateSelect = document.getElementById('state-select') as HTMLSelectElement;
-    const mainCitySelect = document.getElementById('city-select') as HTMLSelectElement;
-    const mainPropSelect = document.getElementById('property-type-select') as HTMLSelectElement;
-
-    if (mainStateSelect && mainStateSelect.value !== st) {
-      mainStateSelect.value = st;
-      updateCitiesForState(st);
-    }
-    if (mainCitySelect) mainCitySelect.value = ct;
-    if (mainPropSelect) mainPropSelect.value = pr;
-
-    document.getElementById('valuation-calculator')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  heroSearchBtn?.addEventListener('click', handleHeroSearch);
   navCalcBtn?.addEventListener('click', () => {
     document.getElementById('valuation-calculator')?.scrollIntoView({ behavior: 'smooth' });
   });
 
-  const cityPills = document.querySelectorAll('.city-pill');
-  cityPills.forEach(pill => {
-    pill.addEventListener('click', (e) => {
-      const btn = e.currentTarget as HTMLElement;
-      const st = btn.dataset.state;
-      const ct = btn.dataset.city;
+  tileCalc?.addEventListener('click', () => {
+    document.getElementById('valuation-calculator')?.scrollIntoView({ behavior: 'smooth' });
+  });
 
-      if (st && ct) {
-        if (heroStateSelect) {
-          heroStateSelect.value = st;
-          updateCitiesForState(st);
-        }
-        if (heroCitySelect) heroCitySelect.value = ct;
-        selectLocationFromMap(st, ct);
-        document.getElementById('valuation-calculator')?.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
+  tileMap?.addEventListener('click', () => {
+    document.getElementById('interactive-map-section')?.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  tileDash?.addEventListener('click', () => {
+    document.getElementById('tools-section-anchor')?.scrollIntoView({ behavior: 'smooth' });
   });
 }
 

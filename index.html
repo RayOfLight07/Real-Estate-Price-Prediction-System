@@ -58,74 +58,53 @@
     <!-- VIEW 1: FULL-SCROLL LANDING PAGE PORTAL -->
     <div id="view-landing" class="view-container">
       
-      <!-- HERO SEARCH BANNER WITH KINETIC TYPOGRAPHY ANIMATION -->
+      <!-- HERO BANNER WITH HIGH-IMPACT KINETIC TYPOGRAPHY & ENGAGING TILES -->
       <section id="hero-search" class="hero-banner-section">
         <div class="hero-bg-villa-overlay"></div>
         <div class="hero-content-container">
-          <div class="hero-badge">⚡ INDIA'S #1 PROPERTY VALUATION ENGINE</div>
           
-          <!-- ANIMATED KINETIC TYPOGRAPHY HEADING -->
+          <div class="hero-badge-row">
+            <span class="hero-badge">⚡ AI-POWERED MACHINE LEARNING VALUATION 2.0</span>
+            <span class="hero-badge-sub">📍 20 States • 42 Major Cities</span>
+          </div>
+          
+          <!-- GIANT KINETIC TYPOGRAPHY HEADING -->
           <h1 class="hero-main-heading">
-            Find <span id="hero-dynamic-word" class="accent-animated-word">Real Estate</span> & Get Instant Price Valuations
+            Discover Real Estate Valuations for <br />
+            <span id="hero-dynamic-word" class="accent-animated-word">Luxury Villas</span> across India
           </h1>
-          <p class="hero-subtext">Evaluate 250,000+ properties across 20 States and 42 Major Cities with precision Machine Learning models.</p>
+          <p class="hero-subtext">Precision property price estimation powered by Machine Learning trained on 250,000+ verified listings.</p>
 
-          <!-- Glassmorphic Search & Filter Card -->
-          <div class="search-portal-card">
-            <div class="search-tabs">
-              <button class="search-tab active">💰 Price Estimator</button>
-              <button class="search-tab">🏙️ Buy Property</button>
-              <button class="search-tab">🏢 Commercial</button>
-              <button class="search-tab">🏡 Villas & Plots</button>
-            </div>
-
-            <div class="search-form-row">
-              <div class="search-col">
-                <label>Select State</label>
-                <select id="hero-state-select" class="search-select">
-                  <option value="Rajasthan">Rajasthan</option>
-                  <option value="Maharashtra">Maharashtra</option>
-                  <option value="Karnataka">Karnataka</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Tamil Nadu">Tamil Nadu</option>
-                  <option value="Telangana">Telangana</option>
-                  <option value="West Bengal">West Bengal</option>
-                </select>
-              </div>
-
-              <div class="search-col">
-                <label>Select City</label>
-                <select id="hero-city-select" class="search-select">
-                  <option value="Jaipur">Jaipur</option>
-                  <option value="Jodhpur">Jodhpur</option>
-                </select>
-              </div>
-
-              <div class="search-col">
-                <label>Property Type</label>
-                <select id="hero-prop-select" class="search-select">
-                  <option value="Apartment">Apartment</option>
-                  <option value="Independent House">Independent House</option>
-                  <option value="Villa">Villa</option>
-                </select>
-              </div>
-
-              <div class="search-col btn-col">
-                <button id="hero-search-btn" class="search-submit-btn">
-                  <span>🔍 Search & Estimate Price</span>
-                </button>
+          <!-- HERO INTERACTIVE ENGAGING FEATURE TILES -->
+          <div class="hero-tiles-grid">
+            <div class="hero-tile-card tile-blue" id="hero-tile-calc">
+              <div class="tile-icon-bg">⚡</div>
+              <div class="tile-content">
+                <span class="tile-tag">INSTANT ESTIMATION</span>
+                <h3 class="tile-title">AI Property Valuation</h3>
+                <p class="tile-desc">Configure BHK, square feet, floor level & age for instant price estimates.</p>
+                <div class="tile-action">Try Price Calculator ➔</div>
               </div>
             </div>
 
-            <!-- Quick City Pills -->
-            <div class="quick-pills-row">
-              <span class="pill-title">Popular Hubs:</span>
-              <button class="city-pill" data-state="Maharashtra" data-city="Mumbai">Mumbai</button>
-              <button class="city-pill" data-state="Karnataka" data-city="Bangalore">Bangalore</button>
-              <button class="city-pill" data-state="Delhi" data-city="New Delhi">Delhi NCR</button>
-              <button class="city-pill" data-state="Rajasthan" data-city="Jaipur">Jaipur</button>
-              <button class="city-pill" data-state="Telangana" data-city="Hyderabad">Hyderabad</button>
-              <button class="city-pill" data-state="Tamil Nadu" data-city="Chennai">Chennai</button>
+            <div class="hero-tile-card tile-rose" id="hero-tile-map">
+              <div class="tile-icon-bg">📍</div>
+              <div class="tile-content">
+                <span class="tile-tag">GIS SATELLITE MAP</span>
+                <h3 class="tile-title">42-City Map Explorer</h3>
+                <p class="tile-desc">Explore live rate benchmarks, satellite map layers & city benchmarks.</p>
+                <div class="tile-action">Open Interactive Map ➔</div>
+              </div>
+            </div>
+
+            <div class="hero-tile-card tile-emerald" id="hero-tile-dash">
+              <div class="tile-icon-bg">📊</div>
+              <div class="tile-content">
+                <span class="tile-tag">FINANCIAL TOOLS</span>
+                <h3 class="tile-title">EMI & ROI Calculators</h3>
+                <p class="tile-desc">Estimate monthly home loan EMIs and annual gross rental return yields.</p>
+                <div class="tile-action">View Financial Tools ➔</div>
+              </div>
             </div>
           </div>
 
@@ -151,8 +130,26 @@
         </div>
       </section>
 
+      <!-- LIVE MARKET TICKER MARQUEE BANNER -->
+      <div class="live-ticker-banner">
+        <div class="ticker-track" id="ticker-track">
+          <span class="ticker-item">🔥 <b>Mumbai Avg:</b> ₹ 18,450 / sqft</span>
+          <span class="ticker-item">💻 <b>Bangalore Avg:</b> ₹ 9,399 / sqft</span>
+          <span class="ticker-item">🚀 <b>Delhi NCR Avg:</b> ₹ 11,200 / sqft</span>
+          <span class="ticker-item">✨ <b>Jaipur Avg:</b> ₹ 9,270 / sqft</span>
+          <span class="ticker-item">🌴 <b>Hyderabad Avg:</b> ₹ 8,150 / sqft</span>
+          <span class="ticker-item">🌊 <b>Chennai Avg:</b> ₹ 8,750 / sqft</span>
+          <span class="ticker-item">🔥 <b>Mumbai Avg:</b> ₹ 18,450 / sqft</span>
+          <span class="ticker-item">💻 <b>Bangalore Avg:</b> ₹ 9,399 / sqft</span>
+          <span class="ticker-item">🚀 <b>Delhi NCR Avg:</b> ₹ 11,200 / sqft</span>
+          <span class="ticker-item">✨ <b>Jaipur Avg:</b> ₹ 9,270 / sqft</span>
+          <span class="ticker-item">🌴 <b>Hyderabad Avg:</b> ₹ 8,150 / sqft</span>
+          <span class="ticker-item">🌊 <b>Chennai Avg:</b> ₹ 8,750 / sqft</span>
+        </div>
+      </div>
+
       <!-- FINANCIAL CALCULATORS SECTION -->
-      <section class="section-container tools-section">
+      <section id="tools-section-anchor" class="section-container tools-section">
         <div class="section-header">
           <h2 class="section-title">🧮 Financial Intelligence & Home Loan Calculators</h2>
           <p class="section-subtitle">Plan your property purchase with instant monthly EMI estimates and expected rental return yields.</p>
