@@ -371,17 +371,28 @@ Health check endpoint. Returns `{"status": "ok"}`.
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/yourusername/RealEstatePricePredictionSystem.git
-cd RealEstatePricePredictionSystem
+git clone https://github.com/RayOfLight07/Real-Estate-Price-Prediction-System.git
+cd Real-Estate-Price-Prediction-System
 ```
 
-### Step 2: Install Python Dependencies
+### Step 2: Download the Dataset
+The dataset (~41 MB) is hosted externally due to GitHub file size limits.
+
+**Download Link**: [india_housing_prices.csv — Google Drive](https://drive.google.com/YOUR_DRIVE_LINK_HERE)
+
+After downloading, place the file in the `data/` directory:
+```bash
+mkdir data
+# Move the downloaded CSV into the data/ folder
+mv ~/Downloads/india_housing_prices.csv data/
+```
+### Step 3: Install Python Dependencies
 ```bash
 pip install -r requirements.txt
 pip install scipy
 ```
 
-### Step 3: Install Node.js Dependencies
+### Step 4: Install Node.js Dependencies
 ```bash
 npm install
 ```

@@ -1,6 +1,9 @@
 # Node dependencies & build output
 node_modules/
 dist/
+
+# Large dataset (download from Google Drive link in README)
+data/
 dist-ssr/
 *.local
 
