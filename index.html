@@ -567,230 +567,237 @@
     </div>
 
 
-    <!-- VIEW 2: SOFT PASTEL ANALYTICS DASHBOARD -->
+    <!-- VIEW 2: FULLY-ALIGNED SOFT PASTEL ANALYTICS DASHBOARD -->
     <div id="view-dashboard" class="view-container hidden">
-      <div class="dash-layout">
-        <!-- Floating Left Sidebar -->
-        <aside class="app-sidebar">
-          <div class="sidebar-brand">
-            <svg class="brand-logo-svg" viewBox="0 0 32 32" fill="none">
-              <circle cx="16" cy="16" r="14" fill="#16181b"/>
-              <path d="M10 22C10 16 22 16 22 10" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-            </svg>
+      <div class="section-container dash-main-wrapper">
+        
+        <!-- Dashboard Top Header Bar -->
+        <div class="dash-top-bar">
+          <div class="dash-welcome">
+            <h2 class="welcome-title">Market Analytics Dashboard 👋</h2>
+            <p class="welcome-subtitle">Comprehensive valuation metrics, city rate distributions, and state comparison data across India.</p>
           </div>
 
-          <nav class="sidebar-nav">
-            <button id="side-home-btn" class="sidebar-icon-btn" title="Return to Landing Portal">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            </button>
-            <button id="side-dash-btn" class="sidebar-icon-btn active" title="Analytics Dashboard">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
-            </button>
-          </nav>
-
-          <div class="sidebar-footer">
-            <div class="avatar-badge">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Avatar" />
-            </div>
+          <div class="dash-search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Search city or state metrics..." />
           </div>
-        </aside>
+        </div>
 
-        <!-- Dashboard Content Outer Wrapper -->
-        <div class="dash-main-wrapper">
-          <div class="dash-top-bar">
-            <div class="dash-welcome">
-              <h2 class="welcome-title">Welcome back 👋</h2>
-              <p class="welcome-subtitle">Explore real estate market analytics & valuation distributions across India.</p>
+        <!-- Featured Pastel Highlight Cards Grid (4 Columns, Full Width) -->
+        <div class="pastel-cards-grid">
+          <div class="pastel-card card-mint">
+            <div class="p-card-header">
+              <span class="p-tag">⭐ 4.9 Premium</span>
+              <button class="arrow-circle-btn">↗</button>
             </div>
-
-            <div class="dash-search-bar">
-              <span>🔍</span>
-              <input type="text" placeholder="Search city or state metrics..." />
+            <div class="p-card-body">
+              <div class="p-avatars">
+                <span class="avatar-chip">🏙️</span>
+                <span class="avatar-chip">🌊</span>
+                <span class="avatar-count">+42</span>
+              </div>
+              <h3 class="p-card-title">Mumbai Metro Hub</h3>
+              <div class="p-card-price">Avg. ₹ 18,450 / sqft</div>
             </div>
           </div>
 
-          <!-- Featured Pastel Highlight Cards -->
-          <div class="pastel-cards-grid">
-            <div class="pastel-card card-mint">
-              <div class="p-card-header">
-                <span class="p-tag">⭐ 4.9 Premium</span>
-                <button class="arrow-circle-btn">↗</button>
-              </div>
-              <div class="p-card-body">
-                <div class="p-avatars">
-                  <span class="avatar-chip">🏙️</span>
-                  <span class="avatar-chip">🌊</span>
-                  <span class="avatar-count">+42</span>
-                </div>
-                <h3 class="p-card-title">Mumbai Metro Hub</h3>
-                <div class="p-card-price">Avg. ₹ 18,450 / sqft</div>
-              </div>
+          <div class="pastel-card card-pink">
+            <div class="p-card-header">
+              <span class="p-tag">⭐ 4.8 IT Hub</span>
+              <button class="arrow-circle-btn">↗</button>
             </div>
-
-            <div class="pastel-card card-pink">
-              <div class="p-card-header">
-                <span class="p-tag">⭐ 4.8 IT Hub</span>
-                <button class="arrow-circle-btn">↗</button>
+            <div class="p-card-body">
+              <div class="p-avatars">
+                <span class="avatar-chip">💻</span>
+                <span class="avatar-chip">🌳</span>
+                <span class="avatar-count">+18</span>
               </div>
-              <div class="p-card-body">
-                <div class="p-avatars">
-                  <span class="avatar-chip">💻</span>
-                  <span class="avatar-chip">🌳</span>
-                  <span class="avatar-count">+18</span>
-                </div>
-                <h3 class="p-card-title">Bangalore Tech Hub</h3>
-                <div class="p-card-price">Avg. ₹ 9,399 / sqft</div>
-              </div>
+              <h3 class="p-card-title">Bangalore Tech Hub</h3>
+              <div class="p-card-price">Avg. ₹ 9,399 / sqft</div>
             </div>
           </div>
 
-          <!-- Progress & Trends Calendar Widgets -->
-          <div class="overview-widgets-grid">
-            <div class="widget-col-left">
-              <h3 class="widget-heading">Market Activity Today</h3>
-              <div class="mini-metrics-grid">
-                <div class="mini-metric-card card-mint-soft">
-                  <span class="mini-lbl">Listings</span>
-                  <span class="mini-val">250K</span>
-                  <button class="mini-arrow">↗</button>
-                </div>
-                <div class="mini-metric-card card-lemon-soft">
-                  <span class="mini-lbl">States</span>
-                  <span class="mini-val">20</span>
-                  <button class="mini-arrow">↗</button>
-                </div>
-                <div class="mini-metric-card card-lavender-soft">
-                  <span class="mini-lbl">Cities</span>
-                  <span class="mini-val">42</span>
-                  <button class="mini-arrow">↗</button>
-                </div>
-              </div>
+          <div class="pastel-card card-lemon">
+            <div class="p-card-header">
+              <span class="p-tag">🚀 NCR Corridor</span>
+              <button class="arrow-circle-btn">↗</button>
             </div>
+            <div class="p-card-body">
+              <div class="p-avatars">
+                <span class="avatar-chip">🏢</span>
+                <span class="avatar-chip">🚇</span>
+                <span class="avatar-count">+35</span>
+              </div>
+              <h3 class="p-card-title">Delhi NCR & Gurgaon</h3>
+              <div class="p-card-price">Avg. ₹ 11,200 / sqft</div>
+            </div>
+          </div>
 
-            <div class="widget-col-right">
-              <div class="calendar-widget-card">
-                <div class="cal-header">
-                  <h4 class="cal-month-title">Market Calendar — 2026</h4>
-                  <div class="cal-arrows">
-                    <button class="cal-nav">&lt;</button>
-                    <button class="cal-nav">&gt;</button>
-                  </div>
-                </div>
+          <div class="pastel-card card-lavender">
+            <div class="p-card-header">
+              <span class="p-tag">✨ Royal Hub</span>
+              <button class="arrow-circle-btn">↗</button>
+            </div>
+            <div class="p-card-body">
+              <div class="p-avatars">
+                <span class="avatar-chip">🏰</span>
+                <span class="avatar-chip">🌸</span>
+                <span class="avatar-count">+24</span>
+              </div>
+              <h3 class="p-card-title">Jaipur Pink City</h3>
+              <div class="p-card-price">Avg. ₹ 9,270 / sqft</div>
+            </div>
+          </div>
+        </div>
 
-                <div class="cal-days-grid">
-                  <span class="day-lbl">MON</span>
-                  <span class="day-lbl">THU</span>
-                  <span class="day-lbl">WED</span>
-                  <span class="day-lbl">TUE</span>
-                  <span class="day-lbl">FRI</span>
-                  <span class="day-lbl">SAT</span>
-                  <span class="day-lbl">SUN</span>
-
-                  <span class="day-num inactive">30</span>
-                  <span class="day-num">1</span>
-                  <span class="day-num">2</span>
-                  <span class="day-num">3</span>
-                  <span class="day-num">4</span>
-                  <span class="day-num">5</span>
-                  <span class="day-num">6</span>
-                  <span class="day-num">7</span>
-                  <span class="day-num">8</span>
-                  <span class="day-num highlight-mint">9</span>
-                  <span class="day-num">10</span>
-                  <span class="day-num">11</span>
-                  <span class="day-num highlight-mint">12</span>
-                  <span class="day-num">13</span>
-                  <span class="day-num">14</span>
-                  <span class="day-num">15</span>
-                  <span class="day-num highlight-black">16</span>
-                  <span class="day-num highlight-black">17</span>
-                  <span class="day-num">18</span>
-                  <span class="day-num">19</span>
-                  <span class="day-num">20</span>
-                </div>
+        <!-- Activity Overview & Calendar Grid -->
+        <div class="overview-widgets-grid">
+          <div class="widget-col-left">
+            <h3 class="widget-heading">Market Activity Today</h3>
+            <div class="mini-metrics-grid">
+              <div class="mini-metric-card card-mint-soft">
+                <span class="mini-lbl">Listings</span>
+                <span class="mini-val">250K</span>
+                <button class="mini-arrow">↗</button>
+              </div>
+              <div class="mini-metric-card card-lemon-soft">
+                <span class="mini-lbl">States</span>
+                <span class="mini-val">20</span>
+                <button class="mini-arrow">↗</button>
+              </div>
+              <div class="mini-metric-card card-lavender-soft">
+                <span class="mini-lbl">Cities</span>
+                <span class="mini-val">42</span>
+                <button class="mini-arrow">↗</button>
               </div>
             </div>
           </div>
 
-          <!-- Market Analytics Dashboard Charts -->
-          <div class="dashboard-grid">
-            <div class="card chart-card">
-              <h3 class="card-title">📈 Average Rate per Sq. Ft. by State (₹/sqft)</h3>
-              <div class="chart-container">
-                <canvas id="chart-state-rate"></canvas>
-              </div>
-            </div>
-
-            <div class="card chart-card">
-              <h3 class="card-title">🏠 Average Price Valuation by BHK Layout (₹ Lakhs)</h3>
-              <div class="chart-container">
-                <canvas id="chart-bhk-price"></canvas>
-              </div>
-            </div>
-
-            <div class="card chart-card">
-              <h3 class="card-title">🏢 Valuation Distribution by Property Type</h3>
-              <div class="chart-container">
-                <canvas id="chart-prop-type"></canvas>
-              </div>
-            </div>
-
-            <div class="card compare-card">
-              <h3 class="card-title">⚔️ Side-by-Side City Market Comparator</h3>
-              <p class="helper-text">Select 2 cities to compare valuation metrics:</p>
-              <div class="compare-selectors">
-                <div class="compare-col">
-                  <label for="cmp-city-1">City A</label>
-                  <select id="cmp-city-1" class="select-control">
-                    <option value="Mumbai">Mumbai</option>
-                    <option value="Jaipur">Jaipur</option>
-                    <option value="Bangalore">Bangalore</option>
-                    <option value="Gurgaon">Gurgaon</option>
-                  </select>
-                  <div id="cmp-box-1" class="cmp-res-box">
-                    <div class="cmp-city-title">Mumbai</div>
-                    <div class="cmp-metric"><b>Avg Price:</b> <span id="cmp-price-1">₹ 258.46 Lakhs</span></div>
-                    <div class="cmp-metric"><b>Avg Rate:</b> <span id="cmp-rate-1">₹ 9,399/sqft</span></div>
-                  </div>
-                </div>
-
-                <div class="compare-col">
-                  <label for="cmp-city-2">City B</label>
-                  <select id="cmp-city-2" class="select-control">
-                    <option value="Jaipur">Jaipur</option>
-                    <option value="Mumbai">Mumbai</option>
-                    <option value="Bangalore">Bangalore</option>
-                    <option value="Hyderabad">Hyderabad</option>
-                  </select>
-                  <div id="cmp-box-2" class="cmp-res-box">
-                    <div class="cmp-city-title">Jaipur</div>
-                    <div class="cmp-metric"><b>Avg Price:</b> <span id="cmp-price-2">₹ 257.37 Lakhs</span></div>
-                    <div class="cmp-metric"><b>Avg Rate:</b> <span id="cmp-rate-2">₹ 9,270/sqft</span></div>
-                  </div>
+          <div class="widget-col-right">
+            <div class="calendar-widget-card">
+              <div class="cal-header">
+                <h4 class="cal-month-title">Market Calendar — 2026</h4>
+                <div class="cal-arrows">
+                  <button class="cal-nav">&lt;</button>
+                  <button class="cal-nav">&gt;</button>
                 </div>
               </div>
-            </div>
 
-            <div class="card table-card">
-              <h3 class="card-title">📋 State Market Comparison Table</h3>
-              <div class="table-wrapper">
-                <table class="data-table">
-                  <thead>
-                    <tr>
-                      <th>State</th>
-                      <th>Avg Property Price</th>
-                      <th>Avg Rate / Sq. Ft.</th>
-                      <th>Active Listings</th>
-                    </tr>
-                  </thead>
-                  <tbody id="state-table-body">
-                    <!-- Dynamically populated -->
-                  </tbody>
-                </table>
+              <div class="cal-days-grid">
+                <span class="day-lbl">MON</span>
+                <span class="day-lbl">THU</span>
+                <span class="day-lbl">WED</span>
+                <span class="day-lbl">TUE</span>
+                <span class="day-lbl">FRI</span>
+                <span class="day-lbl">SAT</span>
+                <span class="day-lbl">SUN</span>
+
+                <span class="day-num inactive">30</span>
+                <span class="day-num">1</span>
+                <span class="day-num">2</span>
+                <span class="day-num">3</span>
+                <span class="day-num">4</span>
+                <span class="day-num">5</span>
+                <span class="day-num">6</span>
+                <span class="day-num">7</span>
+                <span class="day-num">8</span>
+                <span class="day-num highlight-mint">9</span>
+                <span class="day-num">10</span>
+                <span class="day-num">11</span>
+                <span class="day-num highlight-mint">12</span>
+                <span class="day-num">13</span>
+                <span class="day-num">14</span>
+                <span class="day-num">15</span>
+                <span class="day-num highlight-black">16</span>
+                <span class="day-num highlight-black">17</span>
+                <span class="day-num">18</span>
+                <span class="day-num">19</span>
+                <span class="day-num">20</span>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Market Analytics Dashboard Charts -->
+        <div class="dashboard-grid">
+          <div class="card chart-card">
+            <h3 class="card-title">📈 Average Rate per Sq. Ft. by State (₹/sqft)</h3>
+            <div class="chart-container">
+              <canvas id="chart-state-rate"></canvas>
+            </div>
+          </div>
+
+          <div class="card chart-card">
+            <h3 class="card-title">🏠 Average Price Valuation by BHK Layout (₹ Lakhs)</h3>
+            <div class="chart-container">
+              <canvas id="chart-bhk-price"></canvas>
+            </div>
+          </div>
+
+          <div class="card chart-card">
+            <h3 class="card-title">🏢 Valuation Distribution by Property Type</h3>
+            <div class="chart-container">
+              <canvas id="chart-prop-type"></canvas>
+            </div>
+          </div>
+
+          <div class="card compare-card">
+            <h3 class="card-title">⚔️ Side-by-Side City Market Comparator</h3>
+            <p class="helper-text">Select 2 cities to compare valuation metrics:</p>
+            <div class="compare-selectors">
+              <div class="compare-col">
+                <label for="cmp-city-1">City A</label>
+                <select id="cmp-city-1" class="select-control">
+                  <option value="Mumbai">Mumbai</option>
+                  <option value="Jaipur">Jaipur</option>
+                  <option value="Bangalore">Bangalore</option>
+                  <option value="Gurgaon">Gurgaon</option>
+                </select>
+                <div id="cmp-box-1" class="cmp-res-box">
+                  <div class="cmp-city-title">Mumbai</div>
+                  <div class="cmp-metric"><b>Avg Price:</b> <span id="cmp-price-1">₹ 258.46 Lakhs</span></div>
+                  <div class="cmp-metric"><b>Avg Rate:</b> <span id="cmp-rate-1">₹ 9,399/sqft</span></div>
+                </div>
+              </div>
+
+              <div class="compare-col">
+                <label for="cmp-city-2">City B</label>
+                <select id="cmp-city-2" class="select-control">
+                  <option value="Jaipur">Jaipur</option>
+                  <option value="Mumbai">Mumbai</option>
+                  <option value="Bangalore">Bangalore</option>
+                  <option value="Hyderabad">Hyderabad</option>
+                </select>
+                <div id="cmp-box-2" class="cmp-res-box">
+                  <div class="cmp-city-title">Jaipur</div>
+                  <div class="cmp-metric"><b>Avg Price:</b> <span id="cmp-price-2">₹ 257.37 Lakhs</span></div>
+                  <div class="cmp-metric"><b>Avg Rate:</b> <span id="cmp-rate-2">₹ 9,270/sqft</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card table-card">
+            <h3 class="card-title">📋 State Market Comparison Table</h3>
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>State</th>
+                    <th>Avg Property Price</th>
+                    <th>Avg Rate / Sq. Ft.</th>
+                    <th>Active Listings</th>
+                  </tr>
+                </thead>
+                <tbody id="state-table-body">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
