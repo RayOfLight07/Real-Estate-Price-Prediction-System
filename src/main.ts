@@ -209,7 +209,16 @@ function initLeafletMap(): void {
   }).addTo(leafletMap);
 
   setupMapLayerToggles();
+
+  setTimeout(() => {
+    leafletMap?.invalidateSize();
+  }, 300);
+
+  window.addEventListener('resize', () => {
+    leafletMap?.invalidateSize();
+  });
 }
+
 
 // Map Layer Style Switcher
 function setupMapLayerToggles(): void {

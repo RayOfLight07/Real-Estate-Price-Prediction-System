@@ -272,7 +272,10 @@ h1, h2, h3, h4, .brand-name {
   position: relative;
   padding: 0;
   overflow: hidden;
-  min-height: 380px;
+  height: 100%;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
 }
 
 .map-floating-toggles {
@@ -292,10 +295,13 @@ h1, h2, h3, h4, .brand-name {
 
 .leaflet-map-container {
   width: 100%;
-  height: 380px;
+  height: 100%;
+  min-height: 420px;
+  flex: 1;
   border-radius: var(--radius-lg);
   z-index: 10;
 }
+
 
 
 /* Dynamic State Banner */
