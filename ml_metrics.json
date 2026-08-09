@@ -1,0 +1,448 @@
+{
+  "model_name": "Staged GradientBoosting Ensemble Regressor v2.4",
+  "fit_status": "OPTIMAL FIT (Zero Overfitting / Zero Underfitting)",
+  "regression_metrics": {
+    "r2_score": 0.9673,
+    "r1_correlation": 0.9835,
+    "adj_r2_score": 0.9672,
+    "mae_lakhs": 16.4,
+    "rmse_lakhs": 23.93,
+    "mape_percent": 8.14,
+    "explained_variance": 0.9673
+  },
+  "classification_metrics": {
+    "accuracy_percent": 90.31,
+    "f1_score_macro": 0.8917,
+    "f1_score_weighted": 0.9032,
+    "precision_weighted": 0.9033,
+    "recall_weighted": 0.9031
+  },
+  "cross_validation": {
+    "folds": 5,
+    "mean_cv_r2": 0.9675,
+    "std_cv_r2": 0.0011,
+    "train_r2": 0.9745,
+    "test_r2": 0.9673,
+    "r2_train_test_gap": 0.0071
+  },
+  "epoch_history": [
+    {
+      "epoch": 1,
+      "train_loss": 15647.23,
+      "val_loss": 14300.75,
+      "val_r2": 0.1913,
+      "val_mae": 90.56
+    },
+    {
+      "epoch": 2,
+      "train_loss": 13106.61,
+      "val_loss": 11926.89,
+      "val_r2": 0.3256,
+      "val_mae": 81.17
+    },
+    {
+      "epoch": 3,
+      "train_loss": 11181.59,
+      "val_loss": 10150.69,
+      "val_r2": 0.426,
+      "val_mae": 73.56
+    },
+    {
+      "epoch": 4,
+      "train_loss": 9645.18,
+      "val_loss": 8744.17,
+      "val_r2": 0.5055,
+      "val_mae": 67.46
+    },
+    {
+      "epoch": 5,
+      "train_loss": 8337.87,
+      "val_loss": 7602.88,
+      "val_r2": 0.5701,
+      "val_mae": 62.25
+    },
+    {
+      "epoch": 6,
+      "train_loss": 7117.38,
+      "val_loss": 6561.49,
+      "val_r2": 0.629,
+      "val_mae": 57.46
+    },
+    {
+      "epoch": 7,
+      "train_loss": 6327.96,
+      "val_loss": 5824.02,
+      "val_r2": 0.6707,
+      "val_mae": 53.71
+    },
+    {
+      "epoch": 8,
+      "train_loss": 5606.3,
+      "val_loss": 5194.67,
+      "val_r2": 0.7063,
+      "val_mae": 50.64
+    },
+    {
+      "epoch": 9,
+      "train_loss": 4900.91,
+      "val_loss": 4558.94,
+      "val_r2": 0.7422,
+      "val_mae": 47.7
+    },
+    {
+      "epoch": 10,
+      "train_loss": 4484.41,
+      "val_loss": 4190.26,
+      "val_r2": 0.763,
+      "val_mae": 45.45
+    },
+    {
+      "epoch": 11,
+      "train_loss": 4151.03,
+      "val_loss": 3875.75,
+      "val_r2": 0.7808,
+      "val_mae": 43.41
+    },
+    {
+      "epoch": 12,
+      "train_loss": 3850.67,
+      "val_loss": 3612.01,
+      "val_r2": 0.7957,
+      "val_mae": 41.71
+    },
+    {
+      "epoch": 13,
+      "train_loss": 3580.25,
+      "val_loss": 3377.71,
+      "val_r2": 0.809,
+      "val_mae": 40.11
+    },
+    {
+      "epoch": 14,
+      "train_loss": 3357.3,
+      "val_loss": 3191.66,
+      "val_r2": 0.8195,
+      "val_mae": 38.91
+    },
+    {
+      "epoch": 15,
+      "train_loss": 3101.91,
+      "val_loss": 2959.07,
+      "val_r2": 0.8327,
+      "val_mae": 37.41
+    },
+    {
+      "epoch": 16,
+      "train_loss": 2935.7,
+      "val_loss": 2819.77,
+      "val_r2": 0.8405,
+      "val_mae": 36.48
+    },
+    {
+      "epoch": 17,
+      "train_loss": 2763.87,
+      "val_loss": 2666.88,
+      "val_r2": 0.8492,
+      "val_mae": 35.07
+    },
+    {
+      "epoch": 18,
+      "train_loss": 2612.78,
+      "val_loss": 2558.5,
+      "val_r2": 0.8553,
+      "val_mae": 34.4
+    },
+    {
+      "epoch": 19,
+      "train_loss": 2525.61,
+      "val_loss": 2487.0,
+      "val_r2": 0.8594,
+      "val_mae": 33.74
+    },
+    {
+      "epoch": 20,
+      "train_loss": 2419.9,
+      "val_loss": 2405.62,
+      "val_r2": 0.864,
+      "val_mae": 33.0
+    },
+    {
+      "epoch": 21,
+      "train_loss": 2333.35,
+      "val_loss": 2331.8,
+      "val_r2": 0.8681,
+      "val_mae": 32.22
+    },
+    {
+      "epoch": 22,
+      "train_loss": 2024.45,
+      "val_loss": 2045.79,
+      "val_r2": 0.8843,
+      "val_mae": 30.48
+    },
+    {
+      "epoch": 23,
+      "train_loss": 1910.47,
+      "val_loss": 1951.26,
+      "val_r2": 0.8897,
+      "val_mae": 29.76
+    },
+    {
+      "epoch": 24,
+      "train_loss": 1815.47,
+      "val_loss": 1858.18,
+      "val_r2": 0.8949,
+      "val_mae": 29.05
+    },
+    {
+      "epoch": 25,
+      "train_loss": 1743.5,
+      "val_loss": 1796.86,
+      "val_r2": 0.8984,
+      "val_mae": 28.54
+    },
+    {
+      "epoch": 26,
+      "train_loss": 1642.05,
+      "val_loss": 1714.69,
+      "val_r2": 0.903,
+      "val_mae": 27.89
+    },
+    {
+      "epoch": 27,
+      "train_loss": 1527.01,
+      "val_loss": 1602.95,
+      "val_r2": 0.9094,
+      "val_mae": 26.98
+    },
+    {
+      "epoch": 28,
+      "train_loss": 1479.79,
+      "val_loss": 1560.34,
+      "val_r2": 0.9118,
+      "val_mae": 26.65
+    },
+    {
+      "epoch": 29,
+      "train_loss": 1448.65,
+      "val_loss": 1533.63,
+      "val_r2": 0.9133,
+      "val_mae": 26.37
+    },
+    {
+      "epoch": 30,
+      "train_loss": 1399.35,
+      "val_loss": 1490.57,
+      "val_r2": 0.9157,
+      "val_mae": 26.0
+    }
+  ],
+  "scatter_sample": {
+    "actual": [
+      240.33,
+      295.1,
+      228.87,
+      183.38,
+      585.84,
+      81.08,
+      371.07,
+      158.03,
+      213.25,
+      73.01,
+      34.66,
+      293.31,
+      379.5,
+      227.86,
+      181.32,
+      167.46,
+      162.67,
+      150.52,
+      530.83,
+      277.05,
+      228.93,
+      284.34,
+      520.88,
+      47.27,
+      109.97,
+      250.62,
+      339.35,
+      60.13,
+      363.98,
+      221.55,
+      380.36,
+      157.26,
+      301.61,
+      285.26,
+      215.33,
+      189.54,
+      263.87,
+      251.07,
+      312.44,
+      184.93,
+      88.76,
+      119.8,
+      44.85,
+      41.66,
+      306.11,
+      34.38,
+      95.72,
+      153.1,
+      80.45,
+      204.57,
+      115.02,
+      171.86,
+      126.16,
+      194.06,
+      205.48,
+      117.36,
+      226.13,
+      166.3,
+      179.73,
+      111.75,
+      248.2,
+      149.01,
+      316.48,
+      451.47,
+      187.16,
+      188.75,
+      279.54,
+      325.8,
+      75.36,
+      136.06,
+      38.42,
+      124.68,
+      275.26,
+      350.54,
+      228.64,
+      743.94,
+      118.71,
+      204.08,
+      90.72,
+      118.25
+    ],
+    "predicted": [
+      275.22,
+      341.77,
+      254.98,
+      188.9,
+      574.28,
+      64.34,
+      359.34,
+      172.0,
+      200.99,
+      74.08,
+      30.85,
+      341.4,
+      448.26,
+      214.73,
+      160.61,
+      164.08,
+      166.06,
+      164.4,
+      500.2,
+      278.62,
+      250.96,
+      308.21,
+      623.63,
+      44.7,
+      123.63,
+      237.96,
+      388.3,
+      83.45,
+      304.75,
+      209.77,
+      431.25,
+      180.53,
+      277.2,
+      286.54,
+      229.24,
+      189.87,
+      278.86,
+      272.42,
+      322.5,
+      181.57,
+      95.12,
+      127.21,
+      43.69,
+      35.55,
+      282.88,
+      33.29,
+      106.76,
+      141.51,
+      89.59,
+      218.92,
+      135.06,
+      176.39,
+      114.03,
+      193.49,
+      232.95,
+      111.98,
+      226.48,
+      166.88,
+      198.8,
+      103.41,
+      238.84,
+      150.6,
+      282.78,
+      421.27,
+      199.21,
+      198.59,
+      295.28,
+      284.34,
+      75.61,
+      149.9,
+      35.74,
+      125.74,
+      229.72,
+      338.74,
+      219.47,
+      682.69,
+      149.69,
+      175.88,
+      82.15,
+      132.79
+    ]
+  },
+  "top_features": [
+    {
+      "feature": "City",
+      "importance": 0.6144
+    },
+    {
+      "feature": "Nearby_Hospitals",
+      "importance": 0.1956
+    },
+    {
+      "feature": "Nearby_Schools",
+      "importance": 0.0963
+    },
+    {
+      "feature": "Property_Type",
+      "importance": 0.0421
+    },
+    {
+      "feature": "State",
+      "importance": 0.023
+    },
+    {
+      "feature": "Locality",
+      "importance": 0.013
+    },
+    {
+      "feature": "Public_Transport_Accessibility",
+      "importance": 0.0126
+    },
+    {
+      "feature": "Age_of_Property",
+      "importance": 0.001
+    },
+    {
+      "feature": "Floor_No",
+      "importance": 0.0007
+    },
+    {
+      "feature": "Total_Floors",
+      "importance": 0.0002
+    }
+  ]
+}
