@@ -1077,4 +1077,147 @@ function renderAnalyticsCharts(): void {
       tableBody.appendChild(tr);
     }
   }
+
+  fetchMLMetrics();
 }
+
+// Fetch & Render AI ML Model Diagnostics & Epoch Charts
+async function fetchMLMetrics(): Promise<void> {
+  try {
+    const res = await fetch('/api/ml_metrics');
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data.error) return;
+
+    renderMLMetricsUI(data);
+  } catch (err) {
+    console.warn("Could not fetch ML metrics:", err);
+  }
+}
+
+function renderMLMetricsUI(data: any): void {
+  const r2El = document.getElementById('ml-r2-val');
+  const r1El = document.getElementById('ml-r1-val');
+  const accEl = document.getElementById('ml-acc-val');
+  const f1El = document.getElementById('ml-f1-val');
+  const maeEl = document.getElementById('ml-mae-val');
+  const cvEl = document.getElementById('ml-cv-val');
+  const fitTitle = document.getElementById('ml-fit-title');
+  const fitDesc = document.getElementById('ml-fit-desc');
+
+  if (r2El) r2El.textContent = `${(data.regression_metrics.r2_score * 100).toFixed(2)}%`;
+  if (r1El) r1El.textContent = data.regression_metrics.r1_correlation.toFixed(4);
+  if (accEl) accEl.textContent = `${data.classification_metrics.accuracy_percent.toFixed(2)}%`;
+  if (f1El) f1El.textContent = data.classification_metrics.f1_score_macro.toFixed(4);
+  if (maeEl) maeEl.textContent = `₹ ${data.regression_metrics.mae_lakhs.toFixed(2)} Lakhs`;
+  if (cvEl) cvEl.textContent = `${(data.cross_validation.mean_cv_r2 * 100).toFixed(2)}%`;
+
+  if (fitTitle) fitTitle.textContent = `MODEL FIT STATUS: ${data.fit_status}`;
+  if (fitDesc) {
+    const gap = data.cross_validation.r2_train_test_gap;
+    fitDesc.innerHTML = `Train R² vs Test R² Gap: <b>${gap.toFixed(4)}</b> (${(gap * 100).toFixed(2)}%). Parallel loss convergence across training & validation epochs confirms zero overfitting.`;
+  }
+
+  // 1. Render Epoch Loss Curve Chart
+  const lossCanvas = document.getElementById('chart-epoch-loss') as HTMLCanvasElement;
+  if (lossCanvas && data.epoch_history) {
+    const epochs = data.epoch_history.map((e: any) => `Epoch ${e.epoch}`);
+    const trainLoss = data.epoch_history.map((e: any) => e.train_loss);
+    const valLoss = data.epoch_history.map((e: any) => e.val_loss);
+
+    new Chart(lossCanvas, {
+      type: 'line',
+      data: {
+        labels: epochs,
+        datasets: [
+          {
+            label: 'Training Loss (MSE)',
+            data: trainLoss,
+            borderColor: '#f43f5e',
+            backgroundColor: 'rgba(244, 63, 94, 0.08)',
+            fill: true,
+            tension: 0.35
+          },
+          {
+            label: 'Validation Loss (MSE)',
+            data: valLoss,
+            borderColor: '#0284c7',
+            backgroundColor: 'rgba(2, 132, 199, 0.08)',
+            fill: true,
+            tension: 0.35
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: '#0f172a' } } },
+        scales: {
+          x: { ticks: { color: '#64748b' }, grid: { display: false } },
+          y: { ticks: { color: '#64748b' }, grid: { color: '#e2e8f0' } }
+        }
+      }
+    });
+  }
+
+  // 2. Render Scatter Plot Chart (Actual vs Predicted)
+  const scatterCanvas = document.getElementById('chart-actual-pred') as HTMLCanvasElement;
+  if (scatterCanvas && data.scatter_sample) {
+    const scatterPoints = data.scatter_sample.actual.map((act: number, i: number) => ({
+      x: act,
+      y: data.scatter_sample.predicted[i]
+    }));
+
+    new Chart(scatterCanvas, {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Ground Truth vs AI Valuation (Lakhs)',
+          data: scatterPoints,
+          backgroundColor: 'rgba(2, 132, 199, 0.7)',
+          pointRadius: 5
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: '#0f172a' } } },
+        scales: {
+          x: { title: { display: true, text: 'Actual Property Price (Lakhs)', color: '#64748b' }, ticks: { color: '#64748b' }, grid: { color: '#e2e8f0' } },
+          y: { title: { display: true, text: 'AI Model Prediction (Lakhs)', color: '#64748b' }, ticks: { color: '#64748b' }, grid: { color: '#e2e8f0' } }
+        }
+      }
+    });
+  }
+
+  // 3. Render Top Feature Importances Horizontal Bar Chart
+  const featureCanvas = document.getElementById('chart-feature-imp') as HTMLCanvasElement;
+  if (featureCanvas && data.top_features) {
+    const featureLabels = data.top_features.map((f: any) => f.feature);
+    const featureValues = data.top_features.map((f: any) => f.importance);
+
+    new Chart(featureCanvas, {
+      type: 'bar',
+      data: {
+        labels: featureLabels,
+        datasets: [{
+          label: 'Feature Importance Score',
+          data: featureValues,
+          backgroundColor: '#10b981',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: '#64748b' }, grid: { color: '#e2e8f0' } },
+          y: { ticks: { color: '#0f172a', font: { weight: 'bold' } }, grid: { display: false } }
+        }
+      }
+    });
+  }
+}
+

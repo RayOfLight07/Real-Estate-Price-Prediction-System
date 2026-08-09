@@ -211,6 +211,19 @@ class APIRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps(ANALYTICS_CACHE).encode('utf-8'))
 
+        elif path == "/api/ml_metrics":
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self._set_cors_headers()
+            self.end_headers()
+            metrics_path = "models/ml_metrics.json"
+            if os.path.exists(metrics_path):
+                with open(metrics_path, 'r') as f:
+                    metrics_data = json.load(f)
+                self.wfile.write(json.dumps(metrics_data).encode('utf-8'))
+            else:
+                self.wfile.write(json.dumps({"error": "ML Metrics artifact not found. Please train model first."}).encode('utf-8'))
+
         else:
             self.send_response(404)
             self._set_cors_headers()

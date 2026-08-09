@@ -1537,6 +1537,70 @@ h1, h2, h3, h4, .brand-name {
 
 .hidden { display: none !important; }
 
+/* ML DIAGNOSTICS & EPOCH PERFORMANCE PANEL */
+.ml-metrics-ribbon {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.ml-metric-card {
+  border-radius: var(--radius-lg);
+  padding: 1.2rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ml-lbl {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.ml-val {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--accent-blue);
+  margin: 0.2rem 0;
+}
+
+.ml-sub {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  font-weight: 700;
+}
+
+.fit-status-banner {
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: rgba(209, 250, 229, 0.85) !important;
+  border: 1.5px solid #10b981 !important;
+  margin-bottom: 1.5rem;
+}
+
+.status-icon {
+  font-size: 1.8rem;
+}
+
+.fit-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #047857;
+}
+
+.fit-desc {
+  font-size: 0.88rem;
+  color: #065f46;
+}
+
 /* Responsive Breakdown */
 @media (max-width: 1024px) {
   .utility-left { font-size: 0.72rem; }
