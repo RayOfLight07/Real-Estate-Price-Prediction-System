@@ -63,151 +63,6 @@ h1, h2, h3, h4, .brand-name {
   font-family: var(--font-heading);
 }
 
-/* MULTI-SCENE CINEMATIC LUXURY VILLA PRELOADER INTRO */
-.villa-preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: #06080e;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.preloader-bg-slide {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transform: scale(1.15);
-  transition: opacity 1.2s ease, transform 4.5s ease-out;
-  filter: brightness(0.65);
-}
-
-.preloader-bg-slide.active {
-  opacity: 1;
-  transform: scale(1.0);
-}
-
-.preloader-overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(6, 8, 14, 0.4) 0%, rgba(6, 8, 14, 0.9) 100%);
-}
-
-.preloader-content {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  max-width: 720px;
-  padding: 2rem;
-}
-
-.preloader-badge {
-  display: inline-block;
-  background: rgba(244, 63, 94, 0.2);
-  border: 1px solid var(--accent-rose);
-  color: var(--accent-rose);
-  font-weight: 800;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  margin-bottom: 1rem;
-}
-
-.preloader-title {
-  font-size: 2.8rem;
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 0.8rem;
-  color: #ffffff;
-}
-
-.preloader-subtitle {
-  font-size: 1.15rem;
-  color: #94a3b8;
-  margin-bottom: 1.5rem;
-}
-
-.scene-dots-row {
-  display: flex;
-  gap: 0.6rem;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-.scene-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transition: all 0.4s ease;
-}
-
-.scene-dot.active {
-  width: 28px;
-  border-radius: 10px;
-  background: #38bdf8;
-}
-
-.preloader-progress-box {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.preloader-progress-bar {
-  flex: 1;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.preloader-fill {
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, #38bdf8 0%, #f43f5e 100%);
-  border-radius: 10px;
-}
-
-.preloader-pct {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1rem;
-  color: #38bdf8;
-  width: 45px;
-}
-
-.skip-intro-btn {
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 20;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #ffffff;
-  padding: 0.6rem 1.4rem;
-  border-radius: 30px;
-  font-weight: 700;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-  transition: all 0.2s ease;
-}
-
-.skip-intro-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
-}
-
 /* Light Sticky Portal Header */
 .portal-header {
   background: rgba(255, 255, 255, 0.95);
@@ -328,10 +183,10 @@ h1, h2, h3, h4, .brand-name {
   transform: translateY(-2px);
 }
 
-/* VIEW 1: HERO SEARCH BANNER WITH LUXURY VILLA BACKGROUND IMAGE */
+/* VIEW 1: HERO SEARCH BANNER WITH KINETIC TYPOGRAPHY */
 .hero-banner-section {
   position: relative;
-  min-height: 620px;
+  min-height: 600px;
   background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80');
   background-size: cover;
   background-position: center;
@@ -344,7 +199,7 @@ h1, h2, h3, h4, .brand-name {
 .hero-bg-villa-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(248, 250, 252, 0.78) 0%, rgba(248, 250, 252, 0.94) 100%);
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.8) 0%, rgba(248, 250, 252, 0.95) 100%);
   backdrop-filter: blur(3px);
   z-index: 1;
 }
@@ -374,9 +229,20 @@ h1, h2, h3, h4, .brand-name {
 .hero-main-heading {
   font-size: 2.8rem;
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.25;
   color: var(--text-main);
   margin-bottom: 0.6rem;
+}
+
+/* ANIMATED KINETIC TYPOGRAPHY ACCENT WORD */
+.accent-animated-word {
+  display: inline-block;
+  background: linear-gradient(135deg, #0284c7 0%, #f43f5e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  padding: 0 0.2rem;
+  position: relative;
 }
 
 .hero-subtext {

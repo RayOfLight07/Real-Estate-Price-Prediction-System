@@ -16,39 +16,6 @@
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body class="light-theme">
-  
-  <!-- MULTI-SCENE CINEMATIC LUXURY VILLA TOUR PRELOADER INTRO -->
-  <div id="villa-intro-preloader" class="villa-preloader">
-    <div class="preloader-bg-slide active" id="preloader-slide-1" style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=80');"></div>
-    <div class="preloader-bg-slide" id="preloader-slide-2" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80');"></div>
-    <div class="preloader-bg-slide" id="preloader-slide-3" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80');"></div>
-
-    <div class="preloader-overlay"></div>
-    
-    <div class="preloader-content">
-      <div class="preloader-badge" id="preloader-badge">🏛️ LUXURY VILLA TOUR — SCENE 1 OF 3</div>
-      <h1 class="preloader-title" id="preloader-title">Welcome to Grand Architectural Luxury</h1>
-      <p class="preloader-subtitle" id="preloader-sub">Touring Premium Estates & 250,000+ Verified Properties across India...</p>
-      
-      <div class="scene-dots-row">
-        <span class="scene-dot active" id="dot-1"></span>
-        <span class="scene-dot" id="dot-2"></span>
-        <span class="scene-dot" id="dot-3"></span>
-      </div>
-
-      <div class="preloader-progress-box">
-        <div class="preloader-progress-bar">
-          <div class="preloader-fill" id="preloader-fill"></div>
-        </div>
-        <span class="preloader-pct" id="preloader-pct">0%</span>
-      </div>
-    </div>
-
-    <button id="skip-intro-btn" class="skip-intro-btn">
-      <span>Enter Portal ⏩</span>
-    </button>
-  </div>
-
   <div id="app">
     
     <!-- Top Portal Sticky Header Navigation Bar -->
@@ -91,12 +58,16 @@
     <!-- VIEW 1: FULL-SCROLL LANDING PAGE PORTAL -->
     <div id="view-landing" class="view-container">
       
-      <!-- HERO SEARCH BANNER WITH LUXURY VILLA BACKGROUND -->
+      <!-- HERO SEARCH BANNER WITH KINETIC TYPOGRAPHY ANIMATION -->
       <section id="hero-search" class="hero-banner-section">
         <div class="hero-bg-villa-overlay"></div>
         <div class="hero-content-container">
           <div class="hero-badge">⚡ INDIA'S #1 PROPERTY VALUATION ENGINE</div>
-          <h1 class="hero-main-heading">Find Real Estate & Get Instant Price Valuations</h1>
+          
+          <!-- ANIMATED KINETIC TYPOGRAPHY HEADING -->
+          <h1 class="hero-main-heading">
+            Find <span id="hero-dynamic-word" class="accent-animated-word">Real Estate</span> & Get Instant Price Valuations
+          </h1>
           <p class="hero-subtext">Evaluate 250,000+ properties across 20 States and 42 Major Cities with precision Machine Learning models.</p>
 
           <!-- Glassmorphic Search & Filter Card -->
