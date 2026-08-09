@@ -149,8 +149,8 @@ let currentTileLayer: L.TileLayer | null = null;
 
 // Tile Layer URLs
 const TILE_LAYERS = {
-  satellite: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
   streets: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  satellite: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
   dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
 };
 
@@ -159,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initGSAPMasterSequence();
   initLeafletMap();
   fetchServerData();
+  setupNavigationEvents();
   setupHeroEvents();
   setupFormEvents();
 });
@@ -170,11 +171,8 @@ function initGSAPMasterSequence(): void {
   tl.from('.portal-header', { opacity: 0, y: -20, duration: 0.8 })
     .from('.hero-badge', { opacity: 0, scale: 0.85, duration: 0.5 }, '-=0.4')
     .from('.hero-main-heading', { opacity: 0, y: 25, duration: 0.8 }, '-=0.3')
-    .from('.hero-subtext', { opacity: 0, y: 20, duration: 0.7 }, '-=0.5')
-    .from('.search-portal-card', { opacity: 0, y: 30, duration: 0.9 }, '-=0.5')
-    .from('.kpi-box', { opacity: 0, y: 20, stagger: 0.1, duration: 0.7 }, '-=0.4');
+    .from('.search-portal-card', { opacity: 0, y: 30, duration: 0.9 }, '-=0.5');
 
-  // KPI Counter Animation
   const kpiObj = { val: 0 };
   const kpiEl = document.getElementById('kpi-listings');
   if (kpiEl) {
@@ -200,9 +198,9 @@ function initLeafletMap(): void {
     zoomControl: true
   });
 
-  currentTileLayer = L.tileLayer(TILE_LAYERS.satellite, {
+  currentTileLayer = L.tileLayer(TILE_LAYERS.streets, {
     maxZoom: 18,
-    attribution: '© Esri — Satellite imagery'
+    attribution: '© OpenStreetMap'
   }).addTo(leafletMap);
 
   setupMapLayerToggles();
@@ -267,7 +265,7 @@ function populateMapMarkers(): void {
 
   const customIcon = L.divIcon({
     className: 'custom-map-pin',
-    html: `<div style="background-color: #f43f5e; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 12px #f43f5e;"></div>`,
+    html: `<div style="background-color: #0284c7; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 10px rgba(2,132,199,0.8);"></div>`,
     iconSize: [14, 14],
     iconAnchor: [7, 7]
   });
@@ -325,7 +323,6 @@ function populateLocationDropdowns(): void {
 
   const stateSelect = document.getElementById('state-select') as HTMLSelectElement;
   const heroStateSelect = document.getElementById('hero-state-select') as HTMLSelectElement;
-
   const states = serverMetadata.states || ["Rajasthan", "Maharashtra", "Karnataka"];
 
   [stateSelect, heroStateSelect].forEach(selectEl => {
@@ -416,7 +413,7 @@ function updateCityBenchmark(city: string): void {
   }
 }
 
-// Update Visual State Landmark Banner
+// Update State Banner
 function updateStateBanner(state: string): void {
   const bannerCard = document.getElementById('state-banner-card');
   const landmarkTag = document.getElementById('state-landmark-tag');
@@ -442,7 +439,58 @@ function updateStateBanner(state: string): void {
   });
 }
 
-// Hero Search Banner Events & Quick Pills
+// Navigation & View Switcher Logic
+function setupNavigationEvents(): void {
+  const btnLandingTab = document.getElementById('nav-landing-tab');
+  const btnDashboardTab = document.getElementById('nav-dashboard-tab');
+  const btnSideHome = document.getElementById('side-home-btn');
+  const btnSideDash = document.getElementById('side-dash-btn');
+  const footerNavDash = document.getElementById('footer-nav-dash');
+
+  const viewLanding = document.getElementById('view-landing');
+  const viewDashboard = document.getElementById('view-dashboard');
+
+  const switchView = (showDashboard: boolean) => {
+    if (showDashboard) {
+      btnLandingTab?.classList.remove('active');
+      btnDashboardTab?.classList.add('active');
+
+      gsap.to(viewLanding, {
+        opacity: 0,
+        y: -15,
+        duration: 0.3,
+        onComplete: () => {
+          viewLanding?.classList.add('hidden');
+          viewDashboard?.classList.remove('hidden');
+          gsap.fromTo(viewDashboard, { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
+        }
+      });
+    } else {
+      btnDashboardTab?.classList.remove('active');
+      btnLandingTab?.classList.add('active');
+
+      gsap.to(viewDashboard, {
+        opacity: 0,
+        y: -15,
+        duration: 0.3,
+        onComplete: () => {
+          viewDashboard?.classList.add('hidden');
+          viewLanding?.classList.remove('hidden');
+          gsap.fromTo(viewLanding, { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
+          leafletMap?.invalidateSize();
+        }
+      });
+    }
+  };
+
+  btnLandingTab?.addEventListener('click', () => switchView(false));
+  btnDashboardTab?.addEventListener('click', () => switchView(true));
+  btnSideHome?.addEventListener('click', () => switchView(false));
+  btnSideDash?.addEventListener('click', () => switchView(true));
+  footerNavDash?.addEventListener('click', () => switchView(true));
+}
+
+// Hero Events & Quick Pills
 function setupHeroEvents(): void {
   const heroStateSelect = document.getElementById('hero-state-select') as HTMLSelectElement;
   const heroCitySelect = document.getElementById('hero-city-select') as HTMLSelectElement;
@@ -481,7 +529,6 @@ function setupHeroEvents(): void {
     document.getElementById('valuation-calculator')?.scrollIntoView({ behavior: 'smooth' });
   });
 
-  // Quick City Pills
   const cityPills = document.querySelectorAll('.city-pill');
   cityPills.forEach(pill => {
     pill.addEventListener('click', (e) => {
@@ -675,7 +722,7 @@ function displayResults(data: PredictionResponse, payload: any): void {
   resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// Export PDF & City Comparator
+// Setup Print Export & City Comparator Logic
 function setupExportAndComparator(): void {
   const exportBtn = document.getElementById('export-pdf-btn');
   exportBtn?.addEventListener('click', () => {
@@ -715,7 +762,7 @@ function setupExportAndComparator(): void {
   updateCmp();
 }
 
-// Render Chart.js Market Analytics Dashboard
+// Render Chart.js Analytics Charts (Light Theme Colors)
 function renderAnalyticsCharts(): void {
   if (!analyticsData) return;
 
@@ -732,7 +779,7 @@ function renderAnalyticsCharts(): void {
         datasets: [{
           label: 'Avg Rate (₹/sqft)',
           data: stateRates,
-          backgroundColor: '#38bdf8',
+          backgroundColor: '#0284c7',
           borderRadius: 8
         }]
       },
@@ -741,8 +788,8 @@ function renderAnalyticsCharts(): void {
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
-          y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } }
+          x: { ticks: { color: '#64748b' }, grid: { display: false } },
+          y: { ticks: { color: '#64748b' }, grid: { color: '#e2e8f0' } }
         }
       }
     });
@@ -762,7 +809,7 @@ function renderAnalyticsCharts(): void {
           label: 'Avg Price (Lakhs)',
           data: bhkPrices,
           borderColor: '#10b981',
-          backgroundColor: 'rgba(16, 185, 129, 0.15)',
+          backgroundColor: 'rgba(16, 185, 129, 0.12)',
           fill: true,
           tension: 0.4
         }]
@@ -772,8 +819,8 @@ function renderAnalyticsCharts(): void {
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
-          y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } }
+          x: { ticks: { color: '#64748b' }, grid: { display: false } },
+          y: { ticks: { color: '#64748b' }, grid: { color: '#e2e8f0' } }
         }
       }
     });
@@ -791,13 +838,13 @@ function renderAnalyticsCharts(): void {
         labels: ptypes,
         datasets: [{
           data: pprices,
-          backgroundColor: ['#38bdf8', '#818cf8', '#f43f5e']
+          backgroundColor: ['#0284c7', '#10b981', '#f43f5e']
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: '#f8fafc' } } }
+        plugins: { legend: { labels: { color: '#0f172a' } } }
       }
     });
   }
