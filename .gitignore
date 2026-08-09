@@ -4,7 +4,9 @@ dist/
 
 # Large dataset (download from Google Drive link in README)
 data/
-dist-ssr/
+
+# Trained model files (regenerate by running train_perfect_ml_model.py)
+models/
 *.local
 
 # Python environment & cache
